@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Star Wars Episode VII Countdown</string>
+    <string name="appwidget_label">Star Wars Episode VII Countdown</string>
+    <string name="countdown_minus_other">%1$d days ago</string>
+    <string name="countdown_minus_1">1 day ago</string>
+    <string name="countdown_zero">TODAY</string>
+    <string name="countdown_one">tomorrow</string>
+    <string name="countdown_other">%1$d days</string>
+
+</resources>

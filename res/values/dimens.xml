@@ -1,0 +1,8 @@
+<resources>
+
+    <dimen name="padding">8dp</dimen>
+    <dimen name="logoWidth">550px</dimen>
+    <dimen name="logoHeight">124px</dimen>
+    <dimen name="textSize">140px</dimen>
+
+</resources>

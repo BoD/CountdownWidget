@@ -1,0 +1,7 @@
+bin
+gen
+build-bod.properties
+local.properties
+etc/apk
+
+.DS_Store
