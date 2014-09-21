@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CountdownWidget</string>
+    <string name="notification_title">Star Wars Episode VII</string>
+</resources>
