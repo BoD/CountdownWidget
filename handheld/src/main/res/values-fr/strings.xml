@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Compte à rebours Star Wars Episode VII</string>
+    <string name="appwidget_label">Compte à rebours Episode VII</string>
+
+    <!-- Preference (Settings) -->
+    <string name="preference_androidWear_title">Android Wear</string>
+    <string name="preference_androidWear_summary">Affiche une notification une fois par jour sur les objets Android Wear connectés</string>
+    <string name="preference_tutorial">How do I add a widget?</string>
+    <string name="preference_about">À propos…</string>
+    <string name="preference_toast">Appuyez sur RETOUR quand vous avez terminé</string>
+
+    <!-- About -->
+    <string name="about_shareText_subject">Essayez cette app !</string>
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Episode VII !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+
+</resources>

@@ -2,7 +2,7 @@ CountdownWidget
 ===============
 
 A very simple Android widget that shows the number of days
-before the release of Star Wars Episode VII (December 18, 2015).
+until the release of Star Wars Episode VII (December 18, 2015).
 
 
 Licence

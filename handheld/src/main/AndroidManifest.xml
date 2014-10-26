@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="org.jraf.android.countdownwidget"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="internalOnly"
+    tools:ignore="MissingVersion">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name="org.jraf.android.countdownwidget.handheld.app.Application"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme">
+
+        <!-- Meta data for Google Play Services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Meta data for Crashlytics -->
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="439fd08746c1c52a7eb5e9fe0d2e0b631861d890" />
+
+        <!-- AppWidget -->
+        <receiver
+            android:name="org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider"
+            android:label="@string/appwidget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget" />
+        </receiver>
+
+        <!-- Settings -->
+        <activity
+            android:name="org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/appwidget_label">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Android Wear Service -->
+        <service android:name="org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService" />
+
+        <!-- Boot receiver -->
+        <receiver android:name="org.jraf.android.countdownwidget.handheld.app.boot.BootCompletedBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

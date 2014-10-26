@@ -7,6 +7,10 @@ etc/apk
 .DS_Store
 .gradle
 .idea
-app/build
 build
 etc/proguard/*
+
+common/build
+handheld/build
+wearable/build
+
