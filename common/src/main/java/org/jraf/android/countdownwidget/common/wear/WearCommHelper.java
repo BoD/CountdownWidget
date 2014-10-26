@@ -25,6 +25,7 @@
 package org.jraf.android.countdownwidget.common.wear;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -34,12 +35,12 @@ import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
+import org.jraf.android.util.annotation.Background;
 import org.jraf.android.util.log.wrapper.Log;
 
 /**
  * Helper singleton class to communicate with wearables.<br/>
  * Note: {@link #connect(android.content.Context)} must be called prior to calling all the other methods.<br/>
- * Note: a connection to a {@link com.google.android.gms.common.api.GoogleApiClient} is maintained by this class, which may or may not be a performance problem.
  */
 public class WearCommHelper {
     private static final WearCommHelper INSTANCE = new WearCommHelper();
@@ -54,7 +55,10 @@ public class WearCommHelper {
 
     public void connect(Context context) {
         Log.d();
-        if (mGoogleApiClient != null) return;
+        if (mGoogleApiClient != null) {
+            Log.d("Already connected");
+            return;
+        }
         mGoogleApiClient = new GoogleApiClient.Builder(context).addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
             @Override
             public void onConnected(Bundle connectionHint) {
@@ -87,14 +91,31 @@ public class WearCommHelper {
      * Days.
      */
 
+    @Background(Background.Type.NETWORK)
     public void updateDays(int days) {
-        Log.d("days=" + days );
+        Log.d("days=" + days);
         PutDataMapRequest putDataMapRequest = PutDataMapRequest.create(CommConstants.PATH_DAYS);
 
         DataMap dataMap = putDataMapRequest.getDataMap();
         dataMap.putInt(CommConstants.EXTRA_DAYS, days);
 
         PutDataRequest request = putDataMapRequest.asPutDataRequest();
-        Wearable.DataApi.putDataItem(mGoogleApiClient, request);
+        Wearable.DataApi.putDataItem(mGoogleApiClient, request).await();
     }
+
+    @Background(Background.Type.NETWORK)
+    public void removeDays() {
+        Log.d();
+        Wearable.DataApi.deleteDataItems(mGoogleApiClient, createUri(CommConstants.PATH_DAYS)).await();
+    }
+
+
+    /*
+     * Misc.
+     */
+
+    private static Uri createUri(String path) {
+        return new Uri.Builder().scheme("wear").path(path).build();
+    }
+
 }

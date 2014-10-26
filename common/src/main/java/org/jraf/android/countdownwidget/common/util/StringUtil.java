@@ -32,6 +32,9 @@ public class StringUtil {
     public static String getFormattedCountdown(Context context, int nbDays) {
         int resId;
         switch (nbDays) {
+            case Integer.MIN_VALUE:
+                return "";
+
             case -1:
                 resId = R.string.countdown_minus_1;
                 break;

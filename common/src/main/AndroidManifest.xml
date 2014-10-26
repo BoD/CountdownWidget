@@ -1,1 +1,4 @@
-<manifest package="org.jraf.android.countdownwidget.common" />
+<manifest package="org.jraf.android.countdownwidget.common">
+
+    <application />
+</manifest>

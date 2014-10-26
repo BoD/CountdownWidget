@@ -27,9 +27,10 @@ package org.jraf.android.countdownwidget.handheld.app;
 import android.os.Handler;
 import android.os.StrictMode;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.common.Constants;
-import org.jraf.android.countdownwidget.common.wear.WearCommHelper;
 import org.jraf.android.util.log.wrapper.Log;
 
 public class Application extends android.app.Application {
@@ -39,11 +40,11 @@ public class Application extends android.app.Application {
         // Log
         Log.init(Constants.TAG);
 
-        // Connect Google Play Services in wear communication helper
-        WearCommHelper.get().connect(this);
-
         // Strict mode
         if (BuildConfig.STRICT_MODE) setupStrictMode();
+
+        // Crashlytics
+        Crashlytics.start(this);
     }
 
     private void setupStrictMode() {

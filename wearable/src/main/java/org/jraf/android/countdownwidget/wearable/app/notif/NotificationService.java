@@ -29,6 +29,9 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.TextAppearanceSpan;
 
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
@@ -72,7 +75,7 @@ public class NotificationService extends WearableListenerService {
             Log.d("path=" + path);
             DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
             DataMap dataMap = dataMapItem.getDataMap();
-            mDays = dataMap.getInt(CommConstants.EXTRA_DAYS);
+            mDays = dataMap.getInt(CommConstants.EXTRA_DAYS, Integer.MIN_VALUE);
             showNotification();
         }
     }
@@ -91,11 +94,18 @@ public class NotificationService extends WearableListenerService {
         mainNotifBuilder.setSmallIcon(R.drawable.ic_launcher);
 
         // Title
-        mainNotifBuilder.setContentTitle(getString(R.string.notification_title));
+        String title = StringUtil.getFormattedCountdown(this, mDays);
+        SpannableString spannableTitle = new SpannableString(title);
+        Object span = new TextAppearanceSpan(this, R.style.NotificationContentTitleTextAppearance);
+        spannableTitle.setSpan(span, 0, title.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mainNotifBuilder.setContentTitle(spannableTitle);
 
         // Text
-        String text = StringUtil.getFormattedCountdown(this, mDays);
-        mainNotifBuilder.setContentText(text);
+        String text = getString(R.string.notification_text);
+        SpannableString spannableText = new SpannableString(text);
+        span = new TextAppearanceSpan(this, R.style.NotificationContentTextTextAppearance);
+        spannableText.setSpan(span, 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mainNotifBuilder.setContentText(spannableText);
 
         // Low priority (let's face it)
         mainNotifBuilder.setPriority(0);

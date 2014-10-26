@@ -24,10 +24,10 @@
  */
 package org.jraf.android.countdownwidget.app.appwidget;
 
-import java.util.Calendar;
-
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -38,11 +38,12 @@ import android.graphics.Rect;
 import android.graphics.Shader.TileMode;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.text.format.Time;
 import android.widget.RemoteViews;
 
 import org.jraf.android.countdownwidget.R;
 import org.jraf.android.countdownwidget.common.util.StringUtil;
+import org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity;
+import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
 /**
@@ -57,8 +58,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         int padding = context.getResources().getDimensionPixelSize(R.dimen.padding);
         int textSize = context.getResources().getDimensionPixelSize(R.dimen.textSize);
 
-        int nbDays = getNbDaysToDate(2015, Calendar.DECEMBER, 18);
-        //        int nbDays = getNbDaysToDate(2013, Calendar.DECEMBER, 27);
+        int nbDays = DateTimeUtil.getCountDownToEpisodeVII();
         Log.d("nbDays=" + nbDays);
 
         String text = StringUtil.getFormattedCountdown(context, nbDays);
@@ -91,38 +91,17 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         canvas.drawBitmap(logoBitmap, 0, 0, null);
 
         // Draw text
-        paint.setShader(new LinearGradient(0, logoHeight + padding, 0, bitmapHeight, context.getResources().getColor(R.color.text0), context.getResources()
-                .getColor(R.color.text1), TileMode.CLAMP));
+        paint.setShader(new LinearGradient(0, logoHeight + padding, 0, bitmapHeight, context.getResources().getColor(R.color.text0),
+                context.getResources().getColor(R.color.text1), TileMode.CLAMP));
         canvas.drawText(text, logoWidth / 2, logoHeight + padding + -textBounds.top, paint);
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.appwidget);
         remoteViews.setImageViewBitmap(R.id.imgLogo, bitmap);
+        Intent intent = new Intent(context, SettingsActivity.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.imgLogo, pendingIntent);
+
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
-    }
-
-    public static int getNbDaysToDate(int year, int month, int day) {
-        Calendar todayCal = Calendar.getInstance();
-        stripTime(todayCal);
-        Time todayTime = new Time();
-        todayTime.set(todayCal.getTimeInMillis());
-        int todayJulianDay = Time.getJulianDay(todayCal.getTimeInMillis(), todayTime.gmtoff);
-
-        Calendar eventCal = Calendar.getInstance();
-        eventCal.set(Calendar.YEAR, year);
-        eventCal.set(Calendar.MONTH, month);
-        eventCal.set(Calendar.DAY_OF_MONTH, day);
-        stripTime(eventCal);
-        Time eventTime = new Time();
-        eventTime.set(eventCal.getTimeInMillis());
-        int eventJulianDay = Time.getJulianDay(eventCal.getTimeInMillis(), eventTime.gmtoff);
-
-        return eventJulianDay - todayJulianDay;
-    }
-
-    public static void stripTime(Calendar cal) {
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
     }
 }
