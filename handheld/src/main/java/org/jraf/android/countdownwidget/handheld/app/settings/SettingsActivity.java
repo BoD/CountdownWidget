@@ -24,25 +24,43 @@
  */
 package org.jraf.android.countdownwidget.handheld.app.settings;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
+import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
+import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.handheld.util.ScheduleUtil;
+import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
+import org.jraf.android.util.annotation.Background;
+import org.jraf.android.util.io.IoUtil;
+import org.jraf.android.util.log.wrapper.Log;
 
 public class SettingsActivity extends PreferenceActivity {
+
+    public static final String SHARE_DIRECTORY_NAME = "EpisodeVII";
+    public static final String SHARE_FILE_NAME = "shared.png";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +84,15 @@ public class SettingsActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 onAboutClicked();
+                return true;
+            }
+        });
+
+        Preference sharePreference = findPreference(Constants.PREF_SHARE);
+        sharePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                onShareClicked();
                 return true;
             }
         });
@@ -138,5 +165,54 @@ public class SettingsActivity extends PreferenceActivity {
 
     private void onTutorialClicked() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://jraf.org/episodeVII/tutorial.html")));
+    }
+
+
+    private void onShareClicked() {
+        View view = getLayoutInflater().inflate(R.layout.appwidget, null, false);
+        Bitmap logoBitmap = AppWidgetProvider.drawLogo(this);
+        ImageView imgLogo = (ImageView) view.findViewById(R.id.imgLogo);
+        imgLogo.setImageBitmap(logoBitmap);
+        final Bitmap viewBitmap = ViewUtil.renderViewToBitmap(view, 480, 248); //TODO use resources
+
+        new AsyncTask<Void, Void, Uri>() {
+            @Override
+            protected Uri doInBackground(Void... params) {
+                try {
+                    return saveAndInsertImage(viewBitmap);
+                } catch (Exception e) {
+                    Log.w("Could not save image", e);
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Uri uri) {
+                if (uri == null) {
+                    Toast.makeText(SettingsActivity.this, R.string.settings_share_problemToast, Toast.LENGTH_LONG).show();
+                } else {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("image/png");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_subject));
+                    shareIntent.putExtra("sms_body", getString(R.string.settings_share_subject));
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, DateTimeUtil.getCountDownToEpisodeVIIAsText(SettingsActivity.this));
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.settings_share_chooser)));
+                }
+            }
+
+        }.execute();
+    }
+
+    @Background(Background.Type.DISK)
+    private Uri saveAndInsertImage(Bitmap image) throws Exception {
+        File picturesPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File path = new File(picturesPath, SHARE_DIRECTORY_NAME);
+        String fileName = SHARE_FILE_NAME;
+        File file = new File(path, fileName);
+        FileOutputStream outputStream = new FileOutputStream(file);
+        image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        IoUtil.closeSilently(outputStream);
+        return Uri.fromFile(file);
     }
 }

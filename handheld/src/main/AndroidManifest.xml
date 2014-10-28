@@ -6,8 +6,12 @@
     android:installLocation="internalOnly"
     tools:ignore="MissingVersion">
 
+    <!--     android:sharedUserId="org.jraf.android" -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18"/>
+
 
     <application
         android:name="org.jraf.android.countdownwidget.handheld.app.Application"

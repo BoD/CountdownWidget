@@ -8,10 +8,12 @@
     <string name="preference_tutorial">How do I add a widget?</string>
     <string name="preference_about">À propos…</string>
     <string name="preference_toast">Appuyez sur RETOUR quand vous avez terminé</string>
+    <string name="preference_share">Partager</string>
+    <string name="settings_share_problemToast">Un problème est survenu pendant le partage.</string>
+    <string name="settings_share_chooser">Partager avec</string>
 
     <!-- About -->
     <string name="about_shareText_subject">Essayez cette app !</string>
     <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Episode VII !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
-
 
 </resources>

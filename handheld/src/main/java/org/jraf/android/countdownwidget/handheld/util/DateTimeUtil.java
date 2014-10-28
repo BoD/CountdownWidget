@@ -27,8 +27,10 @@ package org.jraf.android.countdownwidget.handheld.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.content.Context;
 import android.text.format.Time;
 
+import org.jraf.android.countdownwidget.common.util.StringUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
 public class DateTimeUtil {
@@ -76,6 +78,11 @@ public class DateTimeUtil {
 
     public static int getCountDownToEpisodeVII() {
         return getNbDaysToDate(Calendar.getInstance(), 2015, Calendar.DECEMBER, 18);
+    }
+
+    public static String getCountDownToEpisodeVIIAsText(Context context) {
+        int nbDays = getCountDownToEpisodeVII();
+        return StringUtil.getFormattedCountdownFull(context, nbDays);
     }
 
     public static void listAllDates() {

@@ -59,4 +59,35 @@ public class StringUtil {
 
         return context.getResources().getString(resId, nbDays);
     }
+
+    public static String getFormattedCountdownFull(Context context, int nbDays) {
+        int resId;
+        switch (nbDays) {
+            case Integer.MIN_VALUE:
+                return "";
+
+            case -1:
+                resId = R.string.countdown_full_minus_1;
+                break;
+
+            case 0:
+                resId = R.string.countdown_full_zero;
+                break;
+
+            case 1:
+                resId = R.string.countdown_full_one;
+                break;
+
+            default:
+                if (nbDays < 0) {
+                    resId = R.string.countdown_full_minus_other;
+                    nbDays = -nbDays;
+                } else {
+                    resId = R.string.countdown_full_other;
+                }
+                break;
+        }
+
+        return context.getResources().getString(resId, nbDays);
+    }
 }

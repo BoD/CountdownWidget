@@ -29,4 +29,5 @@ public class Constants {
     public static final boolean PREF_ANDROID_WEAR_DEFAULT = false;
     public static final String PREF_TUTORIAL = "PREF_TUTORIAL";
     public static final String PREF_ABOUT = "PREF_ABOUT";
+    public static final String PREF_SHARE = "PREF_SHARE";
 }

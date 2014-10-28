@@ -53,6 +53,19 @@ import org.jraf.android.util.log.wrapper.Log;
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Bitmap bitmap = drawLogo(context);
+
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.appwidget);
+        remoteViews.setImageViewBitmap(R.id.imgLogo, bitmap);
+        Intent intent = new Intent(context, SettingsActivity.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.imgLogo, pendingIntent);
+
+        appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
+    }
+
+    public static Bitmap drawLogo(Context context) {
         int logoWidth = context.getResources().getDimensionPixelSize(R.dimen.logoWidth);
         int logoHeight = context.getResources().getDimensionPixelSize(R.dimen.logoHeight);
         int padding = context.getResources().getDimensionPixelSize(R.dimen.padding);
@@ -94,14 +107,6 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         paint.setShader(new LinearGradient(0, logoHeight + padding, 0, bitmapHeight, context.getResources().getColor(R.color.text0),
                 context.getResources().getColor(R.color.text1), TileMode.CLAMP));
         canvas.drawText(text, logoWidth / 2, logoHeight + padding + -textBounds.top, paint);
-
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.appwidget);
-        remoteViews.setImageViewBitmap(R.id.imgLogo, bitmap);
-        Intent intent = new Intent(context, SettingsActivity.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteViews.setOnClickPendingIntent(R.id.imgLogo, pendingIntent);
-
-        appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
+        return bitmap;
     }
 }
