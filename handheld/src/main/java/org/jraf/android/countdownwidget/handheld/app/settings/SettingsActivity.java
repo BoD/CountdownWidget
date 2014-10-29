@@ -60,6 +60,8 @@ public class SettingsActivity extends PreferenceActivity {
 
     public static final String SHARE_DIRECTORY_NAME = "EpisodeVII";
     public static final String SHARE_FILE_NAME = "shared.png";
+    public static final int SHARE_IMAGE_WIDTH_PX = 480;
+    public static final int SHARE_IMAGE_HEIGHT_PX = 248;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +175,7 @@ public class SettingsActivity extends PreferenceActivity {
         Bitmap logoBitmap = AppWidgetProvider.drawLogo(this);
         ImageView imgLogo = (ImageView) view.findViewById(R.id.imgLogo);
         imgLogo.setImageBitmap(logoBitmap);
-        final Bitmap viewBitmap = ViewUtil.renderViewToBitmap(view, 480, 248); //TODO use resources
+        final Bitmap viewBitmap = ViewUtil.renderViewToBitmap(view, SHARE_IMAGE_WIDTH_PX, SHARE_IMAGE_HEIGHT_PX);
 
         new AsyncTask<Void, Void, Uri>() {
             @Override
@@ -208,6 +210,7 @@ public class SettingsActivity extends PreferenceActivity {
     private Uri saveAndInsertImage(Bitmap image) throws Exception {
         File picturesPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File path = new File(picturesPath, SHARE_DIRECTORY_NAME);
+        path.mkdirs();
         String fileName = SHARE_FILE_NAME;
         File file = new File(path, fileName);
         FileOutputStream outputStream = new FileOutputStream(file);

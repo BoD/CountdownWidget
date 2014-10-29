@@ -4,14 +4,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="internalOnly"
-    tools:ignore="MissingVersion">
+    tools:ignore="MissingVersion"
+    android:sharedUserId="org.jraf.android">
 
     <!--     android:sharedUserId="org.jraf.android" -->
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18"/>
-
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:name="org.jraf.android.countdownwidget.handheld.app.Application"
@@ -60,7 +65,7 @@
         <service android:name="org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService" />
 
         <!-- Boot receiver -->
-        <receiver android:name="org.jraf.android.countdownwidget.handheld.app.boot.BootCompletedBroadcastReceiver" >
+        <receiver android:name="org.jraf.android.countdownwidget.handheld.app.boot.BootCompletedBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
