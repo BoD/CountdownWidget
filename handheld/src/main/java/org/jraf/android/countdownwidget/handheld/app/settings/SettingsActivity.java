@@ -132,7 +132,6 @@ public class SettingsActivity extends PreferenceActivity {
             .OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            setResult(RESULT_OK);
             if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
                 // Schedule an alarm
                 ScheduleUtil.scheduleRepeatingAlarm(SettingsActivity.this);

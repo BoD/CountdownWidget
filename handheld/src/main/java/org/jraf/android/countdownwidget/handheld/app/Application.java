@@ -33,6 +33,8 @@ import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.common.Constants;
 import org.jraf.android.util.log.wrapper.Log;
 
+import io.fabric.sdk.android.Fabric;
+
 public class Application extends android.app.Application {
     @Override
     public void onCreate() {
@@ -44,7 +46,7 @@ public class Application extends android.app.Application {
         if (BuildConfig.STRICT_MODE) setupStrictMode();
 
         // Crashlytics
-        Crashlytics.start(this);
+        Fabric.with(this, new Crashlytics());
     }
 
     private void setupStrictMode() {

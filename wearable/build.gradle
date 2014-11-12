@@ -33,13 +33,13 @@ android {
         debug {
             buildConfigField 'boolean', 'CRASH_REPORT', 'false'
 
-            runProguard false
+            minifyEnabled false
         }
 
         release {
             buildConfigField 'boolean', 'CRASH_REPORT', 'true'
 
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

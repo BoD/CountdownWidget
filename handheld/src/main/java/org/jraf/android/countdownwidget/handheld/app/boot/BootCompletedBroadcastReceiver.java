@@ -37,8 +37,6 @@ import org.jraf.android.util.log.wrapper.Log;
 import org.jraf.android.util.string.StringUtil;
 
 public class BootCompletedBroadcastReceiver extends BroadcastReceiver {
-    private static final long BOOT_DELAY = 2 * 60 * 1000;
-
     @Override
     public void onReceive(final Context context, Intent intent) {
         Log.d("intent=" + StringUtil.toString(intent));
