@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="org.jraf.android.countdownwidget"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    package="org.jraf.android.countdownwidget"
     android:installLocation="internalOnly"
-    tools:ignore="MissingVersion"
-    android:sharedUserId="org.jraf.android">
-
-    <!--     android:sharedUserId="org.jraf.android" -->
+    tools:ignore="MissingVersion">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -37,7 +33,7 @@
 
         <!-- AppWidget -->
         <receiver
-            android:name="org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider"
+            android:name="org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider"
             android:label="@string/appwidget_label">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

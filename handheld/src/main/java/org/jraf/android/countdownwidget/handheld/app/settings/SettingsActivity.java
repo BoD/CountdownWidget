@@ -45,7 +45,7 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider;
+import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
