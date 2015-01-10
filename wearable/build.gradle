@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
     compileOptions {
@@ -10,9 +10,9 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.jraf.android.countdownwidget"
-        minSdkVersion 20
-        targetSdkVersion 20
+        applicationId "org.jraf.android.countdownwidget3"
+        minSdkVersion 21
+        targetSdkVersion 21
         versionCode buildNumber
         versionName buildProperties['versionName']
 

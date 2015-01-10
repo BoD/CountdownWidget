@@ -3,14 +3,14 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 import java.text.SimpleDateFormat
 
-ext.globalProjectName = 'CountdownWidget'
+ext.globalProjectName = 'CountdownWidgetACertainMovie'
 
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.14.1'
+        classpath 'com.android.tools.build:gradle:1.0.0'
     }
 }
 
@@ -37,7 +37,7 @@ def buildDate() {
 
 def filterResources(buildVariant) {
     // Copy and 'filter' (replace {} placeholders) the resources
-    def path = buildVariant.processResources.resDir.getPath()
+    def path = buildVariant.outputs[0].processResources.resDir.getPath()
     copy {
         from path + '/values/values.xml'
         filter(ReplaceTokens, tokens: buildProperties, beginToken: '{', endToken: '}')

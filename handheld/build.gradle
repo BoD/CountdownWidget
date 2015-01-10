@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'io.fabric.tools:gradle:1.14.4'
     }
 }
 
@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.jraf.android.countdownwidget"
+        applicationId "org.jraf.android.countdownwidget3"
         minSdkVersion 9
         targetSdkVersion 21
         versionCode buildNumber
@@ -63,53 +63,52 @@ android {
         }
     }
 
-    android.applicationVariants.all { variant ->
+    applicationVariants.all { variant ->
         // Perform resource filtering
         variant.mergeResources.doLast {
             filterResources(variant)
         }
     }
+}
 
-    dependencies {
-        compile project(':common')
-        compile 'org.jraf:jraf-android-util:1.0.0'
-        compile 'org.jraf:android-switch-backport:1.3.1'
-        compile('com.crashlytics.sdk.android:crashlytics:2.0.1@aar') {
-            transitive = true;
-        }
-        // Package the wear apk inside this one
-        wearApp project(':wearable')
+dependencies {
+    compile project(':common')
+    compile 'org.jraf:jraf-android-util:1.0.0'
+    compile 'org.jraf:android-switch-backport:1.3.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.2.0@aar') {
+        transitive = true;
+    }
+    // Package the wear apk inside this one
+    wearApp project(':wearable')
+}
+
+task deploy(dependsOn: assembleRelease) << {
+    description 'Build a release apk, copy the result to the deploy and \'etc\' folders, then increment the build number.'
+
+    // Copy the apk to the 'etc' folder
+    new File('etc/apk').mkdirs()
+    copy {
+        from buildDir.getPath() + "/outputs/apk/${project.name}-release.apk"
+        into '../etc/apk'
+        rename "${project.name}-release.apk", "${globalProjectName}-${android.defaultConfig.versionCode}-signed.apk"
     }
 
-    task deploy(dependsOn: assembleRelease) << {
-        description 'Build a release apk, copy the result to the deploy and \'etc\' folders, then increment the build number.'
-
-        // Copy the apk to the 'etc' folder
-        new File('../etc/apk').mkdirs()
-        copy {
-            from buildDir.getPath() + "/outputs/apk/${project.name}-release.apk"
-            into '../etc/apk'
-            rename "${project.name}-release.apk", "${globalProjectName}-${android.defaultConfig.versionCode}-signed.apk"
-        }
-
-        // Also copy the apk to the deploy folder
-        copy {
-            from buildDir.getPath() + "/outputs/apk/${project.name}-release.apk"
-            into buildProperties['deploy-folder']
-            rename "${project.name}-release.apk", "${globalProjectName}-${android.defaultConfig.versionCode}-signed.apk"
-        }
-
-        // Copy the proguard mapping to the 'etc' folder
-        new File('../etc/proguard').mkdirs()
-        copy {
-            from buildDir.getPath() + '/outputs/proguard/release/mapping.txt'
-            into '../etc/proguard'
-            rename 'mapping.txt', "mapping-${android.defaultConfig.versionCode}.txt"
-        }
-
-        // Increment build number
-        buildNumberProperties['build.number'] = (buildNumber + 1).toString()
-        buildNumberProperties.store(buildNumberFile.newWriter(), null)
+    // Also copy the apk to the deploy folder
+    copy {
+        from buildDir.getPath() + "/outputs/apk/${project.name}-release.apk"
+        into buildProperties['deploy-folder']
+        rename "${project.name}-release.apk", "${globalProjectName}-${android.defaultConfig.versionCode}-signed.apk"
     }
 
+    // Copy the proguard mapping to the 'etc' folder
+    new File('etc/proguard').mkdirs()
+    copy {
+        from buildDir.getPath() + '/outputs/mapping/release/mapping.txt'
+        into '../etc/proguard'
+        rename 'mapping.txt', "mapping-${android.defaultConfig.versionCode}.txt"
+    }
+
+    // Increment build number
+    buildNumberProperties['build.number'] = (buildNumber + 1).toString()
+    buildNumberProperties.store(buildNumberFile.newWriter(), null)
 }

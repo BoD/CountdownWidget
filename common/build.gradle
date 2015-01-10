@@ -10,7 +10,6 @@ android {
     }
 
     defaultConfig {
-        applicationId 'org.jraf.android.countdownwidget.common'
         minSdkVersion 9
         targetSdkVersion 21
         versionCode buildNumber

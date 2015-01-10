@@ -24,9 +24,6 @@
  */
 package org.jraf.android.countdownwidget.handheld.app.settings;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,9 +42,9 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
+import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.handheld.util.ScheduleUtil;
 import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
@@ -55,6 +52,9 @@ import org.jraf.android.util.about.AboutActivityIntentBuilder;
 import org.jraf.android.util.annotation.Background;
 import org.jraf.android.util.io.IoUtil;
 import org.jraf.android.util.log.wrapper.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class SettingsActivity extends PreferenceActivity {
 
@@ -165,7 +165,7 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     private void onTutorialClicked() {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://jraf.org/episodeVII/tutorial.html")));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://jraf.org/widget/tutorial.html")));
     }
 
 
