@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 import java.text.SimpleDateFormat
 
-ext.globalProjectName = 'CountdownWidgetACertainMovie'
+ext.globalProjectName = 'CountdownWidget'
 
 buildscript {
     repositories {
