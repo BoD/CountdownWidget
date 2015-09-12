@@ -95,13 +95,21 @@ public class SettingsActivity extends AppCompatActivity {
                     ScheduleUtil.unscheduleRepeatingAlarm(SettingsActivity.this);
                 }
             } else if (Constants.PREF_COUNTRY.equals(key)) {
+                // Update the summary of the preference
+                SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
+                settingsFragment.updateCountrySummary();
+
+                // Update the value on all the widgets
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(SettingsActivity.this);
                 ComponentName provider = new ComponentName(SettingsActivity.this, AppWidgetProvider.class);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(provider);
                 AppWidgetProvider.updateWidgets(SettingsActivity.this, appWidgetManager, appWidgetIds);
 
-                SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
-                settingsFragment.updateCountrySummary();
+                // Update the value on wearables if needed
+                if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
+                    // Also send the value now
+                    AndroidWearService.backgroundRemoveAndUpdateDays(SettingsActivity.this);
+                }
             }
         }
     };
