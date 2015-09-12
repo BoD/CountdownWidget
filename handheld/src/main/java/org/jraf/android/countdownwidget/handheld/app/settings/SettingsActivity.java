@@ -24,18 +24,19 @@
  */
 package org.jraf.android.countdownwidget.handheld.app.settings;
 
-import android.appwidget.AppWidgetManager;
+import java.io.File;
+import java.io.FileOutputStream;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
+import android.support.annotation.WorkerThread;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -49,14 +50,10 @@ import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.handheld.util.ScheduleUtil;
 import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
-import org.jraf.android.util.annotation.Background;
 import org.jraf.android.util.io.IoUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     public static final String SHARE_DIRECTORY_NAME = "EpisodeVII";
     public static final String SHARE_FILE_NAME = "shared.png";
@@ -66,60 +63,9 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
-        addPreferencesFromResource(R.xml.settings);
-
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
-
-        Preference tutorialPreference = findPreference(Constants.PREF_TUTORIAL);
-        tutorialPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                onTutorialClicked();
-                return true;
-            }
-        });
-
-        Preference aboutPreference = findPreference(Constants.PREF_ABOUT);
-        aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                onAboutClicked();
-                return true;
-            }
-        });
-
-        Preference sharePreference = findPreference(Constants.PREF_SHARE);
-        sharePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                onShareClicked();
-                return true;
-            }
-        });
-
-        // We need this because this Activity is used as the configure Activity for the AppWidget.
-        if (AppWidgetManager.ACTION_APPWIDGET_CONFIGURE.equals(getIntent().getAction())) {
-            int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-            Intent resultValue = new Intent();
-            if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            setResult(RESULT_OK, resultValue);
-
-            // In that case we don't show the tutorial (because obviously the user knows how to add a widget)
-            getPreferenceScreen().removePreference(tutorialPreference);
-
-            // But we DO need to warn the user they MUST press back, otherwise the widget won't be created
-            Toast.makeText(this, R.string.preference_toast, Toast.LENGTH_LONG).show();
-        }
-//        DateTimeUtil.listAllDates();
-
-        // Don't show Android Wear stuff for old devices that don't support it
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            getPreferenceScreen().removePreference(findPreference(Constants.PREF_ANDROID_WEAR));
-        }
+        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
     @Override
@@ -148,7 +94,7 @@ public class SettingsActivity extends PreferenceActivity {
         }
     };
 
-    private void onAboutClicked() {
+    void onAboutClicked() {
         AboutActivityIntentBuilder builder = new AboutActivityIntentBuilder();
         builder.setAppName(getString(R.string.app_name));
         builder.setBuildDate(BuildConfig.BUILD_DATE);
@@ -161,15 +107,16 @@ public class SettingsActivity extends PreferenceActivity {
         builder.addLink(getString(R.string.about_email_uri), getString(R.string.about_email_text));
         builder.addLink(getString(R.string.about_web_uri), getString(R.string.about_web_text));
         builder.addLink(getString(R.string.about_sources_uri), getString(R.string.about_sources_text));
+        builder.setIsLightIcons(true);
         startActivity(builder.build(this));
     }
 
-    private void onTutorialClicked() {
+    void onTutorialClicked() {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://jraf.org/widget/tutorial.html")));
     }
 
 
-    private void onShareClicked() {
+    void onShareClicked() {
         View view = getLayoutInflater().inflate(R.layout.appwidget, null, false);
         Bitmap logoBitmap = AppWidgetProvider.drawLogo(this);
         ImageView imgLogo = (ImageView) view.findViewById(R.id.imgLogo);
@@ -205,7 +152,7 @@ public class SettingsActivity extends PreferenceActivity {
         }.execute();
     }
 
-    @Background(Background.Type.DISK)
+    @WorkerThread
     private Uri saveAndInsertImage(Bitmap image) throws Exception {
         File picturesPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File path = new File(picturesPath, SHARE_DIRECTORY_NAME);

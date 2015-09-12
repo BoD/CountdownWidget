@@ -27,6 +27,9 @@ package org.jraf.android.countdownwidget.common.wear;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.WorkerThread;
+
+import org.jraf.android.util.log.wrapper.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -34,9 +37,6 @@ import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
-
-import org.jraf.android.util.annotation.Background;
-import org.jraf.android.util.log.wrapper.Log;
 
 /**
  * Helper singleton class to communicate with wearables.<br/>
@@ -91,7 +91,7 @@ public class WearCommHelper {
      * Days.
      */
 
-    @Background(Background.Type.NETWORK)
+    @WorkerThread
     public void updateDays(int days) {
         Log.d("days=" + days);
         PutDataMapRequest putDataMapRequest = PutDataMapRequest.create(CommConstants.PATH_DAYS);
@@ -103,7 +103,7 @@ public class WearCommHelper {
         Wearable.DataApi.putDataItem(mGoogleApiClient, request).await();
     }
 
-    @Background(Background.Type.NETWORK)
+    @WorkerThread
     public void removeDays() {
         Log.d();
         Wearable.DataApi.deleteDataItems(mGoogleApiClient, createUri(CommConstants.PATH_DAYS)).await();

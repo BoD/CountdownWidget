@@ -14,6 +14,7 @@
     <string name="settings_share_chooser">Share with</string>
 
     <!-- About -->
+    <string name="about_title">About</string>
     <string name="about_authorCopyright" tools:ignore="TypographyOther" translatable="false">Copyright (C) 2013–2014 Benoit \'BoD\' Lubek.</string>
     <string name="about_License" translatable="false">Licensed under the terms of the GNU General Public License.</string>
     <string name="about_email_uri" translatable="false">mailto:BoD@JRAF.org</string>
