@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.R;
 import org.jraf.android.countdownwidget.handheld.Constants;
+import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -74,6 +75,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
+        updateCountrySummary();
 
         // We need this because this Activity is used as the configure Activity for the AppWidget.
         if (AppWidgetManager.ACTION_APPWIDGET_CONFIGURE.equals(getActivity().getIntent().getAction())) {
@@ -95,6 +97,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
             getPreferenceScreen().removePreference(findPreference(Constants.PREF_ANDROID_WEAR));
         }
+    }
+
+    void updateCountrySummary() {
+        Preference countryPreference = findPreference(Constants.PREF_COUNTRY);
+        int countryValueIndex = SettingsUtil.getCountryValueIndex(getActivity());
+        String countryName = getResources().getStringArray(R.array.country_labels)[countryValueIndex];
+        int releaseDateZone = SettingsUtil.getReleaseDateZone(getActivity());
+        String formattedDate = DateTimeUtil.getFormattedReleaseDate(getActivity(), releaseDateZone);
+        countryPreference.setSummary(getString(R.string.preference_country_summary, formattedDate, countryName));
     }
 
     @Override

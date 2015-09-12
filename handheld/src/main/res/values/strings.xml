@@ -9,7 +9,8 @@
     <string name="preference_about">About…</string>
     <string name="preference_toast">Press BACK when you are finished</string>
     <string name="preference_share">Share</string>
-    <string name="preference_country_title">Country</string>
+    <string name="preference_country_title">Release date</string>
+    <string name="preference_country_summary">%1$s (%2$s)</string>
     <string name="settings_share_problemToast">A problem occurred while trying to share.</string>
     <string name="settings_share_subject">(a certain movie)</string>
     <string name="settings_share_chooser">Share with</string>

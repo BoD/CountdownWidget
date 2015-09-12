@@ -99,6 +99,9 @@ public class SettingsActivity extends AppCompatActivity {
                 ComponentName provider = new ComponentName(SettingsActivity.this, AppWidgetProvider.class);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(provider);
                 AppWidgetProvider.updateWidgets(SettingsActivity.this, appWidgetManager, appWidgetIds);
+
+                SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
+                settingsFragment.updateCountrySummary();
             }
         }
     };

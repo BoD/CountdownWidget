@@ -33,6 +33,12 @@ import org.jraf.android.countdownwidget.handheld.Constants;
 
 public class SettingsUtil {
     public static int getReleaseDateZone(Context context) {
+        int countryValueIndex = getCountryValueIndex(context);
+        // Get the corresponding release zone for the country index
+        return context.getResources().getIntArray(R.array.releaseDateZonesByCountry)[countryValueIndex];
+    }
+
+    public static int getCountryValueIndex(Context context) {
         SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(context);
         String prefCountryValue = preferenceManager.getString(Constants.PREF_COUNTRY, Constants.PREF_COUNTRY_DEFAULT);
         String[] countryValues = context.getResources().getStringArray(R.array.country_values);
@@ -41,7 +47,6 @@ public class SettingsUtil {
         for (countryValueIndex = 0; countryValueIndex < countryValues.length; countryValueIndex++) {
             if (prefCountryValue.equals(countryValues[countryValueIndex])) break;
         }
-        // Get the corresponding release zone for the country index
-        return context.getResources().getIntArray(R.array.releaseDateZonesByCountry)[countryValueIndex];
+        return countryValueIndex;
     }
 }

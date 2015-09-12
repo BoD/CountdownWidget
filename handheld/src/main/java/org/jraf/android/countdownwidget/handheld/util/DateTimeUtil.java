@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.text.format.Time;
 
 import org.jraf.android.countdownwidget.common.util.StringUtil;
@@ -109,5 +110,13 @@ public class DateTimeUtil {
             Log.d(sdf.format(now.getTime()) + " ⇒ " + getNbDaysToDate(now, 2015, Calendar.DECEMBER, 18) + " days ");
             now.add(Calendar.DAY_OF_MONTH, 1);
         }
+    }
+
+    public static String getFormattedReleaseDate(Context context, int releaseDateZone) {
+        Calendar releaseDate = RELEASE_DATES[releaseDateZone];
+//        SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
+//        DateFormat.getDateInstance()
+        return DateUtils.formatDateTime(context, releaseDate.getTime().getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
+//        return sdf.format(releaseDate.getTime());
     }
 }
