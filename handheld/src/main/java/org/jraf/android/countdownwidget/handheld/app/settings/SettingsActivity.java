@@ -27,6 +27,8 @@ package org.jraf.android.countdownwidget.handheld.app.settings;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -78,18 +80,25 @@ public class SettingsActivity extends AppCompatActivity {
             .OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
-                // Schedule an alarm
-                ScheduleUtil.scheduleRepeatingAlarm(SettingsActivity.this);
+            if (Constants.PREF_ANDROID_WEAR.equals(key)) {
+                if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
+                    // Schedule an alarm
+                    ScheduleUtil.scheduleRepeatingAlarm(SettingsActivity.this);
 
-                // Also send the value now
-                AndroidWearService.backgroundRemoveAndUpdateDays(SettingsActivity.this);
+                    // Also send the value now
+                    AndroidWearService.backgroundRemoveAndUpdateDays(SettingsActivity.this);
 
-                // Also send the value in a minute (this allows the Wearable app to finish installing)
-                ScheduleUtil.scheduleOnceAlarm(SettingsActivity.this);
-            } else {
-                // Unschedule the alarm
-                ScheduleUtil.unscheduleRepeatingAlarm(SettingsActivity.this);
+                    // Also send the value in a minute (this allows the Wearable app to finish installing)
+                    ScheduleUtil.scheduleOnceAlarm(SettingsActivity.this);
+                } else {
+                    // Unschedule the alarm
+                    ScheduleUtil.unscheduleRepeatingAlarm(SettingsActivity.this);
+                }
+            } else if (Constants.PREF_COUNTRY.equals(key)) {
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(SettingsActivity.this);
+                ComponentName provider = new ComponentName(SettingsActivity.this, AppWidgetProvider.class);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(provider);
+                AppWidgetProvider.updateWidgets(SettingsActivity.this, appWidgetManager, appWidgetIds);
             }
         }
     };

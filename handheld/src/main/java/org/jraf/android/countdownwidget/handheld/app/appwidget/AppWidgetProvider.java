@@ -47,22 +47,20 @@ import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
-/**
- * Note: the package should be <em>org.jraf.android.countdownwidget.handheld.app.appwidget</em>, but
- * in order to not break updates, it cannot be renamed.
- */
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Bitmap bitmap = drawLogo(context);
+        updateWidgets(context, appWidgetManager, appWidgetIds);
+    }
 
+    public static void updateWidgets(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Bitmap bitmap = drawLogo(context);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.appwidget);
         remoteViews.setImageViewBitmap(R.id.imgLogo, bitmap);
         Intent intent = new Intent(context, SettingsActivity.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setOnClickPendingIntent(R.id.imgLogo, pendingIntent);
-
         appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
     }
 
