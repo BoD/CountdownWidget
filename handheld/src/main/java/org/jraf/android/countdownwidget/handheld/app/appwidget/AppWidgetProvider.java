@@ -43,6 +43,7 @@ import android.widget.RemoteViews;
 import org.jraf.android.countdownwidget.R;
 import org.jraf.android.countdownwidget.common.util.StringUtil;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity;
+import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
@@ -71,7 +72,8 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         int padding = context.getResources().getDimensionPixelSize(R.dimen.padding);
         int textSize = context.getResources().getDimensionPixelSize(R.dimen.textSize);
 
-        int nbDays = DateTimeUtil.getCountDownToEpisodeVII();
+        int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
+        int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
         Log.d("nbDays=" + nbDays);
 
         String text = StringUtil.getFormattedCountdown(context, nbDays);

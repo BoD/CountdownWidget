@@ -143,7 +143,8 @@ public class SettingsActivity extends AppCompatActivity {
                     shareIntent.setType("image/png");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_subject));
                     shareIntent.putExtra("sms_body", getString(R.string.settings_share_subject));
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, DateTimeUtil.getCountDownToEpisodeVIIAsText(SettingsActivity.this));
+                    int releaseDateZone = SettingsUtil.getReleaseDateZone(SettingsActivity.this);
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, DateTimeUtil.getCountDownToEpisodeVIIAsText(SettingsActivity.this, releaseDateZone));
                     shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.settings_share_chooser)));
                 }

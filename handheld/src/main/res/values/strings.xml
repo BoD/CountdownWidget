@@ -9,13 +9,14 @@
     <string name="preference_about">About…</string>
     <string name="preference_toast">Press BACK when you are finished</string>
     <string name="preference_share">Share</string>
+    <string name="preference_country_title">Country</string>
     <string name="settings_share_problemToast">A problem occurred while trying to share.</string>
     <string name="settings_share_subject">(a certain movie)</string>
     <string name="settings_share_chooser">Share with</string>
 
     <!-- About -->
     <string name="about_title">About</string>
-    <string name="about_authorCopyright" tools:ignore="TypographyOther" translatable="false">Copyright (C) 2013–2014 Benoit \'BoD\' Lubek.</string>
+    <string name="about_authorCopyright" translatable="false" tools:ignore="TypographyOther">Copyright (C) 2013–2014 Benoit \'BoD\' Lubek.</string>
     <string name="about_License" translatable="false">Licensed under the terms of the GNU General Public License.</string>
     <string name="about_email_uri" translatable="false">mailto:BoD@JRAF.org</string>
     <string name="about_email_text" translatable="false">BoD@JRAF.org</string>
@@ -25,5 +26,67 @@
     <string name="about_sources_text" translatable="false">Source code on Github</string>
     <string name="about_shareText_subject">Checkout out this app!</string>
     <string name="about_shareText_body">This app lets you count the number of days until the release of (a certain movie)!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+    <!-- Country names -->
+    <string name="countryName_Argentina">Argentina</string>
+    <string name="countryName_Australia">Australia</string>
+    <string name="countryName_Azerbaijan">Azerbaijan</string>
+    <string name="countryName_Bahrain">Bahrain</string>
+    <string name="countryName_Belarus">Belarus</string>
+    <string name="countryName_Belgium">Belgium</string>
+    <string name="countryName_Brazil">Brazil</string>
+    <string name="countryName_Bulgaria">Bulgaria</string>
+    <string name="countryName_Cambodia">Cambodia</string>
+    <string name="countryName_Canada">Canada</string>
+    <string name="countryName_Chile">Chile</string>
+    <string name="countryName_China">China</string>
+    <string name="countryName_Croatia">Croatia</string>
+    <string name="countryName_CzechRepublic">Czech Republic</string>
+    <string name="countryName_Denmark">Denmark</string>
+    <string name="countryName_Egypt">Egypt</string>
+    <string name="countryName_Estonia">Estonia</string>
+    <string name="countryName_France">France</string>
+    <string name="countryName_Germany">Germany</string>
+    <string name="countryName_Greece">Greece</string>
+    <string name="countryName_HongKong">Hong Kong</string>
+    <string name="countryName_Hungary">Hungary</string>
+    <string name="countryName_Iceland">Iceland</string>
+    <string name="countryName_Ireland">Ireland</string>
+    <string name="countryName_Israel">Israel</string>
+    <string name="countryName_Italy">Italy</string>
+    <string name="countryName_Japan">Japan</string>
+    <string name="countryName_Kazakhstan">Kazakhstan</string>
+    <string name="countryName_Lebanon">Lebanon</string>
+    <string name="countryName_Lithuania">Lithuania</string>
+    <string name="countryName_Malaysia">Malaysia</string>
+    <string name="countryName_Mexico">Mexico</string>
+    <string name="countryName_Morocco">Morocco</string>
+    <string name="countryName_Nepal">Nepal</string>
+    <string name="countryName_Netherlands">Netherlands</string>
+    <string name="countryName_NewZealand">New Zealand</string>
+    <string name="countryName_Norway">Norway</string>
+    <string name="countryName_Peru">Peru</string>
+    <string name="countryName_Philippines">Philippines</string>
+    <string name="countryName_Poland">Poland</string>
+    <string name="countryName_Portugal">Portugal</string>
+    <string name="countryName_Romania">Romania</string>
+    <string name="countryName_Russia">Russia</string>
+    <string name="countryName_Singapore">Singapore</string>
+    <string name="countryName_Slovakia">Slovakia</string>
+    <string name="countryName_SouthAfrica">South Africa</string>
+    <string name="countryName_Spain">Spain</string>
+    <string name="countryName_Sweden">Sweden</string>
+    <string name="countryName_Switzerland_Italian">Switzerland (Italian)</string>
+    <string name="countryName_Switzerland_German">Switzerland (German)</string>
+    <string name="countryName_Switzerland_French">Switzerland (French)</string>
+    <string name="countryName_Taiwan">Taiwan</string>
+    <string name="countryName_Thailand">Thailand</string>
+    <string name="countryName_Turkey">Turkey</string>
+    <string name="countryName_UK">UK</string>
+    <string name="countryName_Ukraine">Ukraine</string>
+    <string name="countryName_UnitedArabEmirates">United Arab Emirates</string>
+    <string name="countryName_USA">USA</string>
+    <string name="countryName_Vietnam">Vietnam</string>
+
 
 </resources>
