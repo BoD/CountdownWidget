@@ -114,9 +114,6 @@ public class DateTimeUtil {
 
     public static String getFormattedReleaseDate(Context context, int releaseDateZone) {
         Calendar releaseDate = RELEASE_DATES[releaseDateZone];
-//        SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
-//        DateFormat.getDateInstance()
         return DateUtils.formatDateTime(context, releaseDate.getTime().getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
-//        return sdf.format(releaseDate.getTime());
     }
 }
