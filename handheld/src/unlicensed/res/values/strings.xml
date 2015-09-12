@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Star Wars Episode VII Countdown</string>
+    <string name="appwidget_label">Episode VII Countdown</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Star Wars Episode VII</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">This app lets you count the number of days until the release of Episode VII!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+</resources>

@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.jraf.android.countdownwidget3"
+        applicationId 'org.jraf.android.countdownwidget3'
         minSdkVersion 9
         targetSdkVersion 22
         versionCode buildNumber
@@ -38,6 +38,16 @@ android {
         buildConfigField 'String', 'BUILD_DATE', '"' + buildDate() + '"'
         // For now we enable strict mode for all the configs
         buildConfigField 'boolean', 'STRICT_MODE', 'true'
+    }
+
+    productFlavors {
+        anonymous {
+            applicationId 'org.jraf.android.countdownwidget3'
+        }
+
+        unlicensed {
+            applicationId 'org.jraf.android.countdownwidget3.unlicensed'
+        }
     }
 
     signingConfigs {
