@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Compte à rebours Star Wars Episode VII</string>
-    <string name="appwidget_label">Compte à rebours Episode VII</string>
+    <string name="app_name">Compte à rebours (un certain film)</string>
+    <string name="appwidget_label">Compte à rebours (un certain film)</string>
 
     <!-- Preference (Settings) -->
     <string name="preference_androidWear_title">Android Wear</string>
     <string name="preference_androidWear_summary">Affiche une notification une fois par jour sur les objets Android Wear connectés</string>
-    <string name="preference_tutorial">How do I add a widget?</string>
+    <string name="preference_tutorial">Comment ajouter une \'widget\' ?</string>
     <string name="preference_about">À propos…</string>
     <string name="preference_toast">Appuyez sur RETOUR quand vous avez terminé</string>
     <string name="preference_share">Partager</string>
@@ -13,7 +13,70 @@
     <string name="settings_share_chooser">Partager avec</string>
 
     <!-- About -->
+    <string name="about_title">À propos</string>
     <string name="about_shareText_subject">Essayez cette app !</string>
-    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Episode VII !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'(un certain film) !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+    <string name="settings_share_subject">(un certain film)</string>
+    <string name="preference_country_title">Date de sortie</string>
 
+    <!-- Country names -->
+    <string name="countryName_Argentina">Argentine</string>
+    <string name="countryName_Australia">Australie</string>
+    <string name="countryName_Azerbaijan">Azerbaïdjan</string>
+    <string name="countryName_Bahrain">Bahreïn</string>
+    <string name="countryName_Belarus">Biélorussie</string>
+    <string name="countryName_Belgium">Belgique</string>
+    <string name="countryName_Brazil">Brésil</string>
+    <string name="countryName_Bulgaria">Bulgarie</string>
+    <string name="countryName_Cambodia">Cambodge</string>
+    <string name="countryName_Canada">Canada</string>
+    <string name="countryName_Chile">Chili</string>
+    <string name="countryName_China">Chine</string>
+    <string name="countryName_Croatia">Croatie</string>
+    <string name="countryName_CzechRepublic">République tchèque</string>
+    <string name="countryName_Denmark">Danemark</string>
+    <string name="countryName_Egypt">Égypte</string>
+    <string name="countryName_Estonia">Estonie</string>
+    <string name="countryName_France">France</string>
+    <string name="countryName_Germany">Allemagne</string>
+    <string name="countryName_Greece">Grèce</string>
+    <string name="countryName_HongKong">Hong Kong</string>
+    <string name="countryName_Hungary">Hongrie</string>
+    <string name="countryName_Iceland">Islande</string>
+    <string name="countryName_Ireland">Irlande</string>
+    <string name="countryName_Israel">Israël</string>
+    <string name="countryName_Italy">Italie</string>
+    <string name="countryName_Japan">Japon</string>
+    <string name="countryName_Kazakhstan">Kazakhstan</string>
+    <string name="countryName_Lebanon">Liban</string>
+    <string name="countryName_Lithuania">Lituanie</string>
+    <string name="countryName_Malaysia">Malaisie</string>
+    <string name="countryName_Mexico">Mexique</string>
+    <string name="countryName_Morocco">Maroc</string>
+    <string name="countryName_Nepal">Népal</string>
+    <string name="countryName_Netherlands">Pays-Bas</string>
+    <string name="countryName_NewZealand">Nouvelle-Zélande</string>
+    <string name="countryName_Norway">Norvège</string>
+    <string name="countryName_Peru">Pérou</string>
+    <string name="countryName_Philippines">Philippines</string>
+    <string name="countryName_Poland">Pologne</string>
+    <string name="countryName_Portugal">Portugal</string>
+    <string name="countryName_Romania">Roumanie</string>
+    <string name="countryName_Russia">Russie</string>
+    <string name="countryName_Singapore">Singapoure</string>
+    <string name="countryName_Slovakia">Slovaquie</string>
+    <string name="countryName_SouthAfrica">Afrique du Sud</string>
+    <string name="countryName_Spain">Espagne</string>
+    <string name="countryName_Sweden">Suède</string>
+    <string name="countryName_Switzerland_French">Suisse (Français)</string>
+    <string name="countryName_Switzerland_German">Suisse (Allemand)</string>
+    <string name="countryName_Switzerland_Italian">Suisse (Italien)</string>
+    <string name="countryName_Taiwan">Taïwan</string>
+    <string name="countryName_Thailand">Thaïlande</string>
+    <string name="countryName_Turkey">Turquie</string>
+    <string name="countryName_UK">Royaume-Uni</string>
+    <string name="countryName_USA">États-Unis</string>
+    <string name="countryName_Ukraine">Ukraine</string>
+    <string name="countryName_UnitedArabEmirates">Émirats arabes unis</string>
+    <string name="countryName_Vietnam">Viêt Nam</string>
 </resources>

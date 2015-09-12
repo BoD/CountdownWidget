@@ -28,12 +28,32 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.text.format.Time;
 
 import org.jraf.android.countdownwidget.common.util.StringUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
 public class DateTimeUtil {
+    private static final Calendar[] RELEASE_DATES = {
+            getCalendar(2015, Calendar.DECEMBER, 15),
+            getCalendar(2015, Calendar.DECEMBER, 16),
+            getCalendar(2015, Calendar.DECEMBER, 17),
+            getCalendar(2015, Calendar.DECEMBER, 18),
+            getCalendar(2015, Calendar.DECEMBER, 24),
+            getCalendar(2016, Calendar.JANUARY, 14),
+            getCalendar(2016, Calendar.JANUARY, 15),
+            getCalendar(2016, Calendar.JANUARY, 29),
+    };
+
+    private static Calendar getCalendar(int year, int month, int day) {
+        Calendar res = Calendar.getInstance();
+        res.set(Calendar.YEAR, year);
+        res.set(Calendar.MONTH, month);
+        res.set(Calendar.DAY_OF_MONTH, day);
+        stripTime(res);
+        return res;
+    }
 
     private static int getJulianDay(Calendar cal) {
         Time time = new Time();
@@ -44,11 +64,7 @@ public class DateTimeUtil {
     public static int getNbDaysToDate(Calendar from, int toYear, int toMonth, int toDay) {
         stripTime(from);
         int todayJulianDay = getJulianDay(from);
-
-        Calendar eventCal = Calendar.getInstance();
-        eventCal.set(Calendar.YEAR, toYear);
-        eventCal.set(Calendar.MONTH, toMonth);
-        eventCal.set(Calendar.DAY_OF_MONTH, toDay);
+        Calendar eventCal = getCalendar(toYear, toMonth, toDay);
         stripTime(eventCal);
         int eventJulianDay = getJulianDay(eventCal);
 
@@ -76,29 +92,28 @@ public class DateTimeUtil {
         return System.currentTimeMillis() + seconds * 1000;
     }
 
-    public static int getCountDownToEpisodeVII() {
-        return getNbDaysToDate(Calendar.getInstance(), 2015, Calendar.DECEMBER, 18);
+    public static int getCountDownToEpisodeVII(int releaseDateZone) {
+        Calendar releaseDate = RELEASE_DATES[releaseDateZone];
+        return getNbDaysToDate(Calendar.getInstance(), releaseDate.get(Calendar.YEAR), releaseDate.get(Calendar.MONTH), releaseDate.get(Calendar.DAY_OF_MONTH));
     }
 
-    public static String getCountDownToEpisodeVIIAsText(Context context) {
-        int nbDays = getCountDownToEpisodeVII();
+    public static String getCountDownToEpisodeVIIAsText(Context context, int releaseDateZone) {
+        int nbDays = getCountDownToEpisodeVII(releaseDateZone);
         return StringUtil.getFormattedCountdownFull(context, nbDays);
     }
 
     public static void listAllDates() {
-        Calendar starWarsRelease = Calendar.getInstance();
-        starWarsRelease.set(Calendar.DAY_OF_MONTH, 18);
-        starWarsRelease.set(Calendar.MONTH, Calendar.DECEMBER);
-        starWarsRelease.set(Calendar.YEAR, 2015);
-        stripTime(starWarsRelease);
-
+        Calendar starWarsRelease = RELEASE_DATES[3];
         Calendar now = Calendar.getInstance();
-
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
-
         while (getJulianDay(now) <= getJulianDay(starWarsRelease)) {
             Log.d(sdf.format(now.getTime()) + " ⇒ " + getNbDaysToDate(now, 2015, Calendar.DECEMBER, 18) + " days ");
             now.add(Calendar.DAY_OF_MONTH, 1);
         }
+    }
+
+    public static String getFormattedReleaseDate(Context context, int releaseDateZone) {
+        Calendar releaseDate = RELEASE_DATES[releaseDateZone];
+        return DateUtils.formatDateTime(context, releaseDate.getTime().getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
     }
 }

@@ -14,3 +14,4 @@ common/build
 handheld/build
 wearable/build
 
+handheld/src/main/assets/crashlytics-build.properties

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Star Wars Episode VII Countdown</string>
-    <string name="notification_text" translatable="false">Episode VII</string>
+    <string name="app_name">(a certain movie) Countdown</string>
+    <string name="notification_text">(a certain movie)</string>
 </resources>

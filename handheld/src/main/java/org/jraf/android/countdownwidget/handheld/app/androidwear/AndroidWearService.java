@@ -34,6 +34,7 @@ import android.preference.PreferenceManager;
 
 import org.jraf.android.countdownwidget.common.wear.WearCommHelper;
 import org.jraf.android.countdownwidget.handheld.Constants;
+import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.wrapper.Log;
 
@@ -58,8 +59,8 @@ public class AndroidWearService extends IntentService {
             // We got triggered, but the setting is off so please don't do anything
             return;
         }
-
-        int nbDays = DateTimeUtil.getCountDownToEpisodeVII();
+        int releaseDateZone = SettingsUtil.getReleaseDateZone(this);
+        int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
         Log.d("nbDays=" + nbDays);
         WearCommHelper wearCommHelper = WearCommHelper.get();
         if (ACTION_REMOVE_AND_UPDATE.equals(intent.getAction())) {
@@ -87,7 +88,8 @@ public class AndroidWearService extends IntentService {
             @Override
             protected Void doInBackground(Void... params) {
                 synchronized (wearCommHelper) {
-                    int nbDays = DateTimeUtil.getCountDownToEpisodeVII();
+                    int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
+                    int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
                     Log.d("nbDays=" + nbDays);
                     wearCommHelper.removeDays();
                     wearCommHelper.updateDays(nbDays);

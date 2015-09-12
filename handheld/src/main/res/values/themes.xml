@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseTheme" parent="@android:style/Theme" />
-
-    <style name="Theme" parent="style/BaseTheme">
-        <item name="switchStyle">@style/Widget.Holo.CompoundButton.Switch</item>
-        <item name="switchPreferenceStyle">@style/Preference.SwitchPreference</item>
+    <style name="AppTheme" parent="@style/Theme.AppCompat">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:activatedBackgroundIndicator">?android:attr/selectableItemBackground</item>
     </style>
-
 </resources>
