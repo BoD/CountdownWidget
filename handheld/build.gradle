@@ -99,6 +99,7 @@ dependencies {
     compile project(':common')
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:preference-v7:23.0.1'
+    compile 'com.android.support:preference-v14:23.0.1'
     compile 'org.jraf:jraf-android-util:1.0.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') { transitive = true; }
 
