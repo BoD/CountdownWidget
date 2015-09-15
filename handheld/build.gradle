@@ -1,43 +1,22 @@
-buildscript {
-    repositories {
-        maven {
-            url 'https://maven.fabric.io/repo'
-        }
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.14.4'
-    }
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
-repositories {
-    maven {
-        url 'https://maven.fabric.io/repo'
-    }
-}
-
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.0"
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
+    buildToolsVersion '23.0.1'
 
     defaultConfig {
         applicationId 'org.jraf.android.countdownwidget3'
         minSdkVersion 9
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode buildNumber
         versionName buildProperties['versionName']
         buildConfigField 'String', 'GIT_SHA1', '"' + gitSha1() + '"'
         buildConfigField 'String', 'BUILD_DATE', '"' + buildDate() + '"'
         // For now we enable strict mode for all the configs
         buildConfigField 'boolean', 'STRICT_MODE', 'true'
+
+        resConfigs 'en', 'fr'
     }
 
     productFlavors {
@@ -69,56 +48,61 @@ android {
 
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources true
             signingConfig signingConfigs.release
         }
     }
+}
 
-    applicationVariants.all { variant ->
-        // Perform resource filtering
-        variant.mergeResources.doLast {
-            filterResources(variant)
+def releaseTask = tasks.create('release')
+releaseTask << {
+    // Increment build number
+    buildNumberProperties['build.number'] = (buildNumber + 1).toString()
+    buildNumberProperties.store(buildNumberFile.newWriter(), null)
+}
+
+android.applicationVariants.all { variant ->
+    if (variant.buildType.name == 'release') {
+        variant.outputs.each { output ->
+            def apkName = "${globalProjectName}-${android.defaultConfig.versionCode}-${variant.flavorName}-signed.apk"
+            // Copy the apk to the 'etc' folder
+            def copyApkTask = tasks.create("copy${variant.name.capitalize()}ApkToEtc", Copy)
+            copyApkTask.from(output.outputFile)
+            copyApkTask.into('../etc/apk')
+            copyApkTask.rename output.outputFile.name, apkName
+            copyApkTask.dependsOn variant.assemble
+
+            releaseTask.dependsOn copyApkTask
+
+            // Copy the apk to the deploy folder
+            copyApkTask = tasks.create("copy${variant.name.capitalize()}ApkToDeploy", Copy)
+            copyApkTask.from(output.outputFile)
+            copyApkTask.into(buildProperties['deploy-folder'])
+            copyApkTask.rename output.outputFile.name, apkName
+            copyApkTask.dependsOn variant.assemble
+
+            releaseTask.dependsOn copyApkTask
         }
+
+        // Copy the proguard mapping to the 'etc' folder
+        def copyMappingTask = tasks.create("copy${variant.name.capitalize()}ProguardMappingToEtc", Copy)
+        copyMappingTask.from(variant.mappingFile)
+        copyMappingTask.into('../etc/proguard')
+        copyMappingTask.rename variant.mappingFile.name, "mapping-${android.defaultConfig.versionCode}-${variant.flavorName}.txt"
+        copyMappingTask.dependsOn variant.assemble
+
+        releaseTask.dependsOn copyMappingTask
     }
 }
 
 dependencies {
     compile project(':common')
-    compile 'com.android.support:appcompat-v7:23.0.0'
-    compile 'com.android.support:preference-v7:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:preference-v7:23.0.1'
     compile 'org.jraf:jraf-android-util:1.0.0'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') { transitive = true; }
 
     // Package the wear apk inside this one
-    wearApp project(':wearable')
-}
-
-task deploy(dependsOn: assembleRelease) << {
-    description 'Build a release apk, copy the result to the deploy and \'etc\' folders, then increment the build number.'
-
-    // Copy the apk to the 'etc' folder
-    new File('etc/apk').mkdirs()
-    copy {
-        from buildDir.getPath() + "/outputs/apk/${project.name}-release.apk"
-        into '../etc/apk'
-        rename "${project.name}-release.apk", "${globalProjectName}-${android.defaultConfig.versionCode}-signed.apk"
-    }
-
-    // Also copy the apk to the deploy folder
-    copy {
-        from buildDir.getPath() + "/outputs/apk/${project.name}-release.apk"
-        into buildProperties['deploy-folder']
-        rename "${project.name}-release.apk", "${globalProjectName}-${android.defaultConfig.versionCode}-signed.apk"
-    }
-
-    // Copy the proguard mapping to the 'etc' folder
-    new File('etc/proguard').mkdirs()
-    copy {
-        from buildDir.getPath() + '/outputs/mapping/release/mapping.txt'
-        into '../etc/proguard'
-        rename 'mapping.txt', "mapping-${android.defaultConfig.versionCode}.txt"
-    }
-
-    // Increment build number
-    buildNumberProperties['build.number'] = (buildNumber + 1).toString()
-    buildNumberProperties.store(buildNumberFile.newWriter(), null)
+    anonymousWearApp project(path: ':wearable', configuration: 'anonymousRelease')
+    unlicensedWearApp project(path: ':wearable', configuration: 'unlicensedRelease')
 }

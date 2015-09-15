@@ -62,7 +62,7 @@
         <item>@string/countryName_Vietnam</item>
     </string-array>
 
-    <string-array name="country_values">
+    <string-array name="country_values" translatable="false">
         <item>Argentina</item>
         <item>Australia</item>
         <item>Azerbaijan</item>

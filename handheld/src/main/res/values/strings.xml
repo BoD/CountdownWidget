@@ -17,7 +17,7 @@
 
     <!-- About -->
     <string name="about_title">About</string>
-    <string name="about_authorCopyright" translatable="false" tools:ignore="TypographyOther">Copyright (C) 2013–2014 Benoit \'BoD\' Lubek.</string>
+    <string name="about_authorCopyright" translatable="false" tools:ignore="TypographyOther">Copyright (C) 2013–2015 Benoit \'BoD\' Lubek.</string>
     <string name="about_License" translatable="false">Licensed under the terms of the GNU General Public License.</string>
     <string name="about_email_uri" translatable="false">mailto:BoD@JRAF.org</string>
     <string name="about_email_text" translatable="false">BoD@JRAF.org</string>
