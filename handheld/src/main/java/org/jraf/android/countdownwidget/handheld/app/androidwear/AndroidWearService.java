@@ -32,11 +32,11 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
-import org.jraf.android.countdownwidget.common.wear.WearCommHelper;
+import org.jraf.android.countdownwidget.common.wear.WearHelper;
 import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
-import org.jraf.android.util.log.wrapper.Log;
+import org.jraf.android.util.log.Log;
 
 public class AndroidWearService extends IntentService {
     public static final String ACTION_UPDATE = "ACTION_UPDATE";
@@ -49,7 +49,7 @@ public class AndroidWearService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        WearCommHelper.get().connect(this);
+        WearHelper.get().connect(this);
     }
 
     @Override
@@ -61,17 +61,17 @@ public class AndroidWearService extends IntentService {
         }
         int releaseDateZone = SettingsUtil.getReleaseDateZone(this);
         int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
-        Log.d("nbDays=" + nbDays);
-        WearCommHelper wearCommHelper = WearCommHelper.get();
+        Log.d("nbDays=%s", nbDays);
+        WearHelper wearHelper = WearHelper.get();
         if (ACTION_REMOVE_AND_UPDATE.equals(intent.getAction())) {
-            wearCommHelper.removeDays();
+            wearHelper.removeDays();
         }
-        wearCommHelper.updateDays(nbDays);
+        wearHelper.updateDays(nbDays);
     }
 
     @Override
     public void onDestroy() {
-        WearCommHelper.get().disconnect();
+        WearHelper.get().disconnect();
         super.onDestroy();
     }
 
@@ -82,24 +82,24 @@ public class AndroidWearService extends IntentService {
     }
 
     public static void backgroundRemoveAndUpdateDays(final Context context) {
-        final WearCommHelper wearCommHelper = WearCommHelper.get();
-        wearCommHelper.connect(context);
+        final WearHelper wearHelper = WearHelper.get();
+        wearHelper.connect(context);
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                synchronized (wearCommHelper) {
+                synchronized (wearHelper) {
                     int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
                     int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
-                    Log.d("nbDays=" + nbDays);
-                    wearCommHelper.removeDays();
-                    wearCommHelper.updateDays(nbDays);
+                    Log.d("nbDays=%s", nbDays);
+                    wearHelper.removeDays();
+                    wearHelper.updateDays(nbDays);
                     return null;
                 }
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                wearCommHelper.disconnect();
+                wearHelper.disconnect();
             }
         }.execute();
     }

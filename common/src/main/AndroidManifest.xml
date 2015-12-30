@@ -1,4 +1,7 @@
-<manifest package="org.jraf.android.countdownwidget.common">
+<manifest package="org.jraf.android.countdownwidget.common"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk tools:overrideLibrary="android.support.v14.preference, timber.log" />
 
     <application />
 </manifest>

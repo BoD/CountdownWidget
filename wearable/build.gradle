@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    buildToolsVersion '23.0.2'
 
     publishNonDefault true
 
@@ -39,15 +39,7 @@ android {
     }
 
     buildTypes {
-        debug {
-            buildConfigField 'boolean', 'CRASH_REPORT', 'false'
-
-            minifyEnabled false
-        }
-
         release {
-            buildConfigField 'boolean', 'CRASH_REPORT', 'true'
-
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             shrinkResources true
@@ -57,6 +49,7 @@ android {
 }
 
 dependencies {
-    compile project(':common')
+    anonymousCompile project(path: ':common', configuration: 'anonymousRelease')
+    unlicensedCompile project(path: ':common', configuration: 'unlicensedRelease')
     compile 'org.jraf:jraf-android-util:1.0.0'
 }

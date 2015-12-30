@@ -55,9 +55,12 @@
         <item>@string/countryName_Taiwan</item>
         <item>@string/countryName_Thailand</item>
         <item>@string/countryName_Turkey</item>
+        <item>@string/countryName_UKLondonPremiere</item>
         <item>@string/countryName_UK</item>
         <item>@string/countryName_Ukraine</item>
         <item>@string/countryName_UnitedArabEmirates</item>
+        <item>@string/countryName_USALAPremiere</item>
+        <item>@string/countryName_USAPrerelease</item>
         <item>@string/countryName_USA</item>
         <item>@string/countryName_Vietnam</item>
     </string-array>
@@ -117,9 +120,12 @@
         <item>Taiwan</item>
         <item>Thailand</item>
         <item>Turkey</item>
+        <item>UKLondonPremiere</item>
         <item>UK</item>
         <item>Ukraine</item>
         <item>UnitedArabEmirates</item>
+        <item>USALAPremiere</item>
+        <item>USAPrerelease</item>
         <item>USA</item>
         <item>Vietnam</item>
     </string-array>
@@ -179,9 +185,12 @@
         <item>3</item>
         <item>2</item>
         <item>3</item>
+        <item>0</item>
         <item>2</item>
         <item>2</item>
         <item>0</item>
+        <item>8</item>
+        <item>2</item>
         <item>3</item>
         <item>3</item>
     </integer-array>

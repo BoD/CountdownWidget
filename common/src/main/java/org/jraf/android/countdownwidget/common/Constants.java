@@ -25,5 +25,5 @@
 package org.jraf.android.countdownwidget.common;
 
 public class Constants {
-    public static final String TAG = "CountdownWidget/";
+    public static final String TAG = "CountdownWidget";
 }

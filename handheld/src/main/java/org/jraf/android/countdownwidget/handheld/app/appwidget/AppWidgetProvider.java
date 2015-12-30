@@ -45,7 +45,7 @@ import org.jraf.android.countdownwidget.common.util.StringUtil;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
-import org.jraf.android.util.log.wrapper.Log;
+import org.jraf.android.util.log.Log;
 
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
     @Override
@@ -72,7 +72,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
         int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
         int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
-        Log.d("nbDays=" + nbDays);
+        Log.d("nbDays=%s", nbDays);
 
         String text = StringUtil.getFormattedCountdown(context, nbDays);
 

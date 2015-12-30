@@ -33,13 +33,13 @@ import android.preference.PreferenceManager;
 import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
 import org.jraf.android.countdownwidget.handheld.util.ScheduleUtil;
-import org.jraf.android.util.log.wrapper.Log;
+import org.jraf.android.util.log.Log;
 import org.jraf.android.util.string.StringUtil;
 
 public class BootCompletedBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
-        Log.d("intent=" + StringUtil.toString(intent));
+        Log.d("intent=%s", StringUtil.toString(intent));
 
         SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(context);
         if (preferenceManager.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {

@@ -27,11 +27,11 @@ package org.jraf.android.countdownwidget.handheld.app;
 import android.os.Handler;
 import android.os.StrictMode;
 
-import com.crashlytics.android.Crashlytics;
-
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.common.Constants;
-import org.jraf.android.util.log.wrapper.Log;
+import org.jraf.android.util.log.Log;
+
+import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -40,7 +40,7 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         // Log
-        Log.init(Constants.TAG);
+        Log.init(this, Constants.TAG);
 
         // Strict mode
         if (BuildConfig.STRICT_MODE) setupStrictMode();

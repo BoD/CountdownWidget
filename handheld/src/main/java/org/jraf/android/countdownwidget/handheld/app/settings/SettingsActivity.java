@@ -53,7 +53,7 @@ import org.jraf.android.countdownwidget.handheld.util.ScheduleUtil;
 import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
 import org.jraf.android.util.io.IoUtil;
-import org.jraf.android.util.log.wrapper.Log;
+import org.jraf.android.util.log.Log;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -150,7 +150,7 @@ public class SettingsActivity extends AppCompatActivity {
                 try {
                     return saveAndInsertImage(viewBitmap);
                 } catch (Exception e) {
-                    Log.w("Could not save image", e);
+                    Log.w(e, "Could not save image");
                     return null;
                 }
             }

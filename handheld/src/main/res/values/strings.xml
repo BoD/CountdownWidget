@@ -77,16 +77,19 @@
     <string name="countryName_SouthAfrica">South Africa</string>
     <string name="countryName_Spain">Spain</string>
     <string name="countryName_Sweden">Sweden</string>
-    <string name="countryName_Switzerland_Italian">Switzerland (Italian)</string>
-    <string name="countryName_Switzerland_German">Switzerland (German)</string>
-    <string name="countryName_Switzerland_French">Switzerland (French)</string>
+    <string name="countryName_Switzerland_Italian">Switzerland – Italian</string>
+    <string name="countryName_Switzerland_German">Switzerland – German</string>
+    <string name="countryName_Switzerland_French">Switzerland – French</string>
     <string name="countryName_Taiwan">Taiwan</string>
     <string name="countryName_Thailand">Thailand</string>
     <string name="countryName_Turkey">Turkey</string>
     <string name="countryName_UK">UK</string>
+    <string name="countryName_UKLondonPremiere">UK – London premiere</string>
     <string name="countryName_Ukraine">Ukraine</string>
     <string name="countryName_UnitedArabEmirates">United Arab Emirates</string>
-    <string name="countryName_USA">USA</string>
+    <string name="countryName_USALAPremiere">USA – L.A. premiere</string>
+    <string name="countryName_USAPrerelease">USA – pre-release</string>
+    <string name="countryName_USA">USA – official release</string>
     <string name="countryName_Vietnam">Vietnam</string>
 
 

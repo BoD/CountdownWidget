@@ -32,7 +32,7 @@ import android.text.format.DateUtils;
 import android.text.format.Time;
 
 import org.jraf.android.countdownwidget.common.util.StringUtil;
-import org.jraf.android.util.log.wrapper.Log;
+import org.jraf.android.util.log.Log;
 
 public class DateTimeUtil {
     private static final Calendar[] RELEASE_DATES = {
@@ -44,6 +44,7 @@ public class DateTimeUtil {
             getCalendar(2016, Calendar.JANUARY, 14),
             getCalendar(2016, Calendar.JANUARY, 15),
             getCalendar(2016, Calendar.JANUARY, 29),
+            getCalendar(2015, Calendar.DECEMBER, 14),
     };
 
     private static Calendar getCalendar(int year, int month, int day) {

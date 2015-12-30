@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="internalOnly"
-    tools:ignore="MissingVersion" >
+    tools:ignore="MissingVersion">
 
-    <uses-sdk tools:overrideLibrary="android.support.v14.preference" />
+    <uses-sdk tools:overrideLibrary="android.support.v14.preference, timber.log" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -17,7 +17,7 @@
         android:maxSdkVersion="18" />
 
     <application
-        android:name="org.jraf.android.countdownwidget.handheld.app.Application"
+        android:name=".handheld.app.Application"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -35,7 +35,7 @@
 
         <!-- AppWidget -->
         <receiver
-            android:name="org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider"
+            android:name=".handheld.app.appwidget.AppWidgetProvider"
             android:label="@string/appwidget_label">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -48,7 +48,7 @@
 
         <!-- Settings -->
         <activity
-            android:name="org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity"
+            android:name=".handheld.app.settings.SettingsActivity"
             android:icon="@drawable/ic_launcher"
             android:label="@string/appwidget_label">
 
@@ -60,7 +60,7 @@
         </activity>
 
         <!-- Android Wear Service -->
-        <service android:name="org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService" />
+        <service android:name=".handheld.app.androidwear.AndroidWearService" />
 
         <!-- About -->
         <activity
@@ -68,7 +68,7 @@
             android:label="@string/about_title" />
 
         <!-- Boot receiver -->
-        <receiver android:name="org.jraf.android.countdownwidget.handheld.app.boot.BootCompletedBroadcastReceiver">
+        <receiver android:name=".handheld.app.boot.BootCompletedBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

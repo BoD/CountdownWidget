@@ -2,7 +2,9 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    buildToolsVersion '23.0.2'
+
+    publishNonDefault true
 
     defaultConfig {
         minSdkVersion 9
@@ -11,8 +13,14 @@ android {
         versionName buildProperties['versionName']
     }
 
+    productFlavors {
+        anonymous {}
+        unlicensed {}
+    }
+
     buildTypes {
         release {
+            // Do not minify a library (that would trim everything!)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -20,6 +28,6 @@ android {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-wearable:7.8.0'
+    compile 'com.google.android.gms:play-services-wearable:8.4.0'
     compile 'org.jraf:jraf-android-util:1.0.0'
 }
