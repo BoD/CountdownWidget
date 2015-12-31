@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Compte à rebours (un certain film)</string>
+    <string name="appwidget_label">Compte à rebours (un certain film)</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">(un certain film)</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'(un certain film) !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+</resources>

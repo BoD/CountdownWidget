@@ -13,9 +13,25 @@ android {
         versionName buildProperties['versionName']
     }
 
+    flavorDimensions 'blur', 'movie'
+
     productFlavors {
-        anonymous {}
-        unlicensed {}
+        episode7 {
+            dimension 'movie'
+        }
+
+        rogueone {
+            dimension 'movie'
+        }
+
+
+        blurred {
+            dimension 'blur'
+        }
+
+        clear {
+            dimension 'blur'
+        }
     }
 
     buildTypes {

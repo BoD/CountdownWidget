@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">(a certain movie) Countdown</string>
+    <string name="appwidget_label">(a certain movie) Countdown</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">(a certain movie)</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">This app lets you count the number of days until the release of (a certain movie)!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Star Wars Rogue One Countdown</string>
+    <string name="notification_text">Rogue One</string>
+</resources>

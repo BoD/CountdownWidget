@@ -19,13 +19,24 @@ android {
         resConfigs 'en', 'fr'
     }
 
+    flavorDimensions 'blur', 'movie'
+
     productFlavors {
-        anonymous {
-            applicationId 'org.jraf.android.countdownwidget3'
+        episode7 {
+            dimension 'movie'
         }
 
-        unlicensed {
-            applicationId 'org.jraf.android.countdownwidget3.unlicensed'
+        rogueone {
+            dimension 'movie'
+        }
+
+
+        blurred {
+            dimension 'blur'
+        }
+
+        clear {
+            dimension 'blur'
         }
     }
 
@@ -48,8 +59,41 @@ android {
     }
 }
 
+android.applicationVariants.all { variant ->
+    // Define application id based on flavors
+    switch (variant.flavorName) {
+        // Episode VII
+        case "blurredEpisode7":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3')
+            break
+
+        case "clearEpisode7":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.unlicensed')
+            break
+
+        // Rogue One
+        case "blurredRogueone":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.blurred')
+            break
+
+        case "clearRogueone":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.clear')
+            break
+    }
+}
+
+configurations {
+    blurredEpisode7Compile
+    clearEpisode7Compile
+    blurredRogueoneCompile
+    clearRogueoneCompile
+}
+
 dependencies {
-    anonymousCompile project(path: ':common', configuration: 'anonymousRelease')
-    unlicensedCompile project(path: ':common', configuration: 'unlicensedRelease')
+    blurredEpisode7Compile project(path: ':common', configuration: 'blurredEpisode7Release')
+    blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
+    clearEpisode7Compile project(path: ':common', configuration: 'clearEpisode7Release')
+    clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
+
     compile 'org.jraf:jraf-android-util:1.0.0'
 }

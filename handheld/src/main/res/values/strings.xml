@@ -1,7 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">(a certain movie) Countdown</string>
-    <string name="appwidget_label">(a certain movie) Countdown</string>
-
     <!-- Preference (Settings) -->
     <string name="preference_androidWear_title">Android Wear</string>
     <string name="preference_androidWear_summary">Show a notification once a day on connected Android Wear devices</string>
@@ -12,7 +9,6 @@
     <string name="preference_country_title">Release date</string>
     <string name="preference_country_summary" translatable="false">%1$s (%2$s)</string>
     <string name="settings_share_problemToast">A problem occurred while trying to share.</string>
-    <string name="settings_share_subject">(a certain movie)</string>
     <string name="settings_share_chooser">Share with</string>
 
     <!-- About -->
@@ -26,7 +22,6 @@
     <string name="about_sources_uri" translatable="false">https://github.com/BoD/CountdownWidget/</string>
     <string name="about_sources_text" translatable="false">Source code on Github</string>
     <string name="about_shareText_subject">Checkout out this app!</string>
-    <string name="about_shareText_body">This app lets you count the number of days until the release of (a certain movie)!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
 
     <!-- Country names -->
     <string name="countryName_Argentina">Argentina</string>
@@ -46,6 +41,7 @@
     <string name="countryName_Denmark">Denmark</string>
     <string name="countryName_Egypt">Egypt</string>
     <string name="countryName_Estonia">Estonia</string>
+    <string name="countryName_Finland">Finland</string>
     <string name="countryName_France">France</string>
     <string name="countryName_Germany">Germany</string>
     <string name="countryName_Greece">Greece</string>

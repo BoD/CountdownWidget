@@ -20,13 +20,28 @@ android {
         resConfigs 'en', 'fr'
     }
 
+    flavorDimensions 'blur', 'movie'
+
     productFlavors {
-        anonymous {
-            applicationId 'org.jraf.android.countdownwidget3'
+        episode7 {
+            dimension 'movie'
+
+            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.EPISODE_VII'
         }
 
-        unlicensed {
-            applicationId 'org.jraf.android.countdownwidget3.unlicensed'
+        rogueone {
+            dimension 'movie'
+
+            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.ROGUE_ONE'
+        }
+
+
+        blurred {
+            dimension 'blur'
+        }
+
+        clear {
+            dimension 'blur'
         }
     }
 
@@ -63,6 +78,28 @@ releaseTask << {
 }
 
 android.applicationVariants.all { variant ->
+    // Define application id based on flavors
+    switch (variant.flavorName) {
+        // Episode VII
+        case "blurredEpisode7":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3')
+            break
+
+        case "clearEpisode7":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.unlicensed')
+            break
+
+        // Rogue One
+        case "blurredRogueone":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.blurred')
+            break
+
+        case "clearRogueone":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.clear')
+            break
+    }
+
+    // Create new copy tasks, for release builds
     if (variant.buildType.name == 'release') {
         variant.outputs.each { output ->
             def apkName = "${globalProjectName}-${android.defaultConfig.versionCode}-${variant.flavorName}-signed.apk"
@@ -97,9 +134,24 @@ android.applicationVariants.all { variant ->
     }
 }
 
+configurations {
+    blurredEpisode7Compile
+    clearEpisode7Compile
+    blurredRogueoneCompile
+    clearRogueoneCompile
+
+    blurredEpisode7WearApp
+    clearEpisode7WearApp
+    blurredRogueoneWearApp
+    clearRogueoneWearApp
+}
+
 dependencies {
-    anonymousCompile project(path: ':common', configuration: 'anonymousRelease')
-    unlicensedCompile project(path: ':common', configuration: 'unlicensedRelease')
+    blurredEpisode7Compile project(path: ':common', configuration: 'blurredEpisode7Release')
+    blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
+    clearEpisode7Compile project(path: ':common', configuration: 'clearEpisode7Release')
+    clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
+
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:preference-v7:23.1.1'
     compile 'com.android.support:preference-v14:23.1.1'
@@ -107,6 +159,8 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') { transitive = true; }
 
     // Package the wear apk inside this one
-    anonymousWearApp project(path: ':wearable', configuration: 'anonymousRelease')
-    unlicensedWearApp project(path: ':wearable', configuration: 'unlicensedRelease')
+    blurredEpisode7WearApp project(path: ':wearable', configuration: 'blurredEpisode7Release')
+    blurredRogueoneWearApp project(path: ':wearable', configuration: 'blurredRogueoneRelease')
+    clearEpisode7WearApp project(path: ':wearable', configuration: 'clearEpisode7Release')
+    clearRogueoneWearApp project(path: ':wearable', configuration: 'clearRogueoneRelease')
 }

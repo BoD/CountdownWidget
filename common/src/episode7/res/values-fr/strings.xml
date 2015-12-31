@@ -1,10 +1,4 @@
 <resources>
-    <string name="countdown_minus_other">il y a %1$d jours</string>
-    <string name="countdown_minus_1">hier</string>
-    <string name="countdown_zero">AUJOURD\'HUI</string>
-    <string name="countdown_one">demain</string>
-    <string name="countdown_other">%1$d jours</string>
-
     <string name="countdown_full_minus_other">Star Wars Episode VII est sorti il y a %1$d jours</string>
     <string name="countdown_full_minus_1">Star Wars Episode VII est sorti hier</string>
     <string name="countdown_full_zero">Star Wars Episode VII sort AUJOURD\'HUI</string>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Star Wars Rogue One Countdown</string>
+    <string name="appwidget_label">Rogue One Countdown</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Star Wars Rogue One</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">This app lets you count the number of days until the release of Rogue One!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+</resources>

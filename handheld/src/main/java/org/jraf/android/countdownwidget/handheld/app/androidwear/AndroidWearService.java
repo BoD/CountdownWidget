@@ -60,7 +60,7 @@ public class AndroidWearService extends IntentService {
             return;
         }
         int releaseDateZone = SettingsUtil.getReleaseDateZone(this);
-        int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
+        int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);
         WearHelper wearHelper = WearHelper.get();
         if (ACTION_REMOVE_AND_UPDATE.equals(intent.getAction())) {
@@ -89,7 +89,7 @@ public class AndroidWearService extends IntentService {
             protected Void doInBackground(Void... params) {
                 synchronized (wearHelper) {
                     int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
-                    int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
+                    int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
                     Log.d("nbDays=%s", nbDays);
                     wearHelper.removeDays();
                     wearHelper.updateDays(nbDays);

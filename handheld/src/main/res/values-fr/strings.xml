@@ -1,7 +1,4 @@
 <resources>
-    <string name="app_name">Compte à rebours (un certain film)</string>
-    <string name="appwidget_label">Compte à rebours (un certain film)</string>
-
     <!-- Preference (Settings) -->
     <string name="preference_androidWear_title">Android Wear</string>
     <string name="preference_androidWear_summary">Affiche une notification une fois par jour sur les objets Android Wear connectés</string>
@@ -15,8 +12,6 @@
     <!-- About -->
     <string name="about_title">À propos</string>
     <string name="about_shareText_subject">Essayez cette app !</string>
-    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'(un certain film) !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
-    <string name="settings_share_subject">(un certain film)</string>
     <string name="preference_country_title">Date de sortie</string>
 
     <!-- Country names -->
@@ -37,6 +32,7 @@
     <string name="countryName_Denmark">Danemark</string>
     <string name="countryName_Egypt">Égypte</string>
     <string name="countryName_Estonia">Estonie</string>
+    <string name="countryName_Finland">Finlande</string>
     <string name="countryName_France">France</string>
     <string name="countryName_Germany">Allemagne</string>
     <string name="countryName_Greece">Grèce</string>

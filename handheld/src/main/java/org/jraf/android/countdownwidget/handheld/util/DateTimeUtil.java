@@ -31,23 +31,12 @@ import android.content.Context;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 
+import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.common.util.StringUtil;
 import org.jraf.android.util.log.Log;
 
 public class DateTimeUtil {
-    private static final Calendar[] RELEASE_DATES = {
-            getCalendar(2015, Calendar.DECEMBER, 15),
-            getCalendar(2015, Calendar.DECEMBER, 16),
-            getCalendar(2015, Calendar.DECEMBER, 17),
-            getCalendar(2015, Calendar.DECEMBER, 18),
-            getCalendar(2015, Calendar.DECEMBER, 24),
-            getCalendar(2016, Calendar.JANUARY, 14),
-            getCalendar(2016, Calendar.JANUARY, 15),
-            getCalendar(2016, Calendar.JANUARY, 29),
-            getCalendar(2015, Calendar.DECEMBER, 14),
-    };
-
-    private static Calendar getCalendar(int year, int month, int day) {
+    public static Calendar getCalendar(int year, int month, int day) {
         Calendar res = Calendar.getInstance();
         res.set(Calendar.YEAR, year);
         res.set(Calendar.MONTH, month);
@@ -93,18 +82,18 @@ public class DateTimeUtil {
         return System.currentTimeMillis() + seconds * 1000;
     }
 
-    public static int getCountDownToEpisodeVII(int releaseDateZone) {
-        Calendar releaseDate = RELEASE_DATES[releaseDateZone];
+    public static int getCountDownToRelease(int releaseDateZone) {
+        Calendar releaseDate = BuildConfig.MOVIE.getReleaseDates()[releaseDateZone];
         return getNbDaysToDate(Calendar.getInstance(), releaseDate.get(Calendar.YEAR), releaseDate.get(Calendar.MONTH), releaseDate.get(Calendar.DAY_OF_MONTH));
     }
 
-    public static String getCountDownToEpisodeVIIAsText(Context context, int releaseDateZone) {
-        int nbDays = getCountDownToEpisodeVII(releaseDateZone);
+    public static String getCountDownToReleaseAsText(Context context, int releaseDateZone) {
+        int nbDays = getCountDownToRelease(releaseDateZone);
         return StringUtil.getFormattedCountdownFull(context, nbDays);
     }
 
     public static void listAllDates() {
-        Calendar starWarsRelease = RELEASE_DATES[3];
+        Calendar starWarsRelease = BuildConfig.MOVIE.getReleaseDates()[3];
         Calendar now = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
         while (getJulianDay(now) <= getJulianDay(starWarsRelease)) {
@@ -114,7 +103,7 @@ public class DateTimeUtil {
     }
 
     public static String getFormattedReleaseDate(Context context, int releaseDateZone) {
-        Calendar releaseDate = RELEASE_DATES[releaseDateZone];
+        Calendar releaseDate = BuildConfig.MOVIE.getReleaseDates()[releaseDateZone];
         return DateUtils.formatDateTime(context, releaseDate.getTime().getTime(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
     }
 }

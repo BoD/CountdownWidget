@@ -38,6 +38,7 @@ import android.graphics.Rect;
 import android.graphics.Shader.TileMode;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
 
 import org.jraf.android.countdownwidget.R;
@@ -71,7 +72,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         int textSize = context.getResources().getDimensionPixelSize(R.dimen.textSize);
 
         int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
-        int nbDays = DateTimeUtil.getCountDownToEpisodeVII(releaseDateZone);
+        int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);
 
         String text = StringUtil.getFormattedCountdown(context, nbDays);
@@ -100,12 +101,13 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
 
         // Draw logo
         Canvas canvas = new Canvas(bitmap);
-        Bitmap logoBitmap = ((BitmapDrawable) context.getResources().getDrawable(R.drawable.episode_vii_logo3)).getBitmap();
+        Bitmap logoBitmap = ((BitmapDrawable) ContextCompat.getDrawable(context, R.drawable.widget_logo)).getBitmap();
         canvas.drawBitmap(logoBitmap, 0, 0, null);
 
         // Draw text
-        paint.setShader(new LinearGradient(0, logoHeight + padding, 0, bitmapHeight, context.getResources().getColor(R.color.text0),
-                context.getResources().getColor(R.color.text1), TileMode.CLAMP));
+        int color0 = ContextCompat.getColor(context, R.color.text0);
+        int color1 = ContextCompat.getColor(context, R.color.text1);
+        paint.setShader(new LinearGradient(0, logoHeight + padding, 0, bitmapHeight, color0, color1, TileMode.CLAMP));
         canvas.drawText(text, logoWidth / 2, logoHeight + padding + -textBounds.top, paint);
         return bitmap;
     }
