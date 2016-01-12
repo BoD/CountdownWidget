@@ -35,6 +35,12 @@ android {
             buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.ROGUE_ONE'
         }
 
+        episode8 {
+            dimension 'movie'
+
+            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.EPISODE_VIII'
+        }
+
 
         blurred {
             dimension 'blur'
@@ -97,6 +103,15 @@ android.applicationVariants.all { variant ->
         case "clearRogueone":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.clear')
             break
+
+        // Episode VII
+        case "blurredEpisode8":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.blurred')
+            break
+
+        case "clearEpisode8":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.clear')
+            break
     }
 
     // Create new copy tasks, for release builds
@@ -139,28 +154,37 @@ configurations {
     clearEpisode7Compile
     blurredRogueoneCompile
     clearRogueoneCompile
+    blurredEpisode8Compile
+    clearEpisode8Compile
 
     blurredEpisode7WearApp
     clearEpisode7WearApp
     blurredRogueoneWearApp
     clearRogueoneWearApp
+    blurredEpisode8WearApp
+    clearEpisode8WearApp
 }
 
 dependencies {
     blurredEpisode7Compile project(path: ':common', configuration: 'blurredEpisode7Release')
     blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
+    blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
+
     clearEpisode7Compile project(path: ':common', configuration: 'clearEpisode7Release')
     clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
+    clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
 
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:preference-v7:23.1.1'
     compile 'com.android.support:preference-v14:23.1.1'
     compile 'org.jraf:jraf-android-util:1.0.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') { transitive = true; }
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') { transitive = true; }
 
     // Package the wear apk inside this one
     blurredEpisode7WearApp project(path: ':wearable', configuration: 'blurredEpisode7Release')
     blurredRogueoneWearApp project(path: ':wearable', configuration: 'blurredRogueoneRelease')
+    blurredEpisode8WearApp project(path: ':wearable', configuration: 'blurredEpisode8Release')
     clearEpisode7WearApp project(path: ':wearable', configuration: 'clearEpisode7Release')
     clearRogueoneWearApp project(path: ':wearable', configuration: 'clearRogueoneRelease')
+    clearEpisode8WearApp project(path: ':wearable', configuration: 'clearEpisode8Release')
 }

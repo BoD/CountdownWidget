@@ -30,6 +30,10 @@ android {
             dimension 'movie'
         }
 
+        episode8 {
+            dimension 'movie'
+        }
+
 
         blurred {
             dimension 'blur'
@@ -79,6 +83,15 @@ android.applicationVariants.all { variant ->
         case "clearRogueone":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.clear')
             break
+
+        // Episode VII
+        case "blurredEpisode8":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.blurred')
+            break
+
+        case "clearEpisode8":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.clear')
+            break
     }
 }
 
@@ -87,13 +100,18 @@ configurations {
     clearEpisode7Compile
     blurredRogueoneCompile
     clearRogueoneCompile
+    blurredEpisode8Compile
+    clearEpisode8Compile
 }
 
 dependencies {
     blurredEpisode7Compile project(path: ':common', configuration: 'blurredEpisode7Release')
     blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
+    blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
+
     clearEpisode7Compile project(path: ':common', configuration: 'clearEpisode7Release')
     clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
+    clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
 
     compile 'org.jraf:jraf-android-util:1.0.0'
 }

@@ -47,12 +47,6 @@ public class AndroidWearService extends IntentService {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        WearHelper.get().connect(this);
-    }
-
-    @Override
     protected void onHandleIntent(Intent intent) {
         SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferenceManager.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
@@ -63,16 +57,12 @@ public class AndroidWearService extends IntentService {
         int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);
         WearHelper wearHelper = WearHelper.get();
+        WearHelper.get().connect(this);
         if (ACTION_REMOVE_AND_UPDATE.equals(intent.getAction())) {
             wearHelper.removeDays();
         }
         wearHelper.updateDays(nbDays);
-    }
-
-    @Override
-    public void onDestroy() {
-        WearHelper.get().disconnect();
-        super.onDestroy();
+        wearHelper.disconnect();
     }
 
     public static PendingIntent getPendingIntent(Context context, String action) {
@@ -83,23 +73,19 @@ public class AndroidWearService extends IntentService {
 
     public static void backgroundRemoveAndUpdateDays(final Context context) {
         final WearHelper wearHelper = WearHelper.get();
-        wearHelper.connect(context);
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 synchronized (wearHelper) {
+                    wearHelper.connect(context);
                     int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
                     int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
                     Log.d("nbDays=%s", nbDays);
                     wearHelper.removeDays();
                     wearHelper.updateDays(nbDays);
+                    wearHelper.disconnect();
                     return null;
                 }
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                wearHelper.disconnect();
             }
         }.execute();
     }

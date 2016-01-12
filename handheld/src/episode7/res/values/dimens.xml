@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="logoWidth">550px</dimen>
+    <dimen name="logoHeight">124px</dimen>
+
+</resources>

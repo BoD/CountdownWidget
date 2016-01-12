@@ -6,13 +6,16 @@
     <string name="preference_about">À propos…</string>
     <string name="preference_toast">Appuyez sur RETOUR quand vous avez terminé</string>
     <string name="preference_share">Partager</string>
+    <string name="preference_country_title">Date de sortie</string>
     <string name="settings_share_problemToast">Un problème est survenu pendant le partage.</string>
     <string name="settings_share_chooser">Partager avec</string>
 
     <!-- About -->
     <string name="about_title">À propos</string>
     <string name="about_shareText_subject">Essayez cette app !</string>
-    <string name="preference_country_title">Date de sortie</string>
+    <string name="about_email_text">Contacter l\'auteur</string>
+    <string name="about_web_text">Page web de l\'auteur</string>
+    <string name="about_sources_text">Code source sur Github</string>
 
     <!-- Country names -->
     <string name="countryName_Argentina">Argentine</string>

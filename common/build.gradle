@@ -24,6 +24,10 @@ android {
             dimension 'movie'
         }
 
+        episode8 {
+            dimension 'movie'
+        }
+
 
         blurred {
             dimension 'blur'

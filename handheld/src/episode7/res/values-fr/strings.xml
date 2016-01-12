@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Compte à rebours Star Wars Episode VII</string>
-    <string name="appwidget_label">Compte à rebours Episode VII</string>
+    <string name="app_name">Compte à rebours Star Wars Épisode VII</string>
+    <string name="appwidget_label">Compte à rebours Épisode VII</string>
 
     <!-- Preference (Settings) -->
-    <string name="settings_share_subject">Star Wars Episode VII</string>
+    <string name="settings_share_subject">Star Wars Épisode VII</string>
 
     <!-- About -->
-    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Episode VII !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Épisode VII !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
 
 </resources>

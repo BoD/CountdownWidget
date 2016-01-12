@@ -108,7 +108,7 @@ public class NotificationService extends WearableListenerService {
         mainNotifBuilder.setContentText(spannableText);
 
         // Low priority (let's face it)
-        mainNotifBuilder.setPriority(0);
+        mainNotifBuilder.setPriority(Notification.PRIORITY_LOW);
 
         // Wear specifics
         Notification.WearableExtender wearableExtender = new Notification.WearableExtender();

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Compte à rebours Star Wars Épisode VIII</string>
+    <string name="appwidget_label">Compte à rebours Épisode VIII</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Star Wars Épisode VIII</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Épisode VIII !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+</resources>
