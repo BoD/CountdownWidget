@@ -2,7 +2,10 @@ CountdownWidget
 ===============
 
 A very simple Android widget that shows the number of days
-until the release of Star Wars Episode VII (December 18, 2015).
+until the release of these movies: 
+- Star Wars Episode VII
+- Star Wars: Rogue One
+- Star Wars Episode VIII
 
 An Android Wear notification is also included (if enabled, it will be sent to the watch every day at 8am).
 
