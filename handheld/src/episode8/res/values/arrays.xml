@@ -4,17 +4,12 @@
         <item>@string/countryName_Australia</item>
         <item>@string/countryName_Brazil</item>
         <item>@string/countryName_Canada</item>
-        <item>@string/countryName_Denmark</item>
         <item>@string/countryName_Finland</item>
-        <item>@string/countryName_France</item>
         <item>@string/countryName_Germany</item>
-        <item>@string/countryName_Ireland</item>
         <item>@string/countryName_Italy</item>
-        <item>@string/countryName_Japan</item>
         <item>@string/countryName_Netherlands</item>
-        <item>@string/countryName_NewZealand</item>
         <item>@string/countryName_Norway</item>
-        <item>@string/countryName_Sweden</item>
+        <item>@string/countryName_Russia</item>
         <item>@string/countryName_UK</item>
         <item>@string/countryName_USA</item>
     </string-array>
@@ -23,17 +18,12 @@
         <item>Australia</item>
         <item>Brazil</item>
         <item>Canada</item>
-        <item>Denmark</item>
         <item>Finland</item>
-        <item>France</item>
         <item>Germany</item>
-        <item>Ireland</item>
         <item>Italy</item>
-        <item>Japan</item>
         <item>Netherlands</item>
-        <item>NewZealand</item>
         <item>Norway</item>
-        <item>Sweden</item>
+        <item>Russia</item>
         <item>UK</item>
         <item>USA</item>
     </string-array>
@@ -44,15 +34,10 @@
         <item>1</item>
         <item>1</item>
         <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
         <item>0</item>
-        <item>1</item>
-        <item>1</item>
-        <item>0</item>
-        <item>2</item>
-        <item>0</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
         <item>1</item>
         <item>1</item>
     </integer-array>

@@ -49,8 +49,7 @@ public class ReleaseDates {
     };
 
     public static final Calendar[] RELEASE_DATES_EPISODE_VIII = {
-            DateTimeUtil.getCalendar(2017, Calendar.MAY, 24),
-            DateTimeUtil.getCalendar(2017, Calendar.MAY, 26),
-            DateTimeUtil.getCalendar(2017, Calendar.JULY, 1),
+            DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 14),
+            DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 15),
     };
 }
