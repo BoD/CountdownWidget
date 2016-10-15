@@ -2,22 +2,31 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         applicationId 'org.jraf.android.countdownwidget3'
-        minSdkVersion 9
-        targetSdkVersion 23
+        minSdkVersion 12
+        targetSdkVersion versions.targetSdk
         versionCode buildNumber
-        versionName buildProperties['versionName']
+        versionName buildProperties.versionName
 
-        buildConfigField 'String', 'GIT_SHA1', '"' + gitSha1() + '"'
-        buildConfigField 'String', 'BUILD_DATE', '"' + buildDate() + '"'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        buildConfigField 'String', 'GIT_SHA1', "\"${gitSha1}\""
+        buildConfigField 'String', 'BUILD_DATE', "\"${buildDate}\""
         // For now we enable strict mode for all the configs
         buildConfigField 'boolean', 'STRICT_MODE', 'true'
 
         resConfigs 'en', 'fr'
+
+        // Useful for api keys in the manifest (Maps, Crashlytics, ...)
+        manifestPlaceholders = buildProperties
+
+        // Setting this to false enables the png generation at buildtime
+        // (see http://android-developers.blogspot.fr/2016/02/android-support-library-232.html)
+        vectorDrawables.useSupportLibrary = false
     }
 
     flavorDimensions 'blur', 'movie'
@@ -50,13 +59,12 @@ android {
             dimension 'blur'
         }
     }
-
     signingConfigs {
         release {
-            storeFile file(buildProperties['key-store'])
-            storePassword buildProperties['key-store-password']
-            keyAlias buildProperties['key-alias']
-            keyPassword buildProperties['key-alias-password']
+            storeFile file(buildProperties.signingStoreFile)
+            storePassword buildProperties.signingStorePassword
+            keyAlias buildProperties.signingKeyAlias
+            keyPassword buildProperties.signingKeyPassword
         }
     }
 
@@ -74,13 +82,10 @@ android {
             signingConfig signingConfigs.release
         }
     }
-}
 
-def releaseTask = tasks.create('release')
-releaseTask << {
-    // Increment build number
-    buildNumberProperties['build.number'] = (buildNumber + 1).toString()
-    buildNumberProperties.store(buildNumberFile.newWriter(), null)
+    dataBinding {
+        enabled = true
+    }
 }
 
 android.applicationVariants.all { variant ->
@@ -117,35 +122,23 @@ android.applicationVariants.all { variant ->
     // Create new copy tasks, for release builds
     if (variant.buildType.name == 'release') {
         variant.outputs.each { output ->
-            def apkName = "${globalProjectName}-${android.defaultConfig.versionCode}-${variant.flavorName}-signed.apk"
-            // Copy the apk to the 'etc' folder
-            def copyApkTask = tasks.create("copy${variant.name.capitalize()}ApkToEtc", Copy)
-            copyApkTask.from(output.outputFile)
-            copyApkTask.into('../etc/apk')
-            copyApkTask.rename output.outputFile.name, apkName
-            copyApkTask.dependsOn variant.assemble
+            def apkName = "${globalProjectName}-${project.name}-${android.defaultConfig.versionCode}-${variant.flavorName}-signed.apk"
 
-            releaseTask.dependsOn copyApkTask
+            // Copy the apk to the 'etc' folder
+            def copyApkToEtc = tasks.create("copy${variant.name.capitalize()}ApkToEtc", Copy)
+            copyApkToEtc.from(output.outputFile)
+            copyApkToEtc.into('../etc/apk')
+            copyApkToEtc.rename output.outputFile.name, apkName
 
             // Copy the apk to the deploy folder
-            copyApkTask = tasks.create("copy${variant.name.capitalize()}ApkToDeploy", Copy)
-            copyApkTask.from(output.outputFile)
-            copyApkTask.into(buildProperties['deploy-folder'])
-            copyApkTask.rename output.outputFile.name, apkName
-            copyApkTask.dependsOn variant.assemble
+            def copyApkToDeploy = tasks.create("copy${variant.name.capitalize()}ApkToDeploy", Copy)
+            copyApkToDeploy.from(output.outputFile)
+            copyApkToDeploy.into(buildProperties.deployFolder)
+            copyApkToDeploy.rename output.outputFile.name, apkName
 
-            releaseTask.dependsOn copyApkTask
+            // Make the copy tasks run after the assemble tasks of the variant
+            variant.assemble.finalizedBy(copyApkToEtc, copyApkToDeploy)
         }
-
-        // Commented for now since we don't obfuscate (so we don't have a mapping.txt file)
-//        // Copy the proguard mapping to the 'etc' folder
-//        def copyMappingTask = tasks.create("copy${variant.name.capitalize()}ProguardMappingToEtc", Copy)
-//        copyMappingTask.from(variant.mappingFile)
-//        copyMappingTask.into('../etc/proguard')
-//        copyMappingTask.rename variant.mappingFile.name, "mapping-${android.defaultConfig.versionCode}-${variant.flavorName}.txt"
-//        copyMappingTask.dependsOn variant.assemble
-//
-//        releaseTask.dependsOn copyMappingTask
     }
 }
 
@@ -166,6 +159,11 @@ configurations {
 }
 
 dependencies {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
     blurredEpisode7Compile project(path: ':common', configuration: 'blurredEpisode7Release')
     blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
     blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
@@ -174,11 +172,11 @@ dependencies {
     clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
     clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
 
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:preference-v7:23.1.1'
-    compile 'com.android.support:preference-v14:23.1.1'
-    compile 'org.jraf:jraf-android-util:1.0.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') { transitive = true; }
+    compile "com.android.support:appcompat-v7:$versions.supportLibrary"
+    compile "com.android.support:preference-v7:$versions.supportLibrary"
+    compile "com.android.support:preference-v14:$versions.supportLibrary"
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') { transitive = true; }
+    compile 'com.github.BoD:jraf-android-util:-SNAPSHOT'
 
     // Package the wear apk inside this one
     blurredEpisode7WearApp project(path: ':wearable', configuration: 'blurredEpisode7Release')
