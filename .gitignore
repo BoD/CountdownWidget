@@ -9,10 +9,8 @@ etc/apk
 .idea
 build
 etc/proguard/*
-
-common/build
-handheld/build
-wearable/build
+build.number
+build.properties
 
 handheld/src/main/assets/crashlytics-build.properties
 *.iml
