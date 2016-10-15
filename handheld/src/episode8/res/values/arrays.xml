@@ -3,13 +3,24 @@
     <string-array name="country_labels">
         <item>@string/countryName_Australia</item>
         <item>@string/countryName_Brazil</item>
+        <item>@string/countryName_Bulgaria</item>
         <item>@string/countryName_Canada</item>
+        <item>@string/countryName_CzechRepublic</item>
         <item>@string/countryName_Finland</item>
+        <item>@string/countryName_France</item>
         <item>@string/countryName_Germany</item>
+        <item>@string/countryName_HongKong</item>
+        <item>@string/countryName_Ireland</item>
         <item>@string/countryName_Italy</item>
         <item>@string/countryName_Netherlands</item>
         <item>@string/countryName_Norway</item>
+        <item>@string/countryName_Poland</item>
+        <item>@string/countryName_Portugal</item>
+        <item>@string/countryName_Romania</item>
         <item>@string/countryName_Russia</item>
+        <item>@string/countryName_Spain</item>
+        <item>@string/countryName_Sweden</item>
+        <item>@string/countryName_Turkey</item>
         <item>@string/countryName_UK</item>
         <item>@string/countryName_USA</item>
     </string-array>
@@ -17,13 +28,24 @@
     <string-array name="country_values" translatable="false">
         <item>Australia</item>
         <item>Brazil</item>
+        <item>Bulgaria</item>
         <item>Canada</item>
+        <item>CzechRepublic</item>
         <item>Finland</item>
+        <item>France</item>
         <item>Germany</item>
+        <item>HongKong</item>
+        <item>Ireland</item>
         <item>Italy</item>
         <item>Netherlands</item>
         <item>Norway</item>
+        <item>Poland</item>
+        <item>Portugal</item>
+        <item>Romania</item>
         <item>Russia</item>
+        <item>Spain</item>
+        <item>Sweden</item>
+        <item>Turkey</item>
         <item>UK</item>
         <item>USA</item>
     </string-array>
@@ -33,11 +55,22 @@
         <item>1</item>
         <item>1</item>
         <item>1</item>
+        <item>0</item>
+        <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>1</item>
         <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
         <item>1</item>
         <item>1</item>
     </integer-array>
