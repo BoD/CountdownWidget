@@ -53,6 +53,7 @@ public class AndroidWearService extends IntentService {
         SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferenceManager.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
             // We got triggered, but the setting is off so please don't do anything
+            Log.d("Setting is off");
             return;
         }
         int releaseDateZone = SettingsUtil.getReleaseDateZone(this);

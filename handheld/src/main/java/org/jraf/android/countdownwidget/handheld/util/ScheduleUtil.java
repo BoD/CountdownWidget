@@ -29,23 +29,27 @@ import android.app.PendingIntent;
 import android.content.Context;
 
 import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
+import org.jraf.android.util.log.Log;
 
 public class ScheduleUtil {
     public static void scheduleRepeatingAlarm(Context context) {
+        Log.d();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context, AndroidWearService.ACTION_UPDATE);
+        PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context.getApplicationContext(), AndroidWearService.ACTION_UPDATE);
         alarmManager.setInexactRepeating(AlarmManager.RTC, DateTimeUtil.getTomorrowAtEight(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     public static void unscheduleRepeatingAlarm(Context context) {
+        Log.d();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context, AndroidWearService.ACTION_UPDATE);
+        PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context.getApplicationContext(), AndroidWearService.ACTION_UPDATE);
         alarmManager.cancel(pendingIntent);
     }
 
     public static void scheduleOnceAlarm(Context context) {
+        Log.d();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context, AndroidWearService.ACTION_REMOVE_AND_UPDATE);
+        PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context.getApplicationContext(), AndroidWearService.ACTION_REMOVE_AND_UPDATE);
         alarmManager.set(AlarmManager.RTC, DateTimeUtil.getInXSeconds(15), pendingIntent);
     }
 }
