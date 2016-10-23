@@ -31,12 +31,10 @@ import android.content.Context;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
 
 public class ScheduleUtil {
-    private static final long ONE_DAY = 24 * 60 * 60 * 1000;
-
     public static void scheduleRepeatingAlarm(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingIntent = AndroidWearService.getPendingIntent(context, AndroidWearService.ACTION_UPDATE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC, DateTimeUtil.getTomorrowAtEight(), ONE_DAY, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC, DateTimeUtil.getTomorrowAtEight(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     public static void unscheduleRepeatingAlarm(Context context) {

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId 'org.jraf.android.countdownwidget3'
-        minSdkVersion 12
+        minSdkVersion 9
         targetSdkVersion versions.targetSdk
         versionCode buildNumber
         versionName buildProperties.versionName
@@ -175,6 +175,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$versions.supportLibrary"
     compile "com.android.support:preference-v7:$versions.supportLibrary"
     compile "com.android.support:preference-v14:$versions.supportLibrary"
+//    compile "com.google.android.gms:play-services-gcm:$versions.playServices"
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') { transitive = true; }
     compile 'com.github.BoD:jraf-android-util:-SNAPSHOT'
 

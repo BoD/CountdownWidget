@@ -37,6 +37,7 @@ import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.Log;
+import org.jraf.android.util.string.StringUtil;
 
 public class AndroidWearService extends IntentService {
     public static final String ACTION_UPDATE = "ACTION_UPDATE";
@@ -48,6 +49,7 @@ public class AndroidWearService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.d("intent=%s", StringUtil.toString(intent));
         SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
         if (!preferenceManager.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
             // We got triggered, but the setting is off so please don't do anything
