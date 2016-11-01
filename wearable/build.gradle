@@ -29,10 +29,6 @@ android {
     flavorDimensions 'blur', 'movie'
 
     productFlavors {
-        episode7 {
-            dimension 'movie'
-        }
-
         rogueone {
             dimension 'movie'
         }
@@ -76,15 +72,6 @@ android {
 android.applicationVariants.all { variant ->
     // Define application id based on flavors
     switch (variant.flavorName) {
-    // Episode VII
-        case "blurredEpisode7":
-            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3')
-            break
-
-        case "clearEpisode7":
-            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.unlicensed')
-            break
-
     // Rogue One
         case "blurredRogueone":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.blurred')
@@ -94,7 +81,7 @@ android.applicationVariants.all { variant ->
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.clear')
             break
 
-    // Episode VII
+    // Episode VIII
         case "blurredEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.blurred')
             break
@@ -106,8 +93,6 @@ android.applicationVariants.all { variant ->
 }
 
 configurations {
-    blurredEpisode7Compile
-    clearEpisode7Compile
     blurredRogueoneCompile
     clearRogueoneCompile
     blurredEpisode8Compile
@@ -120,11 +105,9 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    blurredEpisode7Compile project(path: ':common', configuration: 'blurredEpisode7Release')
     blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
     blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
 
-    clearEpisode7Compile project(path: ':common', configuration: 'clearEpisode7Release')
     clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
     clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
 

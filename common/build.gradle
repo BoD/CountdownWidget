@@ -16,10 +16,6 @@ android {
     flavorDimensions 'blur', 'movie'
 
     productFlavors {
-        episode7 {
-            dimension 'movie'
-        }
-
         rogueone {
             dimension 'movie'
         }

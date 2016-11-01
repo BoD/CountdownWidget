@@ -33,11 +33,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
 
-import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.common.util.StringUtil;
-import org.jraf.android.countdownwidget.common.wear.WearHelper;
-import org.jraf.android.util.log.Log;
-
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataItem;
@@ -46,6 +41,12 @@ import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.WearableListenerService;
+
+import org.jraf.android.countdownwidget.R;
+import org.jraf.android.countdownwidget.common.util.StringUtil;
+import org.jraf.android.countdownwidget.common.wear.WearHelper;
+import org.jraf.android.util.log.Log;
+import org.jraf.android.util.log.LogUtil;
 
 public class NotificationService extends WearableListenerService {
     private static final int NOTIFICATION_ID = 0;
@@ -73,10 +74,15 @@ public class NotificationService extends WearableListenerService {
             Log.d("uri=%s", uri);
             String path = uri.getPath();
             Log.d("path=%s", path);
-            DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
-            DataMap dataMap = dataMapItem.getDataMap();
-            mDays = dataMap.getInt(WearHelper.EXTRA_DAYS, Integer.MIN_VALUE);
-            showNotification();
+            int type = dataEvent.getType();
+            Log.d("type=%s", LogUtil.getConstantName(DataEvent.class, type, "TYPE_"));
+            if (type == DataEvent.TYPE_CHANGED) {
+                DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
+                DataMap dataMap = dataMapItem.getDataMap();
+                mDays = dataMap.getInt(WearHelper.EXTRA_DAYS, Integer.MIN_VALUE);
+                Log.d("mDays=%s", mDays);
+                showNotification();
+            }
         }
     }
 
