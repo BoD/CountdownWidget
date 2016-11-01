@@ -24,12 +24,12 @@
  */
 package org.jraf.android.countdownwidget.handheld.app.androidwear;
 
+import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
 import org.jraf.android.countdownwidget.common.wear.WearHelper;
@@ -39,12 +39,9 @@ import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.Log;
 import org.jraf.android.util.string.StringUtil;
 
-public class AndroidWearService extends IntentService {
-    public static final String ACTION_UPDATE = "ACTION_UPDATE";
-    public static final String ACTION_REMOVE_AND_UPDATE = "ACTION_REMOVE_AND_UPDATE";
-
-    public AndroidWearService() {
-        super("AndroidWearService");
+public class UpdateWearNotificationService extends IntentService {
+    public UpdateWearNotificationService() {
+        super(UpdateWearNotificationService.class.getSimpleName());
     }
 
     @Override
@@ -60,36 +57,21 @@ public class AndroidWearService extends IntentService {
         int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);
         WearHelper wearHelper = WearHelper.get();
-        WearHelper.get().connect(this);
-        if (ACTION_REMOVE_AND_UPDATE.equals(intent.getAction())) {
-            wearHelper.removeDays();
-        }
+        wearHelper.connect(this);
+        wearHelper.removeDays();
         wearHelper.updateDays(nbDays);
         wearHelper.disconnect();
     }
 
-    public static PendingIntent getPendingIntent(Context context, String action) {
-        Intent intent = new Intent(context, AndroidWearService.class);
-        intent.setAction(action);
+    private static PendingIntent getPendingIntent(Context context) {
+        Intent intent = new Intent(context, UpdateWearNotificationService.class);
         return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static void backgroundRemoveAndUpdateDays(final Context context) {
-        final WearHelper wearHelper = WearHelper.get();
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                synchronized (wearHelper) {
-                    wearHelper.connect(context);
-                    int releaseDateZone = SettingsUtil.getReleaseDateZone(context);
-                    int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
-                    Log.d("nbDays=%s", nbDays);
-                    wearHelper.removeDays();
-                    wearHelper.updateDays(nbDays);
-                    wearHelper.disconnect();
-                    return null;
-                }
-            }
-        }.execute();
+    public static void scheduleAlarmIn1Minute(Context context) {
+        Log.d();
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = getPendingIntent(context);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, DateTimeUtil.getInXSeconds(60), pendingIntent);
     }
 }

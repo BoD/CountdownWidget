@@ -46,10 +46,10 @@ import android.widget.Toast;
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
 import org.jraf.android.countdownwidget.handheld.Constants;
-import org.jraf.android.countdownwidget.handheld.app.androidwear.AndroidWearService;
+import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotificationService;
+import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotificationTaskService;
 import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
-import org.jraf.android.countdownwidget.handheld.util.ScheduleUtil;
 import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
 import org.jraf.android.util.io.IoUtil;
@@ -84,16 +84,16 @@ public class SettingsActivity extends AppCompatActivity {
             if (Constants.PREF_ANDROID_WEAR.equals(key)) {
                 if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
                     // Schedule an alarm
-                    ScheduleUtil.scheduleRepeatingAlarm(SettingsActivity.this);
+                    UpdateWearNotificationTaskService.scheduleTask(SettingsActivity.this);
 
                     // Also send the value now
-                    AndroidWearService.backgroundRemoveAndUpdateDays(SettingsActivity.this);
+                    startService(new Intent(SettingsActivity.this, UpdateWearNotificationService.class));
 
                     // Also send the value in a minute (this allows the Wearable app to finish installing)
-                    ScheduleUtil.scheduleOnceAlarm(SettingsActivity.this);
+                    UpdateWearNotificationService.scheduleAlarmIn1Minute(SettingsActivity.this);
                 } else {
                     // Unschedule the alarm
-                    ScheduleUtil.unscheduleRepeatingAlarm(SettingsActivity.this);
+                    UpdateWearNotificationTaskService.unscheduleTask(SettingsActivity.this);
                 }
             } else if (Constants.PREF_COUNTRY.equals(key)) {
                 // Update the summary of the preference
@@ -109,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
                 // Update the value on wearables if needed
                 if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
                     // Also send the value now
-                    AndroidWearService.backgroundRemoveAndUpdateDays(SettingsActivity.this);
+                    startService(new Intent(SettingsActivity.this, UpdateWearNotificationService.class));
                 }
             }
         }

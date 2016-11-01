@@ -51,7 +51,6 @@
             android:name=".handheld.app.settings.SettingsActivity"
             android:icon="@drawable/ic_launcher"
             android:label="@string/appwidget_label">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,20 +58,23 @@
             </intent-filter>
         </activity>
 
-        <!-- Android Wear Service -->
-        <service android:name=".handheld.app.androidwear.AndroidWearService" />
+        <!-- Android Wear Notification Service -->
+        <service android:name=".handheld.app.androidwear.UpdateWearNotificationService" />
+
+        <!-- Android Wear Notification Task Service -->
+        <service
+            android:name=".handheld.app.androidwear.UpdateWearNotificationTaskService"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
 
         <!-- About -->
         <activity
             android:name="org.jraf.android.util.about.AboutActivity"
             android:label="@string/about_title" />
-
-        <!-- Boot receiver -->
-        <receiver android:name=".handheld.app.boot.BootCompletedBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
 
     </application>
 

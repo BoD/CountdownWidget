@@ -68,6 +68,9 @@ public class DateTimeUtil {
         cal.set(Calendar.MILLISECOND, 0);
     }
 
+    /**
+     * Get the date of tomorrow at 8:00, as a timestamp.
+     */
     public static long getTomorrowAtEight() {
         Calendar calendar = Calendar.getInstance();
         // At eight
@@ -77,6 +80,15 @@ public class DateTimeUtil {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         return calendar.getTime().getTime();
     }
+
+    /**
+     * Get the date of tomorrow at 8:00, as a delay (number of milliseconds until this moment, starting from now).
+     */
+    public static long getTomorrowAtEightAsDelay() {
+        long tomorrowAtEight = getTomorrowAtEight();
+        return tomorrowAtEight - System.currentTimeMillis();
+    }
+
 
     public static long getInXSeconds(int seconds) {
         return System.currentTimeMillis() + seconds * 1000;
