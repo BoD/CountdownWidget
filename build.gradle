@@ -16,7 +16,7 @@ buildscript {
         targetSdk = 25
         buildTools = '25.0.0'
         supportLibrary = '25.0.0'
-        playServices = '9.8.00'
+        playServices = '9.8.0'
     }
 
     repositories {

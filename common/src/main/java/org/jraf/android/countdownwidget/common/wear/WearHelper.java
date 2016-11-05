@@ -30,14 +30,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.WorkerThread;
 
-import org.jraf.android.util.log.Log;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
+
+import org.jraf.android.util.log.Log;
 
 /**
  * Helper singleton class to deal with the wear APIs.<br/>
@@ -54,6 +54,11 @@ public class WearHelper {
      * Number of days ({@code int}).
      */
     public static final String EXTRA_DAYS = "EXTRA_DAYS";
+
+    /**
+     * When the update was made ({@code long}).
+     */
+    public static final String EXTRA_UPDATE_TIMESTAMP = "EXTRA_UPDATE_TIMESTAMP";
 
     private GoogleApiClient mGoogleApiClient;
     private int mUsers;
@@ -94,10 +99,9 @@ public class WearHelper {
     }
 
 
-    /*
-     * Days.
-     */
-    // region
+    //--------------------------------------------------------------------------
+    // region Days.
+    //--------------------------------------------------------------------------
 
     @WorkerThread
     public void updateDays(int days) {
@@ -107,23 +111,20 @@ public class WearHelper {
         DataMap dataMap = putDataMapRequest.getDataMap();
         dataMap.putInt(EXTRA_DAYS, days);
 
+        // This ensures the data is different every time, which forces the Wear system to actually send it.
+        // If the data is not different, it is not sent to the watch (as an optimization).
+        dataMap.putLong(EXTRA_UPDATE_TIMESTAMP, System.currentTimeMillis());
+
         PutDataRequest request = putDataMapRequest.asPutDataRequest();
         Wearable.DataApi.putDataItem(mGoogleApiClient, request).await(AWAIT_TIME_S, TimeUnit.SECONDS);
-    }
-
-    @WorkerThread
-    public void removeDays() {
-        Log.d();
-        Wearable.DataApi.deleteDataItems(mGoogleApiClient, createUri(PATH_DAYS)).await(AWAIT_TIME_S, TimeUnit.SECONDS);
     }
 
     // endregion
 
 
-    /*
-     * Misc.
-     */
-    // region
+    //--------------------------------------------------------------------------
+    // region Misc.
+    //--------------------------------------------------------------------------
 
     private static Uri createUri(String path) {
         return new Uri.Builder().scheme(PutDataRequest.WEAR_URI_SCHEME).path(path).build();

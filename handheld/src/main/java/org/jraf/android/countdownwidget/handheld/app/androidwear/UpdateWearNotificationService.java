@@ -58,7 +58,6 @@ public class UpdateWearNotificationService extends IntentService {
         Log.d("nbDays=%s", nbDays);
         WearHelper wearHelper = WearHelper.get();
         wearHelper.connect(this);
-        wearHelper.removeDays();
         wearHelper.updateDays(nbDays);
         wearHelper.disconnect();
     }
