@@ -85,7 +85,7 @@ android {
 android.applicationVariants.all { variant ->
     // Define application id based on flavors
     switch (variant.flavorName) {
-        // Rogue One
+    // Rogue One
         case "blurredRogueone":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.ro.blurred')
             break

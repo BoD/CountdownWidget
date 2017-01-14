@@ -1,4 +1,1 @@
-# Global
--dontobfuscate
--keepattributes SourceFile, LineNumberTable
--dontoptimize
+# Minify is not enabled so this file is not used
