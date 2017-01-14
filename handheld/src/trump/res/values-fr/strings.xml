@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Compte à rebours Inauguration Day</string>
+    <string name="appwidget_label">Compte à rebours Inauguration Day</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Inauguration Day</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant l\'Inauguration Day !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+    <string name="firstTerm">2021</string>
+    <string name="secondTerm">2025</string>
+    <string name="preference_country_title">Inauguration date</string>
+
+</resources>
