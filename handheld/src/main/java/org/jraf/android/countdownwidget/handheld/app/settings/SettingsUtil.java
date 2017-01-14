@@ -40,7 +40,7 @@ public class SettingsUtil {
 
     public static int getCountryValueIndex(Context context) {
         SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(context);
-        String prefCountryValue = preferenceManager.getString(Constants.PREF_COUNTRY, Constants.PREF_COUNTRY_DEFAULT);
+        String prefCountryValue = preferenceManager.getString(Constants.PREF_COUNTRY, context.getString(R.string.preference_default_country));
         String[] countryValues = context.getResources().getStringArray(R.array.country_values);
         // Find the index of the user's preferred country
         int countryValueIndex;

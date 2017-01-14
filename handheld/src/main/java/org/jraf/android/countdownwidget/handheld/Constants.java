@@ -31,5 +31,4 @@ public class Constants {
     public static final String PREF_ABOUT = "PREF_ABOUT";
     public static final String PREF_SHARE = "PREF_SHARE";
     public static final String PREF_COUNTRY = "PREF_COUNTRY";
-    public static final String PREF_COUNTRY_DEFAULT = "USA";
 }

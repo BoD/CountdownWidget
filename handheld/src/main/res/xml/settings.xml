@@ -9,7 +9,7 @@
         android:entries="@array/country_labels"
         android:entryValues="@array/country_values"
         android:key="PREF_COUNTRY"
-        android:defaultValue="USA"
+        android:defaultValue="@string/preference_default_country"
         android:title="@string/preference_country_title" />
 
     <android.support.v7.preference.SwitchPreferenceCompat
