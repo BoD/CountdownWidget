@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Compte à rebours Star Wars Han Solo</string>
+    <string name="appwidget_label">Compte à rebours Han Solo</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Star Wars Han Solo</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie de Han Solo !\Installez la ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+</resources>
