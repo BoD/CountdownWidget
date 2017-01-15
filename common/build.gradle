@@ -28,6 +28,11 @@ android {
             dimension 'movie'
         }
 
+        hansolo {
+            dimension 'movie'
+        }
+
+
         blurred {
             dimension 'blur'
         }
@@ -50,6 +55,7 @@ dependencies {
     compile "com.google.android.gms:play-services-wearable:$versions.playServices"
     compile 'com.github.BoD:jraf-android-util:-SNAPSHOT'
 }
+
 android.variantFilter { variant ->
     def flavorNames =  variant.getFlavors().collect({it.name})
     if (flavorNames.contains("blurred") && flavorNames.contains("trump")) {
