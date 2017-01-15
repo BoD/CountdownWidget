@@ -49,4 +49,9 @@ public class ReleaseDates {
             DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 14),
             DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 15),
     };
+
+    public static final Calendar[] RELEASE_DATES_TRUMP = {
+            DateTimeUtil.getCalendar(2021, Calendar.JANUARY, 20),
+            DateTimeUtil.getCalendar(2025, Calendar.JANUARY, 20),
+    };
 }

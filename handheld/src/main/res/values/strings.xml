@@ -8,6 +8,7 @@
     <string name="preference_share">Share</string>
     <string name="preference_country_title">Release date</string>
     <string name="preference_country_summary" translatable="false">%1$s (%2$s)</string>
+    <string name="preference_default_country" translatable="false">USA</string>
     <string name="settings_share_problemToast">A problem occurred while trying to share.</string>
     <string name="settings_share_chooser">Share with</string>
 

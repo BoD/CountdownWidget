@@ -29,7 +29,8 @@ import java.util.Calendar;
 public enum Movie {
     EPISODE_VII(ReleaseDates.RELEASE_DATES_EPISODE_VII),
     ROGUE_ONE(ReleaseDates.RELEASE_DATES_ROGUE_ONE),
-    EPISODE_VIII(ReleaseDates.RELEASE_DATES_EPISODE_VIII),;
+    EPISODE_VIII(ReleaseDates.RELEASE_DATES_EPISODE_VIII),
+    TRUMP(ReleaseDates.RELEASE_DATES_TRUMP);
 
     private final Calendar[] mReleaseDates;
 

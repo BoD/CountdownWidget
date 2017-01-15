@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_labels">
+        <item>@string/firstTerm</item>
+        <item>@string/secondTerm</item>
+    </string-array>
+
+    <string-array name="country_values" translatable="false">
+        <item>Term1</item>
+        <item>Term2</item>
+    </string-array>
+
+    <integer-array name="releaseDateZonesByCountry">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+</resources>
