@@ -24,6 +24,10 @@ android {
             dimension 'movie'
         }
 
+        hansolo {
+            dimension 'movie'
+        }
+
 
         blurred {
             dimension 'blur'

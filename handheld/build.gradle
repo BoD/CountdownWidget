@@ -44,6 +44,12 @@ android {
             buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.EPISODE_VIII'
         }
 
+        hansolo {
+            dimension 'movie'
+
+            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.HAN_SOLO'
+        }
+
 
         blurred {
             dimension 'blur'
@@ -102,6 +108,15 @@ android.applicationVariants.all { variant ->
         case "clearEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.clear')
             break
+
+    // Han Solo
+        case "blurredHansolo":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.hs.blurred')
+            break
+
+        case "clearHansolo":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.hs.clear')
+            break
     }
 
     // Create new copy tasks, for release builds
@@ -132,11 +147,15 @@ configurations {
     clearRogueoneCompile
     blurredEpisode8Compile
     clearEpisode8Compile
+    blurredHansoloCompile
+    clearHansoloCompile
 
     blurredRogueoneWearApp
     clearRogueoneWearApp
     blurredEpisode8WearApp
     clearEpisode8WearApp
+    blurredHansoloWearApp
+    clearHansoloWearApp
 }
 
 dependencies {
@@ -146,10 +165,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
+    clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
+
+    clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
     blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
 
-    clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
-    clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
+    clearHansoloCompile project(path: ':common', configuration: 'clearHansoloRelease')
+    blurredHansoloCompile project(path: ':common', configuration: 'blurredHansoloRelease')
 
     compile "com.android.support:appcompat-v7:$versions.supportLibrary"
     compile "com.android.support:preference-v7:$versions.supportLibrary"
@@ -160,7 +182,11 @@ dependencies {
 
     // Package the wear apk inside this one
     blurredRogueoneWearApp project(path: ':wearable', configuration: 'blurredRogueoneRelease')
-    blurredEpisode8WearApp project(path: ':wearable', configuration: 'blurredEpisode8Release')
     clearRogueoneWearApp project(path: ':wearable', configuration: 'clearRogueoneRelease')
+
+    blurredEpisode8WearApp project(path: ':wearable', configuration: 'blurredEpisode8Release')
     clearEpisode8WearApp project(path: ':wearable', configuration: 'clearEpisode8Release')
+
+    blurredHansoloWearApp project(path: ':wearable', configuration: 'blurredHansoloRelease')
+    clearHansoloWearApp project(path: ':wearable', configuration: 'clearHansoloRelease')
 }

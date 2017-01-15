@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_labels">
+        <item>@string/countryName_Brazil</item>
+        <item>@string/countryName_Russia</item>
+        <item>@string/countryName_USA</item>
+    </string-array>
+
+    <string-array name="country_values" translatable="false">
+        <item>Brazil</item>
+        <item>Russia</item>
+        <item>USA</item>
+    </string-array>
+
+    <integer-array name="releaseDateZonesByCountry">
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+</resources>

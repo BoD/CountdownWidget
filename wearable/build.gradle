@@ -37,6 +37,10 @@ android {
             dimension 'movie'
         }
 
+        hansolo {
+            dimension 'movie'
+        }
+
 
         blurred {
             dimension 'blur'
@@ -89,6 +93,15 @@ android.applicationVariants.all { variant ->
         case "clearEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.clear')
             break
+
+    // Han Solo
+        case "blurredHansolo":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.hs.blurred')
+            break
+
+        case "clearHansolo":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.hs.clear')
+            break
     }
 }
 
@@ -97,6 +110,8 @@ configurations {
     clearRogueoneCompile
     blurredEpisode8Compile
     clearEpisode8Compile
+    blurredHansoloCompile
+    clearHansoloCompile
 }
 
 dependencies {
@@ -106,10 +121,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     blurredRogueoneCompile project(path: ':common', configuration: 'blurredRogueoneRelease')
-    blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
-
     clearRogueoneCompile project(path: ':common', configuration: 'clearRogueoneRelease')
+
+    blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
     clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
+
+    blurredHansoloCompile project(path: ':common', configuration: 'blurredHansoloRelease')
+    clearHansoloCompile project(path: ':common', configuration: 'clearHansoloRelease')
 
     compile 'com.github.BoD:jraf-android-util:-SNAPSHOT'
 }

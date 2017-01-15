@@ -1,0 +1,7 @@
+<resources>
+    <string name="countdown_full_minus_other">Star Wars Han Solo was released %1$d days ago</string>
+    <string name="countdown_full_minus_1">Star Wars Han Solo was released yesterday</string>
+    <string name="countdown_full_zero">Star Wars Han Solo is released TODAY</string>
+    <string name="countdown_full_one">Star Wars Han Solo will be released tomorrow</string>
+    <string name="countdown_full_other">Only %1$d days until the release of Star Wars Han Solo</string>
+</resources>

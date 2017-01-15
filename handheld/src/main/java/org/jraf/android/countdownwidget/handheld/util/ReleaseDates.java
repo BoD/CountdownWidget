@@ -49,4 +49,9 @@ public class ReleaseDates {
             DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 14),
             DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 15),
     };
+
+    public static final Calendar[] RELEASE_DATES_HAN_SOLO = {
+            DateTimeUtil.getCalendar(2018, Calendar.MAY, 24),
+            DateTimeUtil.getCalendar(2018, Calendar.MAY, 25),
+    };
 }
