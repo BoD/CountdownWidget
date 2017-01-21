@@ -44,6 +44,11 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+    distributionType = Wrapper.DistributionType.ALL
+}
+
 // Add a 'release' task that increments the build number
 def releaseTask = tasks.create(name: 'release', group: 'build')
 releaseTask << {
