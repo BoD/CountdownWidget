@@ -86,6 +86,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    lintOptions {
+        abortOnError true
+        textReport true
+        ignoreWarnings true
+    }
 }
 
 android.applicationVariants.all { variant ->
@@ -173,7 +179,6 @@ dependencies {
     clearHansoloCompile project(path: ':common', configuration: 'clearHansoloRelease')
     blurredHansoloCompile project(path: ':common', configuration: 'blurredHansoloRelease')
 
-    compile "com.android.support:appcompat-v7:$versions.supportLibrary"
     compile "com.android.support:preference-v7:$versions.supportLibrary"
     compile "com.android.support:preference-v14:$versions.supportLibrary"
     compile "com.google.android.gms:play-services-gcm:$versions.playServices"
