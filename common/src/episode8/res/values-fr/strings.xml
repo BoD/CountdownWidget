@@ -1,7 +1,7 @@
-<resources>
-    <string name="countdown_full_minus_other">Star Wars Épisode VIII : The Last Jedi est sorti il y a %1$d jours</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Star Wars Épisode VIII : The Last Jedi est sorti il y a %1$d jours</string>
     <string name="countdown_full_minus_1">Star Wars Épisode VIII : The Last Jedi est sorti hier</string>
     <string name="countdown_full_zero">Star Wars Épisode VIII : The Last Jedi sort AUJOURD\'HUI</string>
     <string name="countdown_full_one">Star Wars Épisode VIII : The Last Jedi sort demain</string>
-    <string name="countdown_full_other">Plus que %1$d jours avant la sortie de Star Wars Épisode VIII : The Last Jedi</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant la sortie de Star Wars Épisode VIII : The Last Jedi</string>
 </resources>

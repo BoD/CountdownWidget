@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="countdown_full_minus_other">L\'Inauguration Day a eu lieu il y a %1$d jours</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">L\'Inauguration Day a eu lieu il y a %1$d jours</string>
     <string name="countdown_full_minus_1">L\'Inauguration Day a eu lieu hier</string>
     <string name="countdown_full_zero">L\'Inauguration Day est AUJOURD\'HUI</string>
     <string name="countdown_full_one">L\'Inauguration Day sera demain</string>
-    <string name="countdown_full_other">Plus que %1$d jours avant l\'Inauguration Day</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant l\'Inauguration Day</string>
 </resources>
