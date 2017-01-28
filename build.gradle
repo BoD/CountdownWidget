@@ -112,7 +112,7 @@ buildProperties.load(new FileInputStream(buildPropertiesFile))
 
 // Build number
 ext.buildNumberProperties = new Properties()
-def buildNumberFile = getAndCreateIfNotExists('build.number')
+ext.buildNumberFile = getAndCreateIfNotExists('build.number')
 buildNumberProperties.load(new FileInputStream(buildNumberFile))
 ext.buildNumber = buildNumberProperties.buildNumber.toInteger()
 
