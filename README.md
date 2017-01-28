@@ -11,6 +11,7 @@ until the release of these movies:
 
 An Android Wear notification is also included (if enabled, it will be sent to the watch every day at 8am).
 
+![Travis Build Result](https://api.travis-ci.org/BoD/CountdownWidget.svg?branch=master)
 
 Licence
 -------
