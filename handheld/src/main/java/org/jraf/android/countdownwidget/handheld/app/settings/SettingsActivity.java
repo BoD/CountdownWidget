@@ -26,6 +26,7 @@ package org.jraf.android.countdownwidget.handheld.app.settings;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -178,9 +179,9 @@ public class SettingsActivity extends AppCompatActivity {
     private Uri saveAndInsertImage(Bitmap image) throws Exception {
         File picturesPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File path = new File(picturesPath, SHARE_DIRECTORY_NAME);
-        path.mkdirs();
-        String fileName = SHARE_FILE_NAME;
-        File file = new File(path, fileName);
+        boolean ok = path.mkdirs();
+        if (!ok) throw new IOException("Could not create directories " + path);
+        File file = new File(path, SHARE_FILE_NAME);
         FileOutputStream outputStream = new FileOutputStream(file);
         image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
         IoUtil.closeSilently(outputStream);

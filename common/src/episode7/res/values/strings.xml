@@ -1,7 +1,0 @@
-<resources>
-    <string name="countdown_full_minus_other">Star Wars Episode VII was released %1$d days ago</string>
-    <string name="countdown_full_minus_1">Star Wars Episode VII was released yesterday</string>
-    <string name="countdown_full_zero">Star Wars Episode VII is released TODAY</string>
-    <string name="countdown_full_one">Star Wars Episode VII will be released tomorrow</string>
-    <string name="countdown_full_other">Only %1$d days until the release of Star Wars Episode VII</string>
-</resources>

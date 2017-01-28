@@ -108,7 +108,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         int color0 = ContextCompat.getColor(context, R.color.text0);
         int color1 = ContextCompat.getColor(context, R.color.text1);
         paint.setShader(new LinearGradient(0, logoHeight + padding, 0, bitmapHeight, color0, color1, TileMode.CLAMP));
-        canvas.drawText(text, logoWidth / 2, logoHeight + padding + -textBounds.top, paint);
+        canvas.drawText(text, logoWidth / 2F, logoHeight + padding + -textBounds.top, paint);
         return bitmap;
     }
 }

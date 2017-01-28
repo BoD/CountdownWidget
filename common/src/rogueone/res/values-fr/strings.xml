@@ -1,7 +1,0 @@
-<resources>
-    <string name="countdown_full_minus_other">Star Wars Rogue One est sorti il y a %1$d jours</string>
-    <string name="countdown_full_minus_1">Star Wars Rogue One est sorti hier</string>
-    <string name="countdown_full_zero">Star Wars Rogue One sort AUJOURD\'HUI</string>
-    <string name="countdown_full_one">Star Wars Rogue One sort demain</string>
-    <string name="countdown_full_other">Plus que %1$d jours avant la sortie de Star Wars Rogue One</string>
-</resources>
