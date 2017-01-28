@@ -6,7 +6,7 @@
     <string name="settings_share_subject">Star Wars Épisode VIII</string>
 
     <!-- About -->
-    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Épisode VIII !\nInstallez la ici
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Épisode VIII : The Last Jedi !\nInstallez la ici
         :\nhttp://play.google.com/store/apps/details?id=%s
     </string>
 
