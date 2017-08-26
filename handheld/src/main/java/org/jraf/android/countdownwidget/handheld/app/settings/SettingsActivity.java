@@ -50,7 +50,7 @@ import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotif
 import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
-import org.jraf.android.countdownwidget.prefs.Main;
+import org.jraf.android.countdownwidget.prefs.MainConstants;
 import org.jraf.android.countdownwidget.prefs.MainPrefs;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
 import org.jraf.android.util.async.Task;
@@ -84,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
             .OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (Main.PREF_DAILY_NOTIFICATION.equals(key)) {
+            if (MainConstants.KEY_DAILY_NOTIFICATION.equals(key)) {
                 if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
                     // Schedule an alarm
                     UpdateWearNotificationTaskService.scheduleTask(SettingsActivity.this);
@@ -95,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
                     // Unschedule the alarm
                     UpdateWearNotificationTaskService.unscheduleTask(SettingsActivity.this);
                 }
-            } else if (Main.PREF_COUNTRY.equals(key)) {
+            } else if (MainConstants.KEY_COUNTRY.equals(key)) {
                 // Update the summary of the preference
                 SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
                 settingsFragment.updateCountrySummary();

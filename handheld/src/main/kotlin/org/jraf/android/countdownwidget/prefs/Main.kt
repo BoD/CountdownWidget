@@ -26,21 +26,10 @@ package org.jraf.android.countdownwidget.prefs
 
 import org.jraf.android.prefs.DefaultBoolean
 import org.jraf.android.prefs.DefaultString
-import org.jraf.android.prefs.Name
 import org.jraf.android.prefs.Prefs
 
 @Prefs
 class Main {
-    companion object {
-        const val PREF_TUTORIAL = "tutorial"
-        const val PREF_ABOUT = "about"
-        const val PREF_SHARE = "share"
-        const val PREF_COUNTRY = "country"
-        const val PREF_DAILY_NOTIFICATION = "dailyNotification"
-
-        private const val PREF_COUNTRY_DEFAULT = "USA"
-    }
-
     /**
      * Tutorial.
      */
@@ -59,8 +48,7 @@ class Main {
     /**
      * Country.
      */
-    @DefaultString(PREF_COUNTRY_DEFAULT)
-    @Name(PREF_COUNTRY)
+    @DefaultString("USA")
     var country: String? = null
 
     /**

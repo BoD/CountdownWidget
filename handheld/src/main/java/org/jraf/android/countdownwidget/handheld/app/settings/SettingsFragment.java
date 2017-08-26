@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.R;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
-import org.jraf.android.countdownwidget.prefs.Main;
+import org.jraf.android.countdownwidget.prefs.MainConstants;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -47,7 +47,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
-        Preference tutorialPreference = findPreference(Main.PREF_TUTORIAL);
+        Preference tutorialPreference = findPreference(MainConstants.KEY_TUTORIAL);
         tutorialPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -56,7 +56,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference aboutPreference = findPreference(Main.PREF_ABOUT);
+        Preference aboutPreference = findPreference(MainConstants.KEY_ABOUT);
         aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -65,7 +65,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference sharePreference = findPreference(Main.PREF_SHARE);
+        Preference sharePreference = findPreference(MainConstants.KEY_SHARE);
         sharePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -94,7 +94,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     void updateCountrySummary() {
-        Preference countryPreference = findPreference(Main.PREF_COUNTRY);
+        Preference countryPreference = findPreference(MainConstants.KEY_COUNTRY);
         int countryValueIndex = SettingsUtil.getCountryValueIndex(getActivity());
         String countryName = getResources().getStringArray(R.array.country_labels)[countryValueIndex];
         int releaseDateZone = SettingsUtil.getReleaseDateZone(getActivity());

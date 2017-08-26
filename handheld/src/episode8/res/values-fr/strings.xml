@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Compte à rebours Star Wars Épisode VIII</string>
     <string name="appwidget_label">Compte à rebours Épisode VIII</string>
 
