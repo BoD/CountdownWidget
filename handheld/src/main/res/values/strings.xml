@@ -90,5 +90,11 @@
     <string name="countryName_USA">USA – official release</string>
     <string name="countryName_Vietnam">Vietnam</string>
 
+    <string name="countdown_minus_other" tools:ignore="PluralsCandidate">%1$d days ago</string>
+    <string name="countdown_minus_1">yesterday</string>
+    <string name="countdown_zero">TODAY</string>
+    <string name="countdown_one">tomorrow</string>
+    <string name="countdown_other" tools:ignore="PluralsCandidate">%1$d days</string>
+
 
 </resources>

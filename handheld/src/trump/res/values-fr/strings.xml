@@ -13,4 +13,10 @@
     <string name="secondTerm">2025</string>
     <string name="preference_country_title">Inauguration date</string>
 
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">L\'Inauguration Day a eu lieu il y a %1$d jours</string>
+    <string name="countdown_full_minus_1">L\'Inauguration Day a eu lieu hier</string>
+    <string name="countdown_full_zero">L\'Inauguration Day est AUJOURD\'HUI</string>
+    <string name="countdown_full_one">L\'Inauguration Day sera demain</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant l\'Inauguration Day</string>
+
 </resources>

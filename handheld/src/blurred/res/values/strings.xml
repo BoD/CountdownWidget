@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">(a certain movie) Countdown</string>
     <string name="appwidget_label">(a certain movie) Countdown</string>
 
@@ -7,5 +7,11 @@
 
     <!-- About -->
     <string name="about_shareText_body">This app lets you count the number of days until the release of (a certain movie)!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
+
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">(a certain movie) was released %1$d days ago</string>
+    <string name="countdown_full_minus_1">(a certain movie) was released yesterday</string>
+    <string name="countdown_full_zero">(a certain movie) is released TODAY</string>
+    <string name="countdown_full_one">(a certain movie) will be released tomorrow</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Only %1$d days until the release of (a certain movie)</string>
 
 </resources>

@@ -26,7 +26,7 @@ package org.jraf.android.countdownwidget.common.util;
 
 import android.content.Context;
 
-import org.jraf.android.countdownwidget.common.R;
+import org.jraf.android.countdownwidget.R;
 
 public class StringUtil {
     public static String getFormattedCountdown(Context context, int nbDays) {

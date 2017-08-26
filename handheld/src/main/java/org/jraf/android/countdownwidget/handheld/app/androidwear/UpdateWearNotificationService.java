@@ -32,7 +32,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import org.jraf.android.countdownwidget.common.wear.WearHelper;
 import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
@@ -56,10 +55,8 @@ public class UpdateWearNotificationService extends IntentService {
         int releaseDateZone = SettingsUtil.getReleaseDateZone(this);
         int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);
-        WearHelper wearHelper = WearHelper.get();
-        wearHelper.connect(this);
-        wearHelper.updateDays(nbDays);
-        wearHelper.disconnect();
+
+        // TODO: 26/08/2017 Show a notification
     }
 
     private static PendingIntent getPendingIntent(Context context) {

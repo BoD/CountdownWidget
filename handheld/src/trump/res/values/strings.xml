@@ -14,4 +14,10 @@
     <string name="preference_default_country" translatable="false">Term1</string>
     <string name="preference_country_title">Inauguration date</string>
 
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Inauguration Day was %1$d days ago</string>
+    <string name="countdown_full_minus_1">Inauguration Day was yesterday</string>
+    <string name="countdown_full_zero">Inauguration Day is TODAY</string>
+    <string name="countdown_full_one">Inauguration Day is tomorrow</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Only %1$d days until Inauguration Day</string>
+
 </resources>

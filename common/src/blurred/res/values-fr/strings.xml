@@ -1,7 +1,0 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">(un certain film) est sorti il y a %1$d jours</string>
-    <string name="countdown_full_minus_1">(un certain film) est sorti hier</string>
-    <string name="countdown_full_zero">(un certain film) sort AUJOURD\'HUI</string>
-    <string name="countdown_full_one">(un certain film) sort demain</string>
-    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant la sortie de (un certain film)</string>
-</resources>

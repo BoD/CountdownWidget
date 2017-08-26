@@ -10,4 +10,10 @@
         here:\nhttp://play.google.com/store/apps/details?id=%s
     </string>
 
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Star Wars Episode VIII: The Last Jedi was released %1$d days ago</string>
+    <string name="countdown_full_minus_1">Star Wars Episode VIII: The Last Jedi was released yesterday</string>
+    <string name="countdown_full_zero">Star Wars Episode VIII: The Last Jedi is released TODAY</string>
+    <string name="countdown_full_one">Star Wars Episode VIII: The Last Jedi will be released tomorrow</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Only %1$d days until the release of Star Wars Episode VIII: The Last Jedi</string>
+
 </resources>
