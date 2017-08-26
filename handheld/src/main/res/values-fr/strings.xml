@@ -1,7 +1,7 @@
 <resources>
     <!-- Preference (Settings) -->
-    <string name="preference_androidWear_title">Android Wear</string>
-    <string name="preference_androidWear_summary">Affiche une notification une fois par jour sur les objets Android Wear connectés</string>
+    <string name="preference_dailyNotification_title">Notification quotidienne</string>
+    <string name="preference_dailyNotification_summary">Affiche une notification une fois par jour avec le nombre de jours restants</string>
     <string name="preference_tutorial">Comment ajouter une \'widget\' ?</string>
     <string name="preference_about">À propos…</string>
     <string name="preference_toast">Appuyez sur RETOUR quand vous avez terminé</string>

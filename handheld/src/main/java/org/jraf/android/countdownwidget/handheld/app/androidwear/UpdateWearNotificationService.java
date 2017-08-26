@@ -29,10 +29,7 @@ import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.util.log.Log;
@@ -46,12 +43,12 @@ public class UpdateWearNotificationService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.d("intent=%s", StringUtil.toString(intent));
-        SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!preferenceManager.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
-            // We got triggered, but the setting is off so please don't do anything
-            Log.d("Setting is off");
-            return;
-        }
+//        SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
+//        if (!preferenceManager.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
+//            // We got triggered, but the setting is off so please don't do anything
+//            Log.d("Setting is off");
+//            return;
+//        }
         int releaseDateZone = SettingsUtil.getReleaseDateZone(this);
         int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);

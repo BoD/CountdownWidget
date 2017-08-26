@@ -25,11 +25,9 @@
 package org.jraf.android.countdownwidget.handheld.app.settings;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.handheld.Constants;
+import org.jraf.android.countdownwidget.prefs.MainPrefs;
 
 public class SettingsUtil {
     public static int getReleaseDateZone(Context context) {
@@ -39,8 +37,7 @@ public class SettingsUtil {
     }
 
     public static int getCountryValueIndex(Context context) {
-        SharedPreferences preferenceManager = PreferenceManager.getDefaultSharedPreferences(context);
-        String prefCountryValue = preferenceManager.getString(Constants.PREF_COUNTRY, context.getString(R.string.preference_default_country));
+        String prefCountryValue = MainPrefs.get(context).getCountry();
         String[] countryValues = context.getResources().getStringArray(R.array.country_values);
         // Find the index of the user's preferred country
         int countryValueIndex;

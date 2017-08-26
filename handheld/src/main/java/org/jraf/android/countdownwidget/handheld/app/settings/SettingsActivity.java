@@ -34,7 +34,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.WorkerThread;
@@ -46,13 +45,16 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotificationService;
 import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotificationTaskService;
 import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
+import org.jraf.android.countdownwidget.prefs.Main;
+import org.jraf.android.countdownwidget.prefs.MainPrefs;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
+import org.jraf.android.util.async.Task;
+import org.jraf.android.util.async.TaskFragment;
 import org.jraf.android.util.io.IoUtil;
 import org.jraf.android.util.log.Log;
 
@@ -82,21 +84,18 @@ public class SettingsActivity extends AppCompatActivity {
             .OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (Constants.PREF_ANDROID_WEAR.equals(key)) {
-                if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
+            if (Main.PREF_DAILY_NOTIFICATION.equals(key)) {
+                if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
                     // Schedule an alarm
                     UpdateWearNotificationTaskService.scheduleTask(SettingsActivity.this);
 
-                    // Also send the value now
+                    // Also show the notification now
                     startService(new Intent(SettingsActivity.this, UpdateWearNotificationService.class));
-
-                    // Also send the value in a minute (this allows the Wearable app to finish installing)
-                    UpdateWearNotificationService.scheduleAlarmIn1Minute(SettingsActivity.this);
                 } else {
                     // Unschedule the alarm
                     UpdateWearNotificationTaskService.unscheduleTask(SettingsActivity.this);
                 }
-            } else if (Constants.PREF_COUNTRY.equals(key)) {
+            } else if (Main.PREF_COUNTRY.equals(key)) {
                 // Update the summary of the preference
                 SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
                 settingsFragment.updateCountrySummary();
@@ -107,9 +106,8 @@ public class SettingsActivity extends AppCompatActivity {
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(provider);
                 AppWidgetProvider.updateWidgets(SettingsActivity.this, appWidgetManager, appWidgetIds);
 
-                // Update the value on wearables if needed
-                if (sharedPreferences.getBoolean(Constants.PREF_ANDROID_WEAR, Constants.PREF_ANDROID_WEAR_DEFAULT)) {
-                    // Also send the value now
+                // Update the notification now if needed
+                if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
                     startService(new Intent(SettingsActivity.this, UpdateWearNotificationService.class));
                 }
             }
@@ -141,38 +139,40 @@ public class SettingsActivity extends AppCompatActivity {
     void onShareClicked() {
         View view = getLayoutInflater().inflate(R.layout.appwidget, null, false);
         Bitmap logoBitmap = AppWidgetProvider.drawLogo(this);
-        ImageView imgLogo = (ImageView) view.findViewById(R.id.imgLogo);
+        ImageView imgLogo = view.findViewById(R.id.imgLogo);
         imgLogo.setImageBitmap(logoBitmap);
         final Bitmap viewBitmap = ViewUtil.renderViewToBitmap(view, SHARE_IMAGE_WIDTH_PX, SHARE_IMAGE_HEIGHT_PX);
 
-        new AsyncTask<Void, Void, Uri>() {
+        new TaskFragment(new Task<SettingsActivity>() {
+            private Uri mSavedImageUri;
+
             @Override
-            protected Uri doInBackground(Void... params) {
+            protected void doInBackground() throws Throwable {
                 try {
-                    return saveAndInsertImage(viewBitmap);
+                    mSavedImageUri = getActivity().saveAndInsertImage(viewBitmap);
                 } catch (Exception e) {
                     Log.w(e, "Could not save image");
-                    return null;
+                    throw e;
                 }
             }
 
             @Override
-            protected void onPostExecute(Uri uri) {
-                if (uri == null) {
-                    Toast.makeText(SettingsActivity.this, R.string.settings_share_problemToast, Toast.LENGTH_LONG).show();
-                } else {
-                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.setType("image/png");
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_subject));
-                    shareIntent.putExtra("sms_body", getString(R.string.settings_share_subject));
-                    int releaseDateZone = SettingsUtil.getReleaseDateZone(SettingsActivity.this);
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, DateTimeUtil.getCountDownToReleaseAsText(SettingsActivity.this, releaseDateZone));
-                    shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                    startActivity(Intent.createChooser(shareIntent, getString(R.string.settings_share_chooser)));
-                }
+            protected void onPostExecuteOk() {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/png");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_subject));
+                shareIntent.putExtra("sms_body", getString(R.string.settings_share_subject));
+                int releaseDateZone = SettingsUtil.getReleaseDateZone(getActivity());
+                shareIntent.putExtra(Intent.EXTRA_TEXT, DateTimeUtil.getCountDownToReleaseAsText(SettingsActivity.this, releaseDateZone));
+                shareIntent.putExtra(Intent.EXTRA_STREAM, mSavedImageUri);
+                getActivity().startActivity(Intent.createChooser(shareIntent, getString(R.string.settings_share_chooser)));
             }
 
-        }.execute();
+            @Override
+            protected void onPostExecuteFail() {
+                Toast.makeText(getActivity(), R.string.settings_share_problemToast, Toast.LENGTH_LONG).show();
+            }
+        }).execute(this);
     }
 
     @WorkerThread

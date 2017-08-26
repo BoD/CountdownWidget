@@ -27,15 +27,14 @@ package org.jraf.android.countdownwidget.handheld.app.settings;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.handheld.Constants;
 import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
+import org.jraf.android.countdownwidget.prefs.Main;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
@@ -48,7 +47,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
-        Preference tutorialPreference = findPreference(Constants.PREF_TUTORIAL);
+        Preference tutorialPreference = findPreference(Main.PREF_TUTORIAL);
         tutorialPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -57,7 +56,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference aboutPreference = findPreference(Constants.PREF_ABOUT);
+        Preference aboutPreference = findPreference(Main.PREF_ABOUT);
         aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -66,7 +65,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference sharePreference = findPreference(Constants.PREF_SHARE);
+        Preference sharePreference = findPreference(Main.PREF_SHARE);
         sharePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -92,15 +91,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             // But we DO need to warn the user they MUST press back, otherwise the widget won't be created
             Toast.makeText(getActivity(), R.string.preference_toast, Toast.LENGTH_LONG).show();
         }
-
-        // Don't show Android Wear stuff for old devices that don't support it
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            getPreferenceScreen().removePreference(findPreference(Constants.PREF_ANDROID_WEAR));
-        }
     }
 
     void updateCountrySummary() {
-        Preference countryPreference = findPreference(Constants.PREF_COUNTRY);
+        Preference countryPreference = findPreference(Main.PREF_COUNTRY);
         int countryValueIndex = SettingsUtil.getCountryValueIndex(getActivity());
         String countryName = getResources().getStringArray(R.array.country_labels)[countryValueIndex];
         int releaseDateZone = SettingsUtil.getReleaseDateZone(getActivity());
