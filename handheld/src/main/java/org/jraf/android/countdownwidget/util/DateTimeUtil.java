@@ -98,7 +98,7 @@ public class DateTimeUtil {
         return getNbDaysToDate(Calendar.getInstance(), releaseDate.get(Calendar.YEAR), releaseDate.get(Calendar.MONTH), releaseDate.get(Calendar.DAY_OF_MONTH));
     }
 
-    public static String getCountDownToReleaseAsText(Context context, int releaseDateZone) {
+    public static CharSequence getCountDownToReleaseAsText(Context context, int releaseDateZone) {
         int nbDays = getCountDownToRelease(releaseDateZone);
         return StringUtil.getFormattedCountdownFull(context, nbDays);
     }

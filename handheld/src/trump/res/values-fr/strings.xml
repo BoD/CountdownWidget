@@ -6,6 +6,9 @@
     <!-- Preference (Settings) -->
     <string name="settings_share_subject">Inauguration Day</string>
 
+    <!-- Notification -->
+    <string name="notif_text">Inauguration Day</string>
+
     <!-- About -->
     <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant l\'Inauguration Day !\nTestez là ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
 

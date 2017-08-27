@@ -75,7 +75,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         int nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone);
         Log.d("nbDays=%s", nbDays);
 
-        String text = StringUtil.getFormattedCountdown(context, nbDays);
+        String text = StringUtil.getFormattedCountdown(context, nbDays).toString();
 
         Paint paint = new Paint();
         paint.setTextAlign(Align.CENTER);

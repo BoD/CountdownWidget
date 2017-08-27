@@ -45,9 +45,9 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.app.androidwear.UpdateWearNotificationService;
-import org.jraf.android.countdownwidget.app.androidwear.UpdateWearNotificationTaskService;
 import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider;
+import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationService;
+import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationTaskService;
 import org.jraf.android.countdownwidget.prefs.MainConstants;
 import org.jraf.android.countdownwidget.prefs.MainPrefs;
 import org.jraf.android.countdownwidget.util.DateTimeUtil;
@@ -87,13 +87,13 @@ public class SettingsActivity extends AppCompatActivity {
             if (MainConstants.KEY_DAILY_NOTIFICATION.equals(key)) {
                 if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
                     // Schedule an alarm
-                    UpdateWearNotificationTaskService.scheduleTask(SettingsActivity.this);
+                    DailyNotificationTaskService.scheduleTask(SettingsActivity.this);
 
                     // Also show the notification now
-                    startService(new Intent(SettingsActivity.this, UpdateWearNotificationService.class));
+                    startService(new Intent(SettingsActivity.this, DailyNotificationService.class));
                 } else {
                     // Unschedule the alarm
-                    UpdateWearNotificationTaskService.unscheduleTask(SettingsActivity.this);
+                    DailyNotificationTaskService.unscheduleTask(SettingsActivity.this);
                 }
             } else if (MainConstants.KEY_COUNTRY.equals(key)) {
                 // Update the summary of the preference
@@ -108,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 // Update the notification now if needed
                 if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
-                    startService(new Intent(SettingsActivity.this, UpdateWearNotificationService.class));
+                    startService(new Intent(SettingsActivity.this, DailyNotificationService.class));
                 }
             }
         }

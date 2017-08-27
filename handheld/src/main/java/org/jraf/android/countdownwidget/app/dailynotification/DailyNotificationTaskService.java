@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.app.androidwear;
+package org.jraf.android.countdownwidget.app.dailynotification;
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,11 +37,11 @@ import com.google.android.gms.gcm.TaskParams;
 import org.jraf.android.countdownwidget.util.DateTimeUtil;
 import org.jraf.android.util.log.Log;
 
-public class UpdateWearNotificationTaskService extends GcmTaskService {
+public class DailyNotificationTaskService extends GcmTaskService {
     @Override
     public int onRunTask(TaskParams taskParams) {
         Log.d();
-        startService(new Intent(this, UpdateWearNotificationService.class));
+        startService(new Intent(this, DailyNotificationService.class));
         // Reschedule, for tomorrow
         scheduleTask(this);
         return GcmNetworkManager.RESULT_SUCCESS;
@@ -60,11 +60,11 @@ public class UpdateWearNotificationTaskService extends GcmTaskService {
      */
     public static void scheduleTask(Context context) {
         Log.d();
-        String tag = UpdateWearNotificationTaskService.class.getSimpleName();
+        String tag = DailyNotificationTaskService.class.getSimpleName();
         long tomorrowAtEightAsDelaySeconds = DateTimeUtil.getTomorrowAtEightAsDelay() / 1000;
         OneoffTask periodicTask = new OneoffTask.Builder()
                 .setTag(tag)
-                .setService(UpdateWearNotificationTaskService.class)
+                .setService(DailyNotificationTaskService.class)
                 .setExecutionWindow(tomorrowAtEightAsDelaySeconds, tomorrowAtEightAsDelaySeconds + TimeUnit.HOURS.toSeconds(2))
                 .setPersisted(true)
                 .setUpdateCurrent(true)
@@ -74,7 +74,7 @@ public class UpdateWearNotificationTaskService extends GcmTaskService {
 
     public static void unscheduleTask(Context context) {
         Log.d();
-        String tag = UpdateWearNotificationTaskService.class.getSimpleName();
-        GcmNetworkManager.getInstance(context).cancelTask(tag, UpdateWearNotificationTaskService.class);
+        String tag = DailyNotificationTaskService.class.getSimpleName();
+        GcmNetworkManager.getInstance(context).cancelTask(tag, DailyNotificationTaskService.class);
     }
 }

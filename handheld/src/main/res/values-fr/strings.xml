@@ -17,6 +17,10 @@
     <string name="about_web_text">Page web de l\'auteur</string>
     <string name="about_sources_text">Code source sur Github</string>
 
+    <!-- Notification -->
+    <string name="notif_channel_main_name">Canal principal</string>
+    <string name="notif_channel_main_description">Le canal de notifications principal</string>
+
     <!-- Country names -->
     <string name="countryName_Argentina">Argentine</string>
     <string name="countryName_Australia">Australie</string>

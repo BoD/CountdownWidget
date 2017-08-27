@@ -38,19 +38,19 @@ android {
         episode8 {
             dimension 'movie'
 
-            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.EPISODE_VIII'
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.EPISODE_VIII'
         }
 
         trump {
             dimension 'movie'
 
-            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.TRUMP'
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.TRUMP'
         }
 
         hansolo {
             dimension 'movie'
 
-            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.HAN_SOLO'
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.HAN_SOLO'
         }
 
 

@@ -23,6 +23,10 @@
     <string name="about_sources_text">Source code on Github</string>
     <string name="about_shareText_subject">Checkout out this app!</string>
 
+    <!-- Notification -->
+    <string name="notif_channel_main_name">Main channel</string>
+    <string name="notif_channel_main_description">The main notification channel</string>
+
     <!-- Country names -->
     <string name="countryName_Argentina">Argentina</string>
     <string name="countryName_Australia">Australia</string>
@@ -89,11 +93,11 @@
     <string name="countryName_USA">USA – official release</string>
     <string name="countryName_Vietnam">Vietnam</string>
 
-    <string name="countdown_minus_other" tools:ignore="PluralsCandidate">%1$d days ago</string>
+    <string name="countdown_minus_other" tools:ignore="PluralsCandidate"><![CDATA[<b>%1$d</b> days ago]]></string>
     <string name="countdown_minus_1">yesterday</string>
     <string name="countdown_zero">TODAY</string>
     <string name="countdown_one">tomorrow</string>
-    <string name="countdown_other" tools:ignore="PluralsCandidate">%1$d days</string>
+    <string name="countdown_other" tools:ignore="PluralsCandidate"><![CDATA[<b>%1$d</b> days]]></string>
 
 
 </resources>

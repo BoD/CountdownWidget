@@ -25,11 +25,12 @@
 package org.jraf.android.countdownwidget.util;
 
 import android.content.Context;
+import android.text.Html;
 
 import org.jraf.android.countdownwidget.R;
 
 public class StringUtil {
-    public static String getFormattedCountdown(Context context, int nbDays) {
+    public static CharSequence getFormattedCountdown(Context context, int nbDays) {
         int resId;
         switch (nbDays) {
             case Integer.MIN_VALUE:
@@ -57,10 +58,11 @@ public class StringUtil {
                 break;
         }
 
-        return context.getResources().getString(resId, nbDays);
+        String htmlSource = context.getResources().getString(resId, nbDays);
+        return Html.fromHtml(htmlSource);
     }
 
-    public static String getFormattedCountdownFull(Context context, int nbDays) {
+    public static CharSequence getFormattedCountdownFull(Context context, int nbDays) {
         int resId;
         switch (nbDays) {
             case Integer.MIN_VALUE:
@@ -88,6 +90,7 @@ public class StringUtil {
                 break;
         }
 
-        return context.getResources().getString(resId, nbDays);
+        String htmlSource = context.getResources().getString(resId, nbDays);
+        return Html.fromHtml(htmlSource);
     }
 }

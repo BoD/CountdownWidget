@@ -54,11 +54,11 @@
         </activity>
 
         <!-- Android Wear Notification Service -->
-        <service android:name=".app.androidwear.UpdateWearNotificationService" />
+        <service android:name=".app.dailynotification.DailyNotificationService" />
 
         <!-- Android Wear Notification Task Service -->
         <service
-            android:name=".app.androidwear.UpdateWearNotificationTaskService"
+            android:name=".app.dailynotification.DailyNotificationTaskService"
             android:exported="true"
             android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
             <intent-filter>
