@@ -6,7 +6,8 @@
     </string-array>
 
     <string-array name="country_values" translatable="false">
-        <item>Term1</item>
+        <!-- The default value is 'USA' so this must be one of the values even if it doesn't make sense here -->
+        <item>USA</item>
         <item>Term2</item>
     </string-array>
 

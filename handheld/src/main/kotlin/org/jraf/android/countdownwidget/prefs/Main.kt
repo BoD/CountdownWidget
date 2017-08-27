@@ -54,6 +54,6 @@ class Main {
     /**
      * Daily notification.
      */
-    @DefaultBoolean(true)
+    @DefaultBoolean(false)
     var dailyNotification: Boolean? = null
 }
