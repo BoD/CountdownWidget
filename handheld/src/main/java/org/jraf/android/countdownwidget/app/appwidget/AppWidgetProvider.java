@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.handheld.app.appwidget;
+package org.jraf.android.countdownwidget.app.appwidget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -42,10 +42,10 @@ import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
 
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.common.util.StringUtil;
-import org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity;
-import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
-import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
+import org.jraf.android.countdownwidget.app.settings.SettingsActivity;
+import org.jraf.android.countdownwidget.app.settings.SettingsUtil;
+import org.jraf.android.countdownwidget.util.DateTimeUtil;
+import org.jraf.android.countdownwidget.util.StringUtil;
 import org.jraf.android.util.log.Log;
 
 public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {

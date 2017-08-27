@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.handheld.app.androidwear;
+package org.jraf.android.countdownwidget.app.androidwear;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +34,7 @@ import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.OneoffTask;
 import com.google.android.gms.gcm.TaskParams;
 
-import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
+import org.jraf.android.countdownwidget.util.DateTimeUtil;
 import org.jraf.android.util.log.Log;
 
 public class UpdateWearNotificationTaskService extends GcmTaskService {

@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.handheld.app.settings;
+package org.jraf.android.countdownwidget.app.settings;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,13 +45,13 @@ import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.BuildConfig;
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotificationService;
-import org.jraf.android.countdownwidget.handheld.app.androidwear.UpdateWearNotificationTaskService;
-import org.jraf.android.countdownwidget.handheld.app.appwidget.AppWidgetProvider;
-import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
-import org.jraf.android.countdownwidget.handheld.util.ViewUtil;
+import org.jraf.android.countdownwidget.app.androidwear.UpdateWearNotificationService;
+import org.jraf.android.countdownwidget.app.androidwear.UpdateWearNotificationTaskService;
+import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.prefs.MainConstants;
 import org.jraf.android.countdownwidget.prefs.MainPrefs;
+import org.jraf.android.countdownwidget.util.DateTimeUtil;
+import org.jraf.android.countdownwidget.util.ViewUtil;
 import org.jraf.android.util.about.AboutActivityIntentBuilder;
 import org.jraf.android.util.async.Task;
 import org.jraf.android.util.async.TaskFragment;

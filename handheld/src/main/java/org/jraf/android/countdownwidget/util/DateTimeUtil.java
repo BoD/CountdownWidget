@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.handheld.util;
+package org.jraf.android.countdownwidget.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,7 +32,6 @@ import android.text.format.DateUtils;
 import android.text.format.Time;
 
 import org.jraf.android.countdownwidget.BuildConfig;
-import org.jraf.android.countdownwidget.common.util.StringUtil;
 import org.jraf.android.util.log.Log;
 
 public class DateTimeUtil {

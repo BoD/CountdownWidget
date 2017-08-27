@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.handheld.app.settings;
+package org.jraf.android.countdownwidget.app.settings;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -33,8 +33,8 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.widget.Toast;
 
 import org.jraf.android.countdownwidget.R;
-import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.prefs.MainConstants;
+import org.jraf.android.countdownwidget.util.DateTimeUtil;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

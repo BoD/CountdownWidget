@@ -22,7 +22,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.handheld.app.androidwear;
+package org.jraf.android.countdownwidget.app.androidwear;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
@@ -30,8 +30,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
-import org.jraf.android.countdownwidget.handheld.app.settings.SettingsUtil;
-import org.jraf.android.countdownwidget.handheld.util.DateTimeUtil;
+import org.jraf.android.countdownwidget.app.settings.SettingsUtil;
+import org.jraf.android.countdownwidget.util.DateTimeUtil;
 import org.jraf.android.util.log.Log;
 import org.jraf.android.util.string.StringUtil;
 

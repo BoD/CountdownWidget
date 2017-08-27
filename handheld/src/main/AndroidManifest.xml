@@ -17,7 +17,7 @@
         android:maxSdkVersion="18" />
 
     <application
-        android:name=".handheld.app.Application"
+        android:name=".app.Application"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -30,7 +30,7 @@
 
         <!-- AppWidget -->
         <receiver
-            android:name=".handheld.app.appwidget.AppWidgetProvider"
+            android:name=".app.appwidget.AppWidgetProvider"
             android:label="@string/appwidget_label">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -43,7 +43,7 @@
 
         <!-- Settings -->
         <activity
-            android:name=".handheld.app.settings.SettingsActivity"
+            android:name=".app.settings.SettingsActivity"
             android:icon="@drawable/ic_launcher"
             android:label="@string/appwidget_label">
             <intent-filter>
@@ -54,11 +54,11 @@
         </activity>
 
         <!-- Android Wear Notification Service -->
-        <service android:name=".handheld.app.androidwear.UpdateWearNotificationService" />
+        <service android:name=".app.androidwear.UpdateWearNotificationService" />
 
         <!-- Android Wear Notification Task Service -->
         <service
-            android:name=".handheld.app.androidwear.UpdateWearNotificationTaskService"
+            android:name=".app.androidwear.UpdateWearNotificationTaskService"
             android:exported="true"
             android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
             <intent-filter>
