@@ -180,7 +180,7 @@ public class SettingsActivity extends AppCompatActivity {
         File picturesPath = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File path = new File(picturesPath, SHARE_DIRECTORY_NAME);
         boolean ok = path.mkdirs();
-        if (!ok) throw new IOException("Could not create directories " + path);
+        if (!ok && !path.exists()) throw new IOException("Could not create directories " + path);
         File file = new File(path, SHARE_FILE_NAME);
         FileOutputStream outputStream = new FileOutputStream(file);
         image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
