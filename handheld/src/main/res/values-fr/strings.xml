@@ -23,6 +23,7 @@
 
     <!-- Country names -->
     <string name="countryName_Argentina">Argentine</string>
+    <string name="countryName_Armenia">Arménie</string>
     <string name="countryName_Australia">Australie</string>
     <string name="countryName_Azerbaijan">Azerbaïdjan</string>
     <string name="countryName_Bahrain">Bahreïn</string>
@@ -67,6 +68,7 @@
     <string name="countryName_RepublicOfMacedonia">Macédoine</string>
     <string name="countryName_Romania">Roumanie</string>
     <string name="countryName_Russia">Russie</string>
+    <string name="countryName_Serbia">Serbie</string>
     <string name="countryName_Singapore">Singapoure</string>
     <string name="countryName_Slovakia">Slovaquie</string>
     <string name="countryName_SouthAfrica">Afrique du Sud</string>

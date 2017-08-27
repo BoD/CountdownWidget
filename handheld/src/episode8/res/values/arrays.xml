@@ -1,76 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="country_labels">
+        <item>@string/countryName_Argentina</item>
+        <item>@string/countryName_Armenia</item>
         <item>@string/countryName_Australia</item>
+        <item>@string/countryName_Belgium</item>
         <item>@string/countryName_Brazil</item>
         <item>@string/countryName_Bulgaria</item>
         <item>@string/countryName_Canada</item>
+        <item>@string/countryName_Chile</item>
+        <item>@string/countryName_China</item>
+        <item>@string/countryName_Croatia</item>
         <item>@string/countryName_CzechRepublic</item>
+        <item>@string/countryName_Denmark</item>
+        <item>@string/countryName_Estonia</item>
         <item>@string/countryName_Finland</item>
         <item>@string/countryName_France</item>
         <item>@string/countryName_Germany</item>
+        <item>@string/countryName_Greece</item>
         <item>@string/countryName_HongKong</item>
+        <item>@string/countryName_Hungary</item>
         <item>@string/countryName_Ireland</item>
+        <item>@string/countryName_Israel</item>
         <item>@string/countryName_Italy</item>
+        <item>@string/countryName_Japan</item>
+        <item>@string/countryName_Lithuania</item>
+        <item>@string/countryName_Malaysia</item>
         <item>@string/countryName_Netherlands</item>
+        <item>@string/countryName_NewZealand</item>
         <item>@string/countryName_Norway</item>
+        <item>@string/countryName_Philippines</item>
         <item>@string/countryName_Poland</item>
         <item>@string/countryName_Portugal</item>
         <item>@string/countryName_Romania</item>
         <item>@string/countryName_Russia</item>
+        <item>@string/countryName_Serbia</item>
+        <item>@string/countryName_Singapore</item>
         <item>@string/countryName_Spain</item>
         <item>@string/countryName_Sweden</item>
         <item>@string/countryName_Turkey</item>
         <item>@string/countryName_UK</item>
         <item>@string/countryName_USA</item>
+        <item>@string/countryName_Vietnam</item>
     </string-array>
 
     <string-array name="country_values" translatable="false">
+        <item>Argentina</item>
+        <item>Armenia</item>
         <item>Australia</item>
+        <item>Belgium</item>
         <item>Brazil</item>
         <item>Bulgaria</item>
         <item>Canada</item>
+        <item>Chile</item>
+        <item>China</item>
+        <item>Croatia</item>
         <item>CzechRepublic</item>
+        <item>Denmark</item>
+        <item>Estonia</item>
         <item>Finland</item>
         <item>France</item>
         <item>Germany</item>
+        <item>Greece</item>
         <item>HongKong</item>
+        <item>Hungary</item>
         <item>Ireland</item>
+        <item>Israel</item>
         <item>Italy</item>
+        <item>Japan</item>
+        <item>Lithuania</item>
+        <item>Malaysia</item>
         <item>Netherlands</item>
+        <item>NewZealand</item>
         <item>Norway</item>
+        <item>Philippines</item>
         <item>Poland</item>
         <item>Portugal</item>
         <item>Romania</item>
         <item>Russia</item>
+        <item>Serbia</item>
+        <item>Singapore</item>
         <item>Spain</item>
         <item>Sweden</item>
         <item>Turkey</item>
         <item>UK</item>
         <item>USA</item>
+        <item>Vietnam</item>
     </string-array>
 
     <integer-array name="releaseDateZonesByCountry">
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
         <item>0</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>2</item>
         <item>0</item>
         <item>1</item>
         <item>1</item>
         <item>0</item>
+        <item>3</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
         <item>0</item>
         <item>1</item>
         <item>0</item>
+        <item>2</item>
         <item>1</item>
         <item>1</item>
+        <item>0</item>
+        <item>2</item>
+        <item>0</item>
+        <item>2</item>
         <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
         <item>1</item>
         <item>1</item>
     </integer-array>

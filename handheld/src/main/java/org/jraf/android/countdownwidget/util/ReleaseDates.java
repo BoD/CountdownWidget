@@ -48,6 +48,8 @@ public class ReleaseDates {
     public static final Calendar[] RELEASE_DATES_EPISODE_VIII = {
             DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 14),
             DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 15),
+            DateTimeUtil.getCalendar(2017, Calendar.DECEMBER, 13),
+            DateTimeUtil.getCalendar(2018, Calendar.JANUARY, 5),
     };
 
     public static final Calendar[] RELEASE_DATES_TRUMP = {
