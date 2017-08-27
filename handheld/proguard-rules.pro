@@ -11,3 +11,6 @@
 
 # Support library
 -keep class android.support.v7.preference.** { *; }
+
+# Ignore stuff in JRAF Util
+-dontwarn com.google.android.wearable.intent.RemoteIntent
