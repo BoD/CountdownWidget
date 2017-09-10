@@ -99,6 +99,9 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
         // Auto cancel
         mainNotifBuilder.setAutoCancel(true)
 
+        // Let's face it
+        mainNotifBuilder.priority = NotificationCompat.PRIORITY_MIN
+
 
         // Wear specifics
         val wearableExtender = NotificationCompat.WearableExtender()
@@ -122,7 +125,7 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
         val name = getString(R.string.notif_channel_main_name)
         val description = getString(R.string.notif_channel_main_description)
         // Let's face it
-        val importance = NotificationManager.IMPORTANCE_LOW
+        val importance = NotificationManager.IMPORTANCE_MIN
         val channel = NotificationChannel(NOTIFICATION_CHANNEL_MAIN, name, importance)
         channel.description = description
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
