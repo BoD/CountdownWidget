@@ -41,6 +41,12 @@ android {
             buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.EPISODE_VIII'
         }
 
+        episode9 {
+            dimension 'movie'
+
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.EPISODE_IX'
+        }
+
         trump {
             dimension 'movie'
 
@@ -109,6 +115,7 @@ android {
 android.applicationVariants.all { variant ->
     // Define application id based on flavors
     switch (variant.flavorName) {
+
     // Episode VIII
         case "blurredEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.blurred')
@@ -116,6 +123,15 @@ android.applicationVariants.all { variant ->
 
         case "clearEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.clear')
+            break
+
+    // Episode IX
+        case "blurredEpisode9":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e9.blurred')
+            break
+
+        case "clearEpisode9":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e9.clear')
             break
 
     // Trump

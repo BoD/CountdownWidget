@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Compte à rebours Star Wars Épisode IX</string>
+    <string name="appwidget_label">Compte à rebours Épisode IX</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Star Wars Épisode IX</string>
+
+    <!-- Notification -->
+    <string name="notif_text">Épisode IX</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie d\'Épisode IX !\nInstallez la ici
+        :\nhttp://play.google.com/store/apps/details?id=%s
+    </string>
+
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Star Wars Épisode IX est sorti il y a %1$d jours</string>
+    <string name="countdown_full_minus_1">Star Wars Épisode IX est sorti hier</string>
+    <string name="countdown_full_zero">Star Wars Épisode IX sort AUJOURD\'HUI</string>
+    <string name="countdown_full_one">Star Wars Épisode IX sort demain</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant la sortie de Star Wars Épisode IX</string>
+
+</resources>

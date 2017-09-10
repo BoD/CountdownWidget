@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Star Wars Episode IX Countdown</string>
+    <string name="appwidget_label">Episode IX Countdown</string>
+
+    <!-- Preference (Settings) -->
+    <string name="settings_share_subject">Star Wars Episode IX</string>
+
+    <!-- Notification -->
+    <string name="notif_text">Episode IX</string>
+
+    <!-- About -->
+    <string name="about_shareText_body">This app lets you count the number of days until the release of Episode IX!\nCheck it out
+        here:\nhttp://play.google.com/store/apps/details?id=%s
+    </string>
+
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Star Wars Episode IX was released %1$d days ago</string>
+    <string name="countdown_full_minus_1">Star Wars Episode IX was released yesterday</string>
+    <string name="countdown_full_zero">Star Wars Episode IX is released TODAY</string>
+    <string name="countdown_full_one">Star Wars Episode IX will be released tomorrow</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Only %1$d days until the release of Star Wars Episode IX</string>
+
+</resources>
