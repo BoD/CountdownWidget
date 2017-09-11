@@ -124,6 +124,7 @@ public class SettingsActivity extends AppCompatActivity {
         builder.setShareTextSubject(getString(R.string.about_shareText_subject));
         builder.setShareTextBody(getString(R.string.about_shareText_body));
         builder.setBackgroundResId(R.drawable.about_bg);
+        builder.setShowOpenSourceLicencesLink(true);
         builder.addLink(getString(R.string.about_email_uri), getString(R.string.about_email_text));
         builder.addLink(getString(R.string.about_web_uri), getString(R.string.about_web_text));
         builder.addLink(getString(R.string.about_sources_uri), getString(R.string.about_sources_text));

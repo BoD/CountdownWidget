@@ -14,6 +14,7 @@ buildscript {
         gradleVersionsPlugin = '0.15.0'
         fabricPlugin = '1.24.1'
         dexCountPlugin = '0.7.3'
+        ossLicensesPlugin = '0.9.0'
         libFrc = '1.7.0'
 
         compileSdk = 26
@@ -21,7 +22,7 @@ buildscript {
 
         buildTools = '26.0.1'
         kotlin = '1.1.4-3'
-        supportLibrary = '26.0.1'
+        supportLibrary = '26.0.2'
         arch = '1.0.0-alpha9'
         constraintLayout = '1.0.2'
         playServices = '11.2.2'
@@ -48,6 +49,7 @@ buildscript {
         classpath "io.fabric.tools:gradle:$versions.fabricPlugin"
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPlugin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.gms:oss-licenses:$versions.ossLicensesPlugin"
     }
 }
 
