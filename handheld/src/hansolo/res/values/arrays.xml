@@ -4,10 +4,26 @@
         <item>@string/countryName_Argentina</item>
         <item>@string/countryName_Australia</item>
         <item>@string/countryName_Brazil</item>
+        <item>@string/countryName_Bulgaria</item>
+        <item>@string/countryName_China</item>
+        <item>@string/countryName_CzechRepublic</item>
+        <item>@string/countryName_Finland</item>
+        <item>@string/countryName_France</item>
         <item>@string/countryName_Germany</item>
+        <item>@string/countryName_Greece</item>
+        <item>@string/countryName_HongKong</item>
+        <item>@string/countryName_Hungary</item>
         <item>@string/countryName_Italy</item>
+        <item>@string/countryName_Japan</item>
+        <item>@string/countryName_Lithuania</item>
+        <item>@string/countryName_Mexico</item>
+        <item>@string/countryName_Netherlands</item>
+        <item>@string/countryName_Poland</item>
+        <item>@string/countryName_Romania</item>
         <item>@string/countryName_Russia</item>
+        <item>@string/countryName_Singapore</item>
         <item>@string/countryName_Sweden</item>
+        <item>@string/countryName_Taiwan</item>
         <item>@string/countryName_Turkey</item>
         <item>@string/countryName_UK</item>
         <item>@string/countryName_USA</item>
@@ -17,10 +33,26 @@
         <item>Argentina</item>
         <item>Australia</item>
         <item>Brazil</item>
+        <item>Bulgaria</item>
+        <item>China</item>
+        <item>Czech Republic</item>
+        <item>Finland</item>
+        <item>France</item>
         <item>Germany</item>
+        <item>Greece</item>
+        <item>Hong Kong</item>
+        <item>Hungary</item>
         <item>Italy</item>
+        <item>Japan</item>
+        <item>Lithuania</item>
+        <item>Mexico</item>
+        <item>Netherlands</item>
+        <item>Poland</item>
+        <item>Romania</item>
         <item>Russia</item>
+        <item>Singapore</item>
         <item>Sweden</item>
+        <item>Taiwan</item>
         <item>Turkey</item>
         <item>UK</item>
         <item>USA</item>
@@ -30,9 +62,25 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>1</item>
+        <item>1</item>
         <item>0</item>
         <item>2</item>
+        <item>2</item>
         <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>2</item>
         <item>1</item>
         <item>1</item>
         <item>1</item>

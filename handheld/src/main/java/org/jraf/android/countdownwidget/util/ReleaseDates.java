@@ -65,5 +65,6 @@ public class ReleaseDates {
             DateTimeUtil.getCalendar(2018, Calendar.MAY, 24),
             DateTimeUtil.getCalendar(2018, Calendar.MAY, 25),
             DateTimeUtil.getCalendar(2018, Calendar.MAY, 23),
+            DateTimeUtil.getCalendar(2018, Calendar.MAY, 29),
     };
 }
