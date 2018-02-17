@@ -6,7 +6,7 @@ until the release of these movies:
 - Star Wars Episode VII
 - Star Wars: Rogue One
 - Star Wars Episode VIII
-- Star Wars: Han Solo
+- Star Wars: Solo
 - (not a movie?) the next US presidential inaugurations
 
 An Android Wear notification is also included (if enabled, it will be sent to the watch every day at 8am).

@@ -1,20 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Compte à rebours Star Wars Han Solo</string>
-    <string name="appwidget_label">Compte à rebours Han Solo</string>
+    <string name="app_name">Compte à rebours Star Wars : Solo</string>
+    <string name="appwidget_label">Compte à rebours Solo</string>
 
     <!-- Preference (Settings) -->
-    <string name="settings_share_subject">Star Wars Han Solo</string>
+    <string name="settings_share_subject">Star Wars : Solo</string>
 
     <!-- Notification -->
     <string name="notif_text">Han Solo</string>
 
     <!-- About -->
-    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie de Han Solo !\Installez la ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
+    <string name="about_shareText_body">Cette app permet de compter le nombre de jours avant la sortie de Solo !\Installez la ici :\nhttp://play.google.com/store/apps/details?id=%s</string>
 
-    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Star Wars Han Solo est sorti il y a %1$d jours</string>
-    <string name="countdown_full_minus_1">Star Wars Han Solo est sorti hier</string>
-    <string name="countdown_full_zero">Star Wars Han Solo sort AUJOURD\'HUI</string>
-    <string name="countdown_full_one">Star Wars Han Solo sort demain</string>
-    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant la sortie de Star Wars Han Solo</string>
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Star Wars : Solo est sorti il y a %1$d jours</string>
+    <string name="countdown_full_minus_1">Star Wars : Solo est sorti hier</string>
+    <string name="countdown_full_zero">Star Wars : Solo sort AUJOURD\'HUI</string>
+    <string name="countdown_full_one">Star Wars : Solo sort demain</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Plus que %1$d jours avant la sortie de Star Wars : Solo</string>
 
 </resources>

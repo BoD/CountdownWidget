@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
@@ -41,7 +42,7 @@ public class DailyNotificationTaskService extends GcmTaskService {
     @Override
     public int onRunTask(TaskParams taskParams) {
         Log.d();
-        startService(new Intent(this, DailyNotificationService.class));
+        ContextCompat.startForegroundService(this, (new Intent(this, DailyNotificationService.class)));
         // Reschedule, for tomorrow
         scheduleTask(this);
         return GcmNetworkManager.RESULT_SUCCESS;

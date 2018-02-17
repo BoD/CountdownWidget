@@ -101,5 +101,7 @@
     <string name="countdown_one">tomorrow</string>
     <string name="countdown_other" tools:ignore="PluralsCandidate"><![CDATA[<b>%1$d</b> days]]></string>
 
+    <string name="widget_font" translatable="false">fonts/Judson-Regular.ttf</string>
+
 
 </resources>

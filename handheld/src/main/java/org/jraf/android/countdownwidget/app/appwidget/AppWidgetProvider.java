@@ -83,7 +83,7 @@ public class AppWidgetProvider extends android.appwidget.AppWidgetProvider {
         paint.setAntiAlias(true);
         paint.setDither(true);
         paint.setFilterBitmap(true);
-        paint.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Judson-Regular.ttf"));
+        paint.setTypeface(Typeface.createFromAsset(context.getAssets(), context.getString(R.string.widget_font)));
 
         // Measure text
         Rect textBounds = new Rect();
