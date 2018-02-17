@@ -109,9 +109,6 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
         // No icon
         wearableExtender.hintHideIcon = true
 
-        // Backgtound
-        wearableExtender.background = BitmapFactory.decodeResource(resources, R.drawable.ic_notif_logo)
-
         mainNotifBuilder.extend(wearableExtender)
 
 
