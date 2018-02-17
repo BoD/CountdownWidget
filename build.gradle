@@ -10,28 +10,28 @@ buildscript {
     // Versions used across modules
     ext.versions = [:]
     ext.versions.with {
-        androidGradlePlugin = '3.0.0-beta6'
-        gradleVersionsPlugin = '0.15.0'
-        fabricPlugin = '1.24.2'
-        dexCountPlugin = '0.8.1'
+        androidGradlePlugin = '3.2.0-alpha03'
+        gradleVersionsPlugin = '0.17.0'
+        fabricPlugin = '1.25.1'
+        dexCountPlugin = '0.8.2'
         ossLicensesPlugin = '0.9.0'
-        libFrc = '1.7.1'
+        libFrc = '1.8.0'
 
         compileSdk = 26
         targetSdk = 26
 
-        buildTools = '26.0.1'
-        kotlin = '1.1.51'
-        supportLibrary = '26.0.2'
-        arch = '1.0.0-alpha9'
+        buildTools = '27.0.3'
+        kotlin = '1.2.21'
+        supportLibrary = '27.0.2'
+        archLifecycle = '1.1.0'
         constraintLayout = '1.0.2'
-        playServices = '11.4.0'
-        espresso = '3.0.1'
+        playServices = '11.8.0'
+        espresso = '3.0.2-alpha1'
         junit = '4.12'
-        robolectric = '3.4.2'
+        robolectric = '3.7'
         fest = '2.0M10'
-        crashlytics = '2.6.8'
-        androidWearable = '2.0.3'
+        crashlytics = '2.9.0'
+        androidWearable = '2.2.0'
         prefs = '1.2.2'
     }
 
@@ -88,7 +88,7 @@ task clean(type: Delete) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.2'
+    gradleVersion = '4.5'
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -113,7 +113,7 @@ apply plugin: 'com.github.ben-manes.versions'
 dependencyUpdates.resolutionStrategy = {
     componentSelection { rules ->
         rules.all { selection ->
-            boolean rejected = [/*'alpha', 'beta',*/ 'rc', '20050927'].any { qualifier ->
+            boolean rejected = [/*'alpha', 'beta', 'rc',*/ '20050927'].any { qualifier ->
                 selection.candidate.version.toLowerCase() ==~ /.*-${qualifier}.*/
             }
             if (rejected) {

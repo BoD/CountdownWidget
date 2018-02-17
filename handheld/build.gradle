@@ -205,15 +205,13 @@ dependencies {
     implementation("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") { transitive = true }
 
     // JRAF
-    implementation 'com.github.BoD:jraf-android-util:-SNAPSHOT'
     kapt "org.jraf:prefs-compiler:$versions.prefs"
     implementation "org.jraf:prefs:$versions.prefs"
-
-    // Necessary to have Kotlin and dataBinding at the same time
-    kapt "com.android.databinding:compiler:$versions.androidGradlePlugin"
+    implementation 'com.github.BoD:jraf-android-util:-SNAPSHOT'
+//    implementation 'org.jraf:jraf-android-util:1.0.0'
 }
 
-// See https://kotlinlang.org/docs/reference/kapt.html
+// Necessary for Prefs to work (see https://kotlinlang.org/docs/reference/kapt.html)
 kapt {
     correctErrorTypes = true
 }
