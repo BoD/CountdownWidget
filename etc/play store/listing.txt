@@ -1,0 +1,6 @@
+Countdown Widget (E9)
+
+This widget tells you the number of days until this date: May 24, 2019.
+
+This widget tells you the number of days until this date: May 24, 2019.
+It also features a notification.

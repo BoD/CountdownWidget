@@ -10,33 +10,76 @@ buildscript {
     // Versions used across modules
     ext.versions = [:]
     ext.versions.with {
-        androidGradlePlugin = '2.3.0-beta3'
-        compileSdk = 25
-        targetSdk = 25
-        buildTools = '25.0.1'
-        supportLibrary = '25.1.0'
-        playServices = '10.0.1'
+        androidGradlePlugin = '3.2.0-alpha03'
+        gradleVersionsPlugin = '0.17.0'
+        fabricPlugin = '1.25.1'
+        dexCountPlugin = '0.8.2'
+        ossLicensesPlugin = '0.9.0'
+        libFrc = '1.8.0'
+
+        compileSdk = 26
+        targetSdk = 26
+
+        buildTools = '27.0.3'
+        kotlin = '1.2.21'
+        supportLibrary = '27.0.2'
+        archLifecycle = '1.1.0'
+        constraintLayout = '1.0.2'
+        playServices = '11.8.0'
+        espresso = '3.0.2-alpha1'
+        junit = '4.12'
+        robolectric = '3.7'
+        fest = '2.0M10'
+        crashlytics = '2.9.0'
+        androidWearable = '2.2.0'
+        prefs = '1.2.2'
     }
 
     repositories {
+        mavenLocal()
+        google()
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.androidGradlePlugin"
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
-        classpath 'ca.rmen:lib-french-revolutionary-calendar:1.5.2'
-        classpath 'io.fabric.tools:gradle:1.22.1'
+        classpath "com.github.ben-manes:gradle-versions-plugin:$versions.gradleVersionsPlugin"
+        classpath "ca.rmen:lib-french-revolutionary-calendar:$versions.libFrc"
+        classpath "io.fabric.tools:gradle:$versions.fabricPlugin"
+        classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$versions.dexCountPlugin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.gms:oss-licenses:$versions.ossLicensesPlugin"
     }
 }
 
 allprojects {
     repositories {
         mavenLocal()
+        google()
         jcenter()
-        mavenCentral()
-        maven { url "https://jitpack.io" }
+        maven { url 'https://jitpack.io' }
         maven { url 'https://maven.fabric.io/public' }
+    }
+
+    // Force using our version of the support libraries, even for those we don't depend on directly (transitive dependencies)
+    configurations.all {
+        resolutionStrategy {
+            eachDependency { details ->
+                if (details.requested.group == 'com.android.support'
+                        && details.requested.name != 'multidex'
+                        && details.requested.name != 'multidex-instrumentation') {
+                    details.useVersion versions.supportLibrary
+                }
+            }
+        }
+    }
+
+    // Show a report in the log when running tests
+    tasks.withType(Test) {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+        }
     }
 }
 
@@ -45,13 +88,13 @@ task clean(type: Delete) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.3'
+    gradleVersion = '4.5'
     distributionType = Wrapper.DistributionType.ALL
 }
 
 // Add a 'release' task that increments the build number
 def releaseTask = tasks.create(name: 'release', group: 'build')
-releaseTask << {
+releaseTask.doLast {
     buildNumberProperties.buildNumber = (buildNumber + 1).toString()
     buildNumberProperties.store(buildNumberFile.newWriter(), null)
 }
@@ -67,6 +110,18 @@ subprojects {
 
 // Run './gradlew dependencyUpdates' to see new versions of dependencies
 apply plugin: 'com.github.ben-manes.versions'
+dependencyUpdates.resolutionStrategy = {
+    componentSelection { rules ->
+        rules.all { selection ->
+            boolean rejected = [/*'alpha', 'beta', 'rc',*/ '20050927'].any { qualifier ->
+                selection.candidate.version.toLowerCase() ==~ /.*-${qualifier}.*/
+            }
+            if (rejected) {
+                selection.reject('Release candidate')
+            }
+        }
+    }
+}
 
 // Returns the name of the current git branch
 def gitBranch() {
@@ -88,7 +143,7 @@ static def buildDate() {
 // This only for amusement purposes
 static def getFrenchDate() {
     def frenchDate = new FrenchRevolutionaryCalendar(Locale.FRENCH, FrenchRevolutionaryCalendar.CalculationMethod.ROMME).getDate(GregorianCalendar.getInstance())
-    "Le ${frenchDate.weekdayName} ${frenchDate.dayOfMonth} ${frenchDate.monthName} de l'an ${frenchDate.year}. (${frenchDate.objectTypeName} du jour : ${frenchDate.dayOfYear})"
+    "Le ${frenchDate.weekdayName} ${frenchDate.dayOfMonth} ${frenchDate.monthName} de l'an ${frenchDate.year}. (${frenchDate.objectTypeName} du jour : ${frenchDate.objectOfTheDay})"
 }
 
 // Returns a file on the project's root - creates it from a sample if it doesn't exist

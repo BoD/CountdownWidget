@@ -1,7 +1,7 @@
 <resources>
     <!-- Preference (Settings) -->
-    <string name="preference_androidWear_title">Android Wear</string>
-    <string name="preference_androidWear_summary">Affiche une notification une fois par jour sur les objets Android Wear connectés</string>
+    <string name="preference_dailyNotification_title">Notification quotidienne</string>
+    <string name="preference_dailyNotification_summary">Affiche une notification une fois par jour avec le nombre de jours restants</string>
     <string name="preference_tutorial">Comment ajouter une \'widget\' ?</string>
     <string name="preference_about">À propos…</string>
     <string name="preference_toast">Appuyez sur RETOUR quand vous avez terminé</string>
@@ -17,8 +17,13 @@
     <string name="about_web_text">Page web de l\'auteur</string>
     <string name="about_sources_text">Code source sur Github</string>
 
+    <!-- Notification -->
+    <string name="notif_channel_main_name">Canal principal</string>
+    <string name="notif_channel_main_description">Le canal de notifications principal</string>
+
     <!-- Country names -->
     <string name="countryName_Argentina">Argentine</string>
+    <string name="countryName_Armenia">Arménie</string>
     <string name="countryName_Australia">Australie</string>
     <string name="countryName_Azerbaijan">Azerbaïdjan</string>
     <string name="countryName_Bahrain">Bahreïn</string>
@@ -63,6 +68,7 @@
     <string name="countryName_RepublicOfMacedonia">Macédoine</string>
     <string name="countryName_Romania">Roumanie</string>
     <string name="countryName_Russia">Russie</string>
+    <string name="countryName_Serbia">Serbie</string>
     <string name="countryName_Singapore">Singapoure</string>
     <string name="countryName_Slovakia">Slovaquie</string>
     <string name="countryName_SouthAfrica">Afrique du Sud</string>
@@ -82,4 +88,11 @@
     <string name="countryName_Ukraine">Ukraine</string>
     <string name="countryName_UnitedArabEmirates">Émirats arabes unis</string>
     <string name="countryName_Vietnam">Viêt Nam</string>
+
+    <string name="countdown_minus_other">il y a %1$d jours</string>
+    <string name="countdown_minus_1">hier</string>
+    <string name="countdown_zero">AUJOURD\'HUI</string>
+    <string name="countdown_one">demain</string>
+    <string name="countdown_other">%1$d jours</string>
+
 </resources>

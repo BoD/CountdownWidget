@@ -1,14 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Preference (Settings) -->
-    <string name="preference_androidWear_title">Android Wear</string>
-    <string name="preference_androidWear_summary">Show a notification once a day on connected Android Wear devices</string>
+    <string name="preference_dailyNotification_title">Daily notification</string>
+    <string name="preference_dailyNotification_summary">Show a notification once a day with the remaining number of days</string>
     <string name="preference_tutorial">How do I add a widget?</string>
     <string name="preference_about">About…</string>
     <string name="preference_toast">Press BACK when you are finished</string>
     <string name="preference_share">Share</string>
     <string name="preference_country_title">Release date</string>
     <string name="preference_country_summary" translatable="false">%1$s (%2$s)</string>
-    <string name="preference_default_country" translatable="false">USA</string>
     <string name="settings_share_problemToast">A problem occurred while trying to share.</string>
     <string name="settings_share_chooser">Share with</string>
 
@@ -24,8 +23,13 @@
     <string name="about_sources_text">Source code on Github</string>
     <string name="about_shareText_subject">Checkout out this app!</string>
 
+    <!-- Notification -->
+    <string name="notif_channel_main_name">Main channel</string>
+    <string name="notif_channel_main_description">The main notification channel</string>
+
     <!-- Country names -->
     <string name="countryName_Argentina">Argentina</string>
+    <string name="countryName_Armenia">Armenia</string>
     <string name="countryName_Australia">Australia</string>
     <string name="countryName_Azerbaijan">Azerbaijan</string>
     <string name="countryName_Bahrain">Bahrain</string>
@@ -70,6 +74,7 @@
     <string name="countryName_RepublicOfMacedonia">Republic of Macedonia</string>
     <string name="countryName_Romania">Romania</string>
     <string name="countryName_Russia">Russia</string>
+    <string name="countryName_Serbia">Serbia</string>
     <string name="countryName_Singapore">Singapore</string>
     <string name="countryName_Slovakia">Slovakia</string>
     <string name="countryName_SouthAfrica">South Africa</string>
@@ -89,6 +94,12 @@
     <string name="countryName_USAPrerelease">USA – pre-release</string>
     <string name="countryName_USA">USA – official release</string>
     <string name="countryName_Vietnam">Vietnam</string>
+
+    <string name="countdown_minus_other" tools:ignore="PluralsCandidate"><![CDATA[<b>%1$d</b> days ago]]></string>
+    <string name="countdown_minus_1">yesterday</string>
+    <string name="countdown_zero">TODAY</string>
+    <string name="countdown_one">tomorrow</string>
+    <string name="countdown_other" tools:ignore="PluralsCandidate"><![CDATA[<b>%1$d</b> days]]></string>
 
 
 </resources>

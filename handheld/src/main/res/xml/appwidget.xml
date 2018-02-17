@@ -9,4 +9,4 @@
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="21600000"
     android:widgetCategory="home_screen|keyguard"
-    android:configure="org.jraf.android.countdownwidget.handheld.app.settings.SettingsActivity" />
+    android:configure="org.jraf.android.countdownwidget.app.settings.SettingsActivity" />

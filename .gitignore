@@ -14,3 +14,5 @@ build.properties
 
 handheld/src/main/assets/crashlytics-build.properties
 *.iml
+/handheld/src/main/res/raw/third_party_license_metadata
+/handheld/src/main/res/raw/third_party_licenses

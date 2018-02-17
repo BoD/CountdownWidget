@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 if (buildProperties.enableFabric.toBoolean()) apply plugin: 'io.fabric'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'com.google.gms.oss.licenses.plugin'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -7,17 +11,17 @@ android {
 
     defaultConfig {
         applicationId 'org.jraf.android.countdownwidget3'
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion versions.targetSdk
         versionCode buildNumber
         versionName buildProperties.versionName
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 
-        buildConfigField 'String', 'GIT_SHA1', "\"${gitSha1}\""
-        buildConfigField 'String', 'BUILD_DATE', "\"${buildDate}\""
         // For now we enable strict mode for all the configs
         buildConfigField 'boolean', 'STRICT_MODE', 'true'
+        // For now we enable debug logs all the configs
+        buildConfigField 'boolean', 'DEBUG_LOGS', 'true'
 
         resConfigs 'en', 'fr'
 
@@ -35,19 +39,25 @@ android {
         episode8 {
             dimension 'movie'
 
-            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.EPISODE_VIII'
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.EPISODE_VIII'
+        }
+
+        episode9 {
+            dimension 'movie'
+
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.EPISODE_IX'
         }
 
         trump {
             dimension 'movie'
 
-            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.TRUMP'
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.TRUMP'
         }
 
         hansolo {
             dimension 'movie'
 
-            buildConfigField 'org.jraf.android.countdownwidget.handheld.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.handheld.util.Movie.HAN_SOLO'
+            buildConfigField 'org.jraf.android.countdownwidget.util.Movie', 'MOVIE', 'org.jraf.android.countdownwidget.util.Movie.HAN_SOLO'
         }
 
 
@@ -59,6 +69,7 @@ android {
             dimension 'blur'
         }
     }
+
     signingConfigs {
         release {
             storeFile file(buildProperties.signingStoreFile)
@@ -70,10 +81,14 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField 'String', 'GIT_SHA1', "\"dev\""
+            buildConfigField 'String', 'BUILD_DATE', "\"dev\""
             buildConfigField 'boolean', 'CRASH_REPORT', 'false'
         }
 
         release {
+            buildConfigField 'String', 'GIT_SHA1', "\"${gitSha1}\""
+            buildConfigField 'String', 'BUILD_DATE', "\"${buildDate}\""
             buildConfigField 'boolean', 'CRASH_REPORT', 'true'
 
             minifyEnabled true
@@ -92,11 +107,16 @@ android {
         textReport true
         ignoreWarnings true
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 android.applicationVariants.all { variant ->
     // Define application id based on flavors
     switch (variant.flavorName) {
+
     // Episode VIII
         case "blurredEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.blurred')
@@ -104,6 +124,15 @@ android.applicationVariants.all { variant ->
 
         case "clearEpisode8":
             variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e8.clear')
+            break
+
+    // Episode IX
+        case "blurredEpisode9":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e9.blurred')
+            break
+
+        case "clearEpisode9":
+            variant.mergedFlavor.setApplicationId('org.jraf.android.countdownwidget3.e9.clear')
             break
 
     // Trump
@@ -124,19 +153,20 @@ android.applicationVariants.all { variant ->
     // Create new copy tasks, for release builds
     if (variant.buildType.name == 'release') {
         variant.outputs.each { output ->
+            def outputFile = file("build/outputs/apk/${variant.flavorName}/release/$output.outputFileName")
             def apkName = "${globalProjectName}-${project.name}-${android.defaultConfig.versionCode}-${variant.flavorName}-signed.apk"
 
             // Copy the apk to the 'etc' folder
             def copyApkToEtc = tasks.create("copy${variant.name.capitalize()}ApkToEtc", Copy)
-            copyApkToEtc.from(output.outputFile)
+            copyApkToEtc.from(outputFile)
             copyApkToEtc.into('../etc/apk')
-            copyApkToEtc.rename output.outputFile.name, apkName
+            copyApkToEtc.rename output.outputFileName, apkName
 
             // Copy the apk to the deploy folder
             def copyApkToDeploy = tasks.create("copy${variant.name.capitalize()}ApkToDeploy", Copy)
-            copyApkToDeploy.from(output.outputFile)
+            copyApkToDeploy.from(outputFile)
             copyApkToDeploy.into(buildProperties.deployFolder)
-            copyApkToDeploy.rename output.outputFile.name, apkName
+            copyApkToDeploy.rename output.outputFileName, apkName
 
             // Make the copy tasks run after the assemble tasks of the variant
             variant.assemble.finalizedBy(copyApkToEtc, copyApkToDeploy)
@@ -151,46 +181,37 @@ android.variantFilter { variant ->
     }
 }
 
-configurations {
-    blurredEpisode8Compile
-    clearEpisode8Compile
-    clearTrumpCompile
-    blurredHansoloCompile
-    clearHansoloCompile
-
-    blurredEpisode8WearApp
-    clearEpisode8WearApp
-    clearTrumpWearApp
-    blurredHansoloWearApp
-    clearHansoloWearApp
-}
-
 dependencies {
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    // Tests
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$versions.espresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
+    testImplementation "junit:junit:$versions.junit"
+    testImplementation "org.robolectric:robolectric:$versions.robolectric"
+    testImplementation "org.easytesting:fest-assert-core:$versions.fest"
 
-    clearEpisode8Compile project(path: ':common', configuration: 'clearEpisode8Release')
-    blurredEpisode8Compile project(path: ':common', configuration: 'blurredEpisode8Release')
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
 
-    clearTrumpCompile project(path: ':common', configuration: 'clearTrumpRelease')
+    // Support library
+    implementation "com.android.support:preference-v7:$versions.supportLibrary"
+    implementation "com.android.support:preference-v14:$versions.supportLibrary"
 
-    clearHansoloCompile project(path: ':common', configuration: 'clearHansoloRelease')
-    blurredHansoloCompile project(path: ':common', configuration: 'blurredHansoloRelease')
+    // Play Services
+    implementation "com.google.android.gms:play-services-gcm:$versions.playServices"
+    implementation "com.google.android.gms:play-services-oss-licenses:$versions.playServices"
 
-    compile "com.android.support:preference-v7:$versions.supportLibrary"
-    compile "com.android.support:preference-v14:$versions.supportLibrary"
-    compile "com.google.android.gms:play-services-gcm:$versions.playServices"
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') { transitive = true; }
-    compile 'com.github.BoD:jraf-android-util:-SNAPSHOT'
+    // Fabric / Crashlytics
+    implementation("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") { transitive = true }
 
-    // Package the wear apk inside this one
-    blurredEpisode8WearApp project(path: ':wearable', configuration: 'blurredEpisode8Release')
-    clearEpisode8WearApp project(path: ':wearable', configuration: 'clearEpisode8Release')
+    // JRAF
+    kapt "org.jraf:prefs-compiler:$versions.prefs"
+    implementation "org.jraf:prefs:$versions.prefs"
+    implementation 'com.github.BoD:jraf-android-util:-SNAPSHOT'
+//    implementation 'org.jraf:jraf-android-util:1.0.0'
+}
 
-    clearTrumpWearApp project(path: ':wearable', configuration: 'clearTrumpRelease')
-
-    blurredHansoloWearApp project(path: ':wearable', configuration: 'blurredHansoloRelease')
-    clearHansoloWearApp project(path: ':wearable', configuration: 'clearHansoloRelease')
+// Necessary for Prefs to work (see https://kotlinlang.org/docs/reference/kapt.html)
+kapt {
+    correctErrorTypes = true
 }

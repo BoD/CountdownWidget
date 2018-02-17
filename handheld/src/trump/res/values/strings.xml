@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Inauguration Day Countdown</string>
     <string name="appwidget_label">Inauguration Day Countdown</string>
 
     <!-- Preference (Settings) -->
     <string name="settings_share_subject">Inauguration Day</string>
+
+    <!-- Notification -->
+    <string name="notif_text">Inauguration Day</string>
 
     <!-- About -->
     <string name="about_shareText_body">This app lets you count the number of days until the next presidential inauguration!\nCheck it out here:\nhttp://play.google.com/store/apps/details?id=%s</string>
@@ -13,5 +16,11 @@
     <string name="secondTerm">2025</string>
     <string name="preference_default_country" translatable="false">Term1</string>
     <string name="preference_country_title">Inauguration date</string>
+
+    <string name="countdown_full_minus_other" tools:ignore="PluralsCandidate">Inauguration Day was %1$d days ago</string>
+    <string name="countdown_full_minus_1">Inauguration Day was yesterday</string>
+    <string name="countdown_full_zero">Inauguration Day is TODAY</string>
+    <string name="countdown_full_one">Inauguration Day is tomorrow</string>
+    <string name="countdown_full_other" tools:ignore="PluralsCandidate">Only %1$d days until Inauguration Day</string>
 
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_labels">
+        <item>@string/countryName_Lithuania</item>
+        <item>@string/countryName_Sweden</item>
+        <item>@string/countryName_Turkey</item>
+        <item>@string/countryName_UK</item>
+        <item>@string/countryName_USA</item>
+
+    </string-array>
+
+    <string-array name="country_values" translatable="false">
+        <item>Lithuania</item>
+        <item>Sweden</item>
+        <item>Turkey</item>
+        <item>UK</item>
+        <item>USA</item>
+    </string-array>
+
+    <integer-array name="releaseDateZonesByCountry">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+</resources>
