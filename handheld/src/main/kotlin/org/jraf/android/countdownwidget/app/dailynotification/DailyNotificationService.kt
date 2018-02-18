@@ -25,6 +25,7 @@
 package org.jraf.android.countdownwidget.app.dailynotification
 
 import android.app.IntentService
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -34,6 +35,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
+import android.support.v4.content.ContextCompat
 import org.jraf.android.countdownwidget.R
 import org.jraf.android.countdownwidget.app.settings.SettingsUtil
 import org.jraf.android.countdownwidget.prefs.MainPrefs
@@ -47,7 +49,21 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
 
     companion object {
         private const val NOTIFICATION_CHANNEL_MAIN = "NOTIFICATION_CHANNEL_MAIN"
-        private const val NOTIFICATION_ID = 0
+        private const val NOTIFICATION_ID_FOREGROUND = 1
+        private const val NOTIFICATION_ID_REGULAR = 2
+    }
+
+    private val numberOfDays: Int
+        get() {
+            val releaseDateZone = SettingsUtil.getReleaseDateZone(this)
+            val nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone)
+            Log.d("nbDays=%s", nbDays)
+            return nbDays
+        }
+
+    override fun onCreate() {
+        startForeground(NOTIFICATION_ID_FOREGROUND, createNotification())
+        super.onCreate()
     }
 
     override fun onHandleIntent(intent: Intent) {
@@ -57,20 +73,17 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
             Log.d("Setting is off")
             return
         }
-        val releaseDateZone = SettingsUtil.getReleaseDateZone(this)
-        val nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone)
-        Log.d("nbDays=%s", nbDays)
-
-        showNotification(nbDays)
+        showNotification()
     }
 
-    private fun getPendingIntent(context: Context): PendingIntent {
-        val intent = Intent(context, DailyNotificationService::class.java)
-        return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-    }
-
-    private fun showNotification(nbDays: Int) {
+    private fun showNotification() {
         Log.d()
+        val notification = createNotification()
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(NOTIFICATION_ID_REGULAR, notification)
+    }
+
+    private fun createNotification(): Notification {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) createNotificationChannel()
         val mainNotifBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_MAIN)
 
@@ -84,11 +97,14 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
         mainNotifBuilder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher))
 
         // Title
-        mainNotifBuilder.setContentTitle(CountdownStringUtil.getFormattedCountdown(this, nbDays))
+        mainNotifBuilder.setContentTitle(CountdownStringUtil.getFormattedCountdown(this, numberOfDays))
 
         // Text
         val text = getString(R.string.notif_text)
         mainNotifBuilder.setContentText(text)
+
+        // Color
+        mainNotifBuilder.color = ContextCompat.getColor(this, R.color.text1)
 
         // Content intent
         val mainActivityIntent = Intent()
@@ -111,10 +127,7 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
 
         mainNotifBuilder.extend(wearableExtender)
 
-
-        val notification = mainNotifBuilder.build()
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(NOTIFICATION_ID, notification)
+        return mainNotifBuilder.build()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
