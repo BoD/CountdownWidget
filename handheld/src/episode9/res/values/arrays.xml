@@ -4,18 +4,20 @@
         <item>@string/countryName_Germany</item>
         <item>@string/countryName_Sweden</item>
         <item>@string/countryName_USA</item>
-
+        <item>@string/countryName_USAPrerelease</item>
     </string-array>
 
     <string-array name="country_values" translatable="false">
         <item>Germany</item>
         <item>Sweden</item>
         <item>USA</item>
+        <item>USAPrerelease</item>
     </string-array>
 
     <integer-array name="releaseDateZonesByCountry">
         <item>1</item>
         <item>0</item>
         <item>0</item>
+        <item>1</item>
     </integer-array>
 </resources>

@@ -1,0 +1,60 @@
+// Versions used across modules
+def versions = [:]
+
+// Plugins
+def plugins = [:]
+plugins.with {
+    androidGradle = '3.2.0-alpha18'
+    gradleVersions = '0.19.0'
+    fabric = '1.25.4'
+    dexCount = '0.8.2'
+    gmsStrictVersionMatcher = '1.0.2'
+    ossLicenses = '0.9.2'
+}
+versions.plugins = plugins
+
+// Libs used for building
+def libs = [:]
+libs.with {
+    frc = '1.8.0'
+}
+versions.libs = libs
+
+// Build parameters
+def build = [:]
+build.with {
+    gradle = '4.8'
+    compileSdk = 27
+    targetSdk = 27
+    minSdk = 14
+    tools = '27.0.3'
+}
+versions.build = build
+
+// Testing dependencies
+def testing = [:]
+testing.with {
+    espresso = '3.0.2'
+    junit = '4.12'
+    robolectric = '3.8'
+    fest = '2.0M10'
+}
+versions.testing = testing
+
+// Play services
+def playServices = [:]
+playServices.with {
+    ossLicenses = '15.0.1'
+    gcm = '15.0.1'
+}
+versions.playServices = playServices
+
+// Other dependencies
+versions.with {
+    kotlin = '1.2.50'
+    supportLibrary = '27.1.1'
+    crashlytics = '2.9.4'
+    prefs = '1.2.2'
+}
+
+ext.versions = versions

@@ -6,13 +6,13 @@ apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.google.gms.oss.licenses.plugin'
 
 android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
+    compileSdkVersion versions.build.compileSdk
+    buildToolsVersion versions.build.tools
 
     defaultConfig {
         applicationId 'org.jraf.android.countdownwidget3'
-        minSdkVersion 14
-        targetSdkVersion versions.targetSdk
+        minSdkVersion versions.build.minSdk
+        targetSdkVersion versions.build.targetSdk
         versionCode buildNumber
         versionName buildProperties.versionName
 
@@ -168,23 +168,23 @@ android.variantFilter { variant ->
 
 dependencies {
     // Tests
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$versions.espresso", {
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$versions.testing.espresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testImplementation "junit:junit:$versions.junit"
-    testImplementation "org.robolectric:robolectric:$versions.robolectric"
-    testImplementation "org.easytesting:fest-assert-core:$versions.fest"
+    testImplementation "junit:junit:$versions.testing.junit"
+    testImplementation "org.robolectric:robolectric:$versions.testing.robolectric"
+    testImplementation "org.easytesting:fest-assert-core:$versions.testing.fest"
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
     // Support library
     implementation "com.android.support:preference-v7:$versions.supportLibrary"
     implementation "com.android.support:preference-v14:$versions.supportLibrary"
 
     // Play Services
-    implementation "com.google.android.gms:play-services-gcm:$versions.playServices"
-    implementation "com.google.android.gms:play-services-oss-licenses:$versions.playServices"
+    implementation "com.google.android.gms:play-services-gcm:$versions.playServices.gcm"
+    implementation "com.google.android.gms:play-services-oss-licenses:$versions.playServices.ossLicenses"
 
     // Fabric / Crashlytics
     implementation("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") { transitive = true }
@@ -194,6 +194,11 @@ dependencies {
     implementation "org.jraf:prefs:$versions.prefs"
     implementation 'com.github.BoD:jraf-android-util:-SNAPSHOT'
 //    implementation 'org.jraf:jraf-android-util:1.0.0'
+}
+
+// Run './gradlew countReleaseDexMethods' to see dex methods count
+dexcount {
+    runOnEachPackage = false
 }
 
 // Necessary for Prefs to work (see https://kotlinlang.org/docs/reference/kapt.html)
