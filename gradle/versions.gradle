@@ -51,7 +51,7 @@ versions.playServices = playServices
 
 // Other dependencies
 versions.with {
-    kotlin = '1.2.50'
+    kotlin = '1.2.41'
     supportLibrary = '27.1.1'
     crashlytics = '2.9.4'
     prefs = '1.2.2'
