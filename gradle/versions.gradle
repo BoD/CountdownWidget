@@ -4,11 +4,11 @@ def versions = [:]
 // Plugins
 def plugins = [:]
 plugins.with {
-    androidGradle = '3.2.0-alpha18'
-    gradleVersions = '0.19.0'
+    androidGradle = '3.3.0-alpha07'
+    gradleVersions = '0.20.0'
     fabric = '1.25.4'
-    dexCount = '0.8.2'
-    gmsStrictVersionMatcher = '1.0.2'
+    dexCount = '0.8.3'
+    gmsStrictVersionMatcher = '1.0.3'
     ossLicenses = '0.9.2'
 }
 versions.plugins = plugins
@@ -23,11 +23,11 @@ versions.libs = libs
 // Build parameters
 def build = [:]
 build.with {
-    gradle = '4.8'
-    compileSdk = 27
-    targetSdk = 27
+    gradle = '4.10'
+    compileSdk = 28
+    targetSdk = 28
     minSdk = 14
-    tools = '27.0.3'
+    tools = '28.0.2'
 }
 versions.build = build
 
@@ -44,16 +44,16 @@ versions.testing = testing
 // Play services
 def playServices = [:]
 playServices.with {
-    ossLicenses = '15.0.1'
+    ossLicenses = '16.0.0'
     gcm = '15.0.1'
 }
 versions.playServices = playServices
 
 // Other dependencies
 versions.with {
-    kotlin = '1.2.41'
+    kotlin = '1.2.61'
     supportLibrary = '27.1.1'
-    crashlytics = '2.9.4'
+    crashlytics = '2.9.5'
     prefs = '1.2.2'
 }
 
