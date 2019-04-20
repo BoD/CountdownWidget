@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 if (buildProperties.enableFabric.toBoolean()) apply plugin: 'io.fabric'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.google.gms.oss.licenses.plugin'
@@ -190,8 +189,7 @@ dependencies {
     implementation("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") { transitive = true }
 
     // JRAF
-    kapt "org.jraf:prefs-compiler:$versions.prefs"
-    implementation "org.jraf:prefs:$versions.prefs"
+    implementation "org.jraf:kprefs:$versions.kprefs"
     implementation 'com.github.BoD:jraf-android-util:-SNAPSHOT'
 //    implementation 'org.jraf:jraf-android-util:1.0.0'
 }
@@ -199,9 +197,4 @@ dependencies {
 // Run './gradlew countReleaseDexMethods' to see dex methods count
 dexcount {
     runOnEachPackage = false
-}
-
-// Necessary for Prefs to work (see https://kotlinlang.org/docs/reference/kapt.html)
-kapt {
-    correctErrorTypes = true
 }

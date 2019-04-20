@@ -37,7 +37,7 @@ public class SettingsUtil {
     }
 
     public static int getCountryValueIndex(Context context) {
-        String prefCountryValue = MainPrefs.get(context).getCountry();
+        String prefCountryValue = new MainPrefs(context).getCountry();
         String[] countryValues = context.getResources().getStringArray(R.array.country_values);
         // Find the index of the user's preferred country
         int countryValueIndex;

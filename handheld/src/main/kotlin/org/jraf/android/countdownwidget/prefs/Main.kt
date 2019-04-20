@@ -24,36 +24,28 @@
  */
 package org.jraf.android.countdownwidget.prefs
 
-import org.jraf.android.prefs.DefaultBoolean
-import org.jraf.android.prefs.DefaultString
-import org.jraf.android.prefs.Prefs
+import android.content.Context
+import org.jraf.android.kprefs.Key
+import org.jraf.android.kprefs.Prefs
 
-@Prefs
-class Main {
-    /**
-     * Tutorial.
-     */
-    var tutorial: String? = null
-
-    /**
-     * About.
-     */
-    var about: String? = null
-
-    /**
-     * Share.
-     */
-    var share: String? = null
+class MainPrefs(context: Context) {
+    private val prefs = Prefs(context)
 
     /**
      * Country.
      */
-    @DefaultString("USA")
-    var country: String? = null
+    var country by prefs.String("USA", Key(KEY_COUNTRY))
 
     /**
      * Daily notification.
      */
-    @DefaultBoolean(false)
-    var dailyNotification: Boolean? = null
+    var dailyNotification by prefs.Boolean(false)
+
+    companion object {
+        const val KEY_TUTORIAL = "tutorial"
+        const val KEY_ABOUT = "about"
+        const val KEY_SHARE = "share"
+        const val KEY_COUNTRY = "country"
+        const val KEY_DAILY_NOTIFICATION = "dailyNotification"
+    }
 }

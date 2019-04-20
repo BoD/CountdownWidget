@@ -48,7 +48,6 @@ import org.jraf.android.countdownwidget.R;
 import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider;
 import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationService;
 import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationTaskService;
-import org.jraf.android.countdownwidget.prefs.MainConstants;
 import org.jraf.android.countdownwidget.prefs.MainPrefs;
 import org.jraf.android.countdownwidget.util.DateTimeUtil;
 import org.jraf.android.countdownwidget.util.ViewUtil;
@@ -84,8 +83,8 @@ public class SettingsActivity extends AppCompatActivity {
             .OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (MainConstants.KEY_DAILY_NOTIFICATION.equals(key)) {
-                if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
+            if (MainPrefs.KEY_DAILY_NOTIFICATION.equals(key)) {
+                if (new MainPrefs(SettingsActivity.this).getDailyNotification()) {
                     // Schedule an alarm
                     DailyNotificationTaskService.scheduleTask(SettingsActivity.this);
 
@@ -95,7 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
                     // Unschedule the alarm
                     DailyNotificationTaskService.unscheduleTask(SettingsActivity.this);
                 }
-            } else if (MainConstants.KEY_COUNTRY.equals(key)) {
+            } else if (MainPrefs.KEY_COUNTRY.equals(key)) {
                 // Update the summary of the preference
                 SettingsFragment settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
                 settingsFragment.updateCountrySummary();
@@ -107,7 +106,7 @@ public class SettingsActivity extends AppCompatActivity {
                 AppWidgetProvider.updateWidgets(SettingsActivity.this, appWidgetManager, appWidgetIds);
 
                 // Update the notification now if needed
-                if (MainPrefs.get(SettingsActivity.this).getDailyNotification()) {
+                if (new MainPrefs(SettingsActivity.this).getDailyNotification()) {
                     startService(new Intent(SettingsActivity.this, DailyNotificationService.class));
                 }
             }

@@ -68,7 +68,7 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
 
     override fun onHandleIntent(intent: Intent) {
         Log.d("intent=%s", StringUtil.toString(intent))
-        if (!MainPrefs.get(this).dailyNotification) {
+        if (!MainPrefs(this).dailyNotification) {
             // We got triggered, but the setting is off so please don't do anything
             Log.d("Setting is off")
             return
