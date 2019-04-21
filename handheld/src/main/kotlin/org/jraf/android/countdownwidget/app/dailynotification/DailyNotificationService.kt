@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  * 
- * Copyright (C) 2014 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2014-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,13 +37,12 @@ import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import org.jraf.android.countdownwidget.R
-import org.jraf.android.countdownwidget.app.settings.SettingsUtil
+import org.jraf.android.countdownwidget.app.settings.getReleaseDateZone
 import org.jraf.android.countdownwidget.prefs.MainPrefs
-import org.jraf.android.countdownwidget.util.DateTimeUtil
+import org.jraf.android.countdownwidget.util.getCountDownToRelease
+import org.jraf.android.countdownwidget.util.getFormattedCountdown
 import org.jraf.android.util.log.Log
 import org.jraf.android.util.string.StringUtil
-import org.jraf.android.countdownwidget.util.StringUtil as CountdownStringUtil
-
 
 class DailyNotificationService : IntentService(DailyNotificationService::class.java.simpleName) {
 
@@ -55,8 +54,8 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
 
     private val numberOfDays: Int
         get() {
-            val releaseDateZone = SettingsUtil.getReleaseDateZone(this)
-            val nbDays = DateTimeUtil.getCountDownToRelease(releaseDateZone)
+            val releaseDateZone = getReleaseDateZone(this)
+            val nbDays = getCountDownToRelease(releaseDateZone)
             Log.d("nbDays=%s", nbDays)
             return nbDays
         }
@@ -97,7 +96,7 @@ class DailyNotificationService : IntentService(DailyNotificationService::class.j
         mainNotifBuilder.setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_launcher))
 
         // Title
-        mainNotifBuilder.setContentTitle(CountdownStringUtil.getFormattedCountdown(this, numberOfDays))
+        mainNotifBuilder.setContentTitle(getFormattedCountdown(this, numberOfDays))
 
         // Text
         val text = getString(R.string.notif_text)

@@ -6,9 +6,9 @@
  * \___/_/|_/_/ |_/_/ (_)___/_/  \_, /
  *                              /___/
  * repository.
- *
- * Copyright (C) 2017-present Benoit 'BoD' Lubek (BoD@JRAF.org)
- *
+ * 
+ * Copyright (C) 2014-present Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,30 +22,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.prefs
+package org.jraf.android.countdownwidget.util
 
-import android.content.Context
-import org.jraf.android.kprefs.Key
-import org.jraf.android.kprefs.Prefs
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.view.View
 
-class MainPrefs(context: Context) {
-    private val prefs = Prefs(context)
-
-    /**
-     * Country.
-     */
-    var country by prefs.String("USA", Key(KEY_COUNTRY))
-
-    /**
-     * Daily notification.
-     */
-    var dailyNotification by prefs.Boolean(false)
-
-    companion object {
-        const val KEY_TUTORIAL = "tutorial"
-        const val KEY_ABOUT = "about"
-        const val KEY_SHARE = "share"
-        const val KEY_COUNTRY = "country"
-        const val KEY_DAILY_NOTIFICATION = "dailyNotification"
-    }
+fun View.toBitmap(widthPx: Int, heightPx: Int): Bitmap {
+    val widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(widthPx, View.MeasureSpec.EXACTLY)
+    val heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(heightPx, View.MeasureSpec.EXACTLY)
+    measure(widthMeasureSpec, heightMeasureSpec)
+    layout(0, 0, measuredWidth, measuredHeight)
+    val res = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(res)
+    canvas.translate((-scrollX).toFloat(), (-scrollY).toFloat())
+    //        Drawable bgDrawable = view.getBackground();
+    //        if (bgDrawable != null) bgDrawable.draw(canvas);
+    draw(canvas)
+    return res
 }

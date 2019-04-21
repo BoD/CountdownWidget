@@ -7,7 +7,7 @@
  *                              /___/
  * repository.
  * 
- * Copyright (C) 2014 Benoit 'BoD' Lubek (BoD@JRAF.org)
+ * Copyright (C) 2014-present Benoit 'BoD' Lubek (BoD@JRAF.org)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,42 +22,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jraf.android.countdownwidget.app;
+package org.jraf.android.countdownwidget.app
 
-import android.os.Handler;
-import android.os.StrictMode;
+import android.os.Handler
+import android.os.StrictMode
 
-import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.Crashlytics
 
-import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Fabric
+import org.jraf.android.countdownwidget.BuildConfig
 
-import org.jraf.android.countdownwidget.BuildConfig;
-import org.jraf.android.util.log.Log;
+import org.jraf.android.util.log.Log
 
-public class Application extends android.app.Application {
-    private static final String TAG = "CountdownWidget";
+class Application : android.app.Application() {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    override fun onCreate() {
+        super.onCreate()
         // Log
-        Log.init(this, TAG, BuildConfig.DEBUG_LOGS);
+        Log.init(this, TAG, BuildConfig.DEBUG_LOGS)
 
         // Strict mode
-        if (BuildConfig.STRICT_MODE) setupStrictMode();
+        if (BuildConfig.STRICT_MODE) setupStrictMode()
 
         // Crashlytics
-        if (BuildConfig.CRASH_REPORT) Fabric.with(this, new Crashlytics());
+        if (BuildConfig.CRASH_REPORT) Fabric.with(this, Crashlytics())
     }
 
-    private void setupStrictMode() {
+    private fun setupStrictMode() {
         // Do this in a Handler.post because of this issue: http://code.google.com/p/android/issues/detail?id=35298
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
-                StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
-            }
-        });
+        Handler().post {
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build())
+            StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build())
+        }
+    }
+
+    companion object {
+        private val TAG = "CountdownWidget"
     }
 }
