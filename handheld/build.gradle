@@ -178,11 +178,11 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
-    // Support library
+    // AndroidX
     implementation "androidx.preference:preference:$versions.androidxPreference"
+    implementation "androidx.work:work-runtime-ktx:$versions.androidxWorkManager"
 
     // Play Services
-    implementation "com.google.android.gms:play-services-gcm:$versions.playServices.gcm"
     implementation "com.google.android.gms:play-services-oss-licenses:$versions.playServices.ossLicenses"
 
     // Fabric / Crashlytics

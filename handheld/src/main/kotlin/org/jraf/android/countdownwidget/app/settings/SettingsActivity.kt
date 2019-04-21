@@ -42,7 +42,7 @@ import org.jraf.android.countdownwidget.BuildConfig
 import org.jraf.android.countdownwidget.R
 import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider
 import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationService
-import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationTaskService
+import org.jraf.android.countdownwidget.app.dailynotification.DailyNotificationWorker
 import org.jraf.android.countdownwidget.prefs.MainPrefs
 import org.jraf.android.countdownwidget.util.getCountDownToReleaseAsText
 import org.jraf.android.countdownwidget.util.toBitmap
@@ -64,13 +64,13 @@ class SettingsActivity : AppCompatActivity() {
         when (key) {
             MainPrefs.KEY_DAILY_NOTIFICATION -> if (mainPrefs.dailyNotification) {
                 // Schedule an alarm
-                DailyNotificationTaskService.scheduleTask(this@SettingsActivity)
+                DailyNotificationWorker.scheduleTask()
 
                 // Also show the notification now
                 startService(Intent(this@SettingsActivity, DailyNotificationService::class.java))
             } else {
                 // Unschedule the alarm
-                DailyNotificationTaskService.unscheduleTask(this@SettingsActivity)
+                DailyNotificationWorker.unscheduleTask()
             }
 
             MainPrefs.KEY_COUNTRY -> {

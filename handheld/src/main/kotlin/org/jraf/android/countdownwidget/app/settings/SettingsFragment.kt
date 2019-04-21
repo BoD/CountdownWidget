@@ -90,5 +90,5 @@ class SettingsFragment : PreferenceFragmentCompat() {
         countryPreference.summary = getString(R.string.preference_country_summary, formattedDate, countryName)
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {}
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {}
 }

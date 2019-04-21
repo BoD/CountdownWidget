@@ -44,7 +44,6 @@ versions.testing = testing
 def playServices = [:]
 playServices.with {
     ossLicenses = '16.0.2'
-    gcm = '16.1.0'
 }
 versions.playServices = playServices
 
@@ -52,6 +51,7 @@ versions.playServices = playServices
 versions.with {
     kotlin = '1.3.30'
     androidxPreference = '1.0.0'
+    androidxWorkManager = '2.0.1'
     crashlytics = '2.9.9'
     kprefs = '1.1.0'
 }
