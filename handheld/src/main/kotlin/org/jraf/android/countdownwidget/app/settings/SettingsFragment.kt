@@ -28,9 +28,9 @@ import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceFragmentCompat
 import android.widget.Toast
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import org.jraf.android.countdownwidget.R
 import org.jraf.android.countdownwidget.prefs.MainPrefs
 import org.jraf.android.countdownwidget.util.getFormattedReleaseDate

@@ -33,9 +33,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v4.app.NotificationCompat
-import android.support.v4.content.ContextCompat
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import org.jraf.android.countdownwidget.R
 import org.jraf.android.countdownwidget.app.settings.getReleaseDateZone
 import org.jraf.android.countdownwidget.prefs.MainPrefs

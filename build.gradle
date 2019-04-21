@@ -18,7 +18,7 @@ buildscript {
 
         // XXX Needed temporarily because of https://issuetracker.google.com/issues/119776863
         // XXX REMOVE when fixed
-        classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta03'
+        classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta04'
     }
 }
 

@@ -33,11 +33,11 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.support.annotation.WorkerThread
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.preference.PreferenceManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.WorkerThread
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import org.jraf.android.countdownwidget.BuildConfig
 import org.jraf.android.countdownwidget.R
 import org.jraf.android.countdownwidget.app.appwidget.AppWidgetProvider

@@ -38,8 +38,8 @@ import android.graphics.Rect
 import android.graphics.Shader.TileMode
 import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
-import android.support.v4.content.ContextCompat
 import android.widget.RemoteViews
+import androidx.core.content.ContextCompat
 import org.jraf.android.countdownwidget.R
 import org.jraf.android.countdownwidget.app.settings.SettingsActivity
 import org.jraf.android.countdownwidget.app.settings.getReleaseDateZone

@@ -26,7 +26,7 @@ package org.jraf.android.countdownwidget.app.dailynotification
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.gcm.GcmNetworkManager
 import com.google.android.gms.gcm.GcmTaskService
 import com.google.android.gms.gcm.OneoffTask

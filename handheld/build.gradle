@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 if (buildProperties.enableFabric.toBoolean()) apply plugin: 'io.fabric'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.google.gms.oss.licenses.plugin'
@@ -14,7 +15,7 @@ android {
         versionCode buildNumber
         versionName buildProperties.versionName
 
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         // For now we enable strict mode for all the configs
         buildConfigField 'boolean', 'STRICT_MODE', 'true'
@@ -167,7 +168,7 @@ android.variantFilter { variant ->
 
 dependencies {
     // Tests
-    androidTestImplementation("com.android.support.test.espresso:espresso-core:$versions.testing.espresso", {
+    androidTestImplementation("androidx.test.espresso:espresso-core:$versions.testing.espresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation "junit:junit:$versions.testing.junit"
@@ -178,8 +179,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
     // Support library
-    implementation "com.android.support:preference-v7:$versions.supportLibrary"
-    implementation "com.android.support:preference-v14:$versions.supportLibrary"
+    implementation "androidx.preference:preference:$versions.androidxPreference"
 
     // Play Services
     implementation "com.google.android.gms:play-services-gcm:$versions.playServices.gcm"

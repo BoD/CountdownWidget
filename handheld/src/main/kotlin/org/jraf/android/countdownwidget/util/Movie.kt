@@ -26,7 +26,7 @@ package org.jraf.android.countdownwidget.util
 
 import java.util.Calendar
 
-enum class Movie constructor(val releaseDates: Array<Calendar>) {
+enum class Movie(val releaseDates: Array<Calendar>) {
     EPISODE_VII(RELEASE_DATES_EPISODE_VII),
     ROGUE_ONE(RELEASE_DATES_ROGUE_ONE),
     EPISODE_VIII(RELEASE_DATES_EPISODE_VIII),
