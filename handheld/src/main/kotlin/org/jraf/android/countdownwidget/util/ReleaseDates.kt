@@ -53,7 +53,8 @@ val RELEASE_DATES_EPISODE_VIII = arrayOf(
 
 val RELEASE_DATES_EPISODE_IX = arrayOf(
     getCalendar(2019, Calendar.DECEMBER, 20),
-    getCalendar(2019, Calendar.DECEMBER, 19)
+    getCalendar(2019, Calendar.DECEMBER, 19),
+    getCalendar(2019, Calendar.DECEMBER, 18)
 )
 
 val RELEASE_DATES_TRUMP = arrayOf(
